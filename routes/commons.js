@@ -6,8 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     autoIncrement: true
   });
 
-  Commons.associate = function(models){
-    models.Commons.hasMany(models.Task);
+  Commons.associate = function(models){ //figure out relations
+    //models.Commons.hasMany(models.playing);
+    //models.Commons.hasMany(models.contains);
   };
 
   return Commons;
