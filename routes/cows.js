@@ -1,7 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Cows = sequelize.define('Cows', {
-    cows: DataTypes.STRING
+    cID: DataTypes.STRING
+    health: DataTypes.INTEGER
   });
 
   Cows.associate = function(models){

@@ -1,7 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Config = sequelize.define('Cows', {
-    config: DataTypes.STRING
+    conID: DataTypes.STRING
+    milkTime: DataTypes.STRING
+    cowPrice: DataTypes.STRING
+    tax: DataTypes.STRING
+    startDate: DataTypes.DATE
+    endDate: DataTypes.DATE
   });
 
   Config.associate = function(models){
