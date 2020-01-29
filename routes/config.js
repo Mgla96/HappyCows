@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     endDate: DataTypes.DATE
   });
 
-  Config.associate = function(models){
-    models.Config.hasMany(models.Task);
+  Config.associate = function(models){//figure out relations
+    //models.Config.hasMany(models.contains);
   };
 
   return Config;
