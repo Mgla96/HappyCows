@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Commons = sequelize.define('Commons', {
-    conID: DataTypes.STRING
+    comID: DataTypes.STRING
   });
 
   Commons.associate = function(models){
