@@ -9,7 +9,7 @@ Private Repo to develop backend
 * Node.js
 
 For maintainable application, we will put all the database logic into the models folder
-[link text itself]: http://sequelize.readthedocs.io/en/1.7.0/articles/express/
+http://sequelize.readthedocs.io/en/1.7.0/articles/express/
 
 
 
