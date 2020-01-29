@@ -1,7 +1,7 @@
 //relationship between Users & Cows
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Owns = sequelize.define('Owns', {
+  var Owns = sequelize.define('owns', {
    
   });
 
