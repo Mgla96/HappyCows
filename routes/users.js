@@ -1,22 +1,9 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-  var Users = sequelize.define('Users', {
-    uID: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false
-    //autoIncrement: true
-    },
-    name: DataTypes.STRING,
-    type: DataTypes.STRING
-  });
+var express = require('express');
+var router = express.Router();
 
-  Users.associate = function(models){ //figure out relation
-    models.Users.hasMany(models.Commons);
-    models.Users.hasMany(models.Cows);
-  };
+/*GET users listing. */
+router.get('/', function(req, res, next){
+  res.sendStatus('respond with a resource');
+});
 
-  return Users;
-
-}
+module.exports = router;
