@@ -11,9 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   Commons.associate = function(models){ //figure out relations
     models.Commons.hasOne(models.Config)
     models.Commons.hasMany(models.Users)
-    
-    //models.Commons.hasMany(models.playing);
-    //models.Commons.hasMany(models.contains);
+    models.Commons.hasMany(models.Cows)
   };
 
   return Commons;

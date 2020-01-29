@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
   Users.associate = function(models){ //figure out relation
     models.Users.hasMany(models.Commons);
     models.Users.hasMany(models.Cows);
-    //models.Users.hasMany(models.playing);
   };
 
   return Users;

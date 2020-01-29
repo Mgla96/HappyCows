@@ -21,3 +21,8 @@ We just need to worry about setting up the tables properly which are all located
 ## Reference Docs
 http://sequelize.readthedocs.io/en/1.7.0/articles/express/
 
+Helpful article on sequelize associations
+https://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/
+
+
+## Testing Instructions

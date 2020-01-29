@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Config = sequelize.define('cows', {
+  var Config = sequelize.define('Cows', {
     conID: {
     type: DataTypes.UUID,
     primaryKey: true,
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Config.associate = function(models){//figure out relations
-    //models.Config.hasMany(models.contains);
+    models.Config.belongsTo(models.Commons)
   };
 
   return Config;
