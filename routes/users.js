@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING
   });
 
-  Users.associate = function(models){
-    models.Users.hasMany(models.Task);
+  Users.associate = function(models){ //figure out relation
+    //models.Users.hasMany(models.playing);
   };
 
   return Users;
