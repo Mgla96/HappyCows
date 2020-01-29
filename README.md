@@ -13,9 +13,9 @@ Private Repo to develop backend
 * Node.js
 
 ## Info
-For maintainable application, we will put all the database logic into the models folder
-We have automatic table creation if they don't exist in database which sequelize provides in the bin/www file - models.sequelize.sync() 
-so just need to worry about setting up the tables properly
+For maintainable application, we will put all the database logic into the models folder. 
+We have automatic table creation if they don't exist in database which sequelize provides in the bin/www file - models.sequelize.sync().
+We just need to worry about setting up the tables properly which are all located in the routes folder
 
 
 ## Reference Docs
