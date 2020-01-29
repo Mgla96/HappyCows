@@ -2,11 +2,11 @@
 Private Repo to develop backend
 
 
-Backend Stack 
-## MySQL
-## Sequelize
-## Express.js
-## Node.js
+## Backend Stack 
+### MySQL
+### Sequelize
+### Express.js
+### Node.js
 
 
 
