@@ -1,9 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Cows = sequelize.define('Cows', {
-    cID: DataTypes.INTEGER,
+  var Cows = sequelize.define('cows', {
+    cID: {
+    type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true,
+    autoIncrement: true},
     health: DataTypes.INTEGER
   });
 
