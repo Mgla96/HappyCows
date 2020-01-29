@@ -1,7 +1,7 @@
 //relationship between Users and Commons
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Playing = sequelize.define('Playing', {
+  var Playing = sequelize.define('playing', {
     balance: DataTypes.INTEGER,
   });
 

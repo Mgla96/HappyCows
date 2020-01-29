@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Commons = sequelize.define('Commons', {
+  var Commons = sequelize.define('commons', {
     comID: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true

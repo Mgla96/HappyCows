@@ -1,7 +1,7 @@
 //relationship between Commons and Config
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Contains = sequelize.define('Contains', {
+  var Contains = sequelize.define('contains', {
    
   });
 
