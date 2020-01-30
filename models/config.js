@@ -1,12 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Config = sequelize.define('Cows', {
-    conID: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false
-    //autoIncrement: true
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
     },
     milkTime: DataTypes.STRING,
     cowPrice: DataTypes.STRING,
