@@ -1,12 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Users = sequelize.define('Users', {
-    uID: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false
-    //autoIncrement: true
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
     },
     name: DataTypes.STRING,
     type: DataTypes.STRING
@@ -16,7 +14,5 @@ module.exports = (sequelize, DataTypes) => {
     models.Users.hasMany(models.Commons);
     models.Users.hasMany(models.Cows);
   };
-
   return Users;
-
 }
