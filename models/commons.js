@@ -1,11 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Commons = sequelize.define('Commons', {
-    comID: DataTypes.UUID,
-    primaryKey: true,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false
-    //autoIncrement: true
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: Sequelize.STRING,
+    admin_uid: Sequelize.INTEGER
   });
 
   Commons.associate = function(models){ //figure out relations
