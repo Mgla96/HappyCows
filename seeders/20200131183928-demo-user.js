@@ -13,11 +13,10 @@ module.exports = {
       }], {});
     */
    return queryInterface.bulkInsert('Users', [{
-    id: uuidv4(),
-    type: Sequelize.INTEGER,
     firstName: 'John',
     lastName: 'Doe',
     email: 'john@doe.com',
+    type: Sequelize.Integer,
     createdAt: new Date(),
     updatedAt: new Date()
   }]);
