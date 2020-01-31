@@ -5,7 +5,6 @@ Private Repo to develop backend
 <img src="https://media.giphy.com/media/W54Zt0bgS87x6/giphy.gif" width="50%" alt="gif">
 </p>
 
-
 ## Backend Stack 
 * MySQL
 * Sequelize
@@ -27,5 +26,20 @@ https://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/
 
 Sequelize CLI
 npx sequelize --help
+
+Using MySQL, MySQL Workbench
+When MySQL server running locally can type npx sequelize db:create 
+
+Helpful article explaining migrations & seeds 
+https://sequelize.org/master/manual/migrations.html
+
+npx sequelize-cli db:migrate 
+
+example 
+- creating a seed to put demo data in a table which can be initialized later 
+npx sequelize-cli seed:generate --name demo-user
+
+- inserts demo data (seeds) into database
+npx sequelize-cli db:seed:all  
 
 ## Testing Instructions
