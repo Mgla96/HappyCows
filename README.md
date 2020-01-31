@@ -25,4 +25,7 @@ Helpful article on sequelize associations
 https://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/
 
 
+Sequelize CLI
+npx sequelize --help
+
 ## Testing Instructions
