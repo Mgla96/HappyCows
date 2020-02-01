@@ -19,6 +19,8 @@ We just need to worry about setting up the tables properly which are all located
 The seeders folder allows us to put in sample data so we could run "npx sequelize-cli db:seed:all" command to put it in our data tables  
 
 ## Reference Docs
+
+### Express Article
 http://sequelize.readthedocs.io/en/1.7.0/articles/express/
 
 ### Helpful article on sequelize associations
@@ -33,12 +35,9 @@ npx sequelize --help
 
 Using MySQL, MySQL Workbench
 When MySQL server running locally can type 
-npx sequelize db:create 
 
--npx sequelize-cli db:migrate 
+- to create tables in database run this command
+npx sequelize-cli db:migrate 
  
-- creating a seed to put demo data in a table which can be initialized later (don't need to do because we already created seeds for tables)
-npx sequelize-cli seed:generate --name demo-user
-
 - inserts demo data (seeds) into database
 npx sequelize-cli db:seed:all  
