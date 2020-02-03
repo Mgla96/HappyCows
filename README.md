@@ -5,6 +5,71 @@ Private Repo to develop backend
 <img src="https://media.giphy.com/media/W54Zt0bgS87x6/giphy.gif" width="50%" alt="gif">
 </p>
 
+
+## Getting Start
+Install MySQL on your computer and change accordingly in `config/config.js`.  
+Then, you can create tables by following command:
+```bash
+npx sequelize-cli db:migrate 
+```
+Or you can use following script to force update tables:
+```javascript
+var db = require("models/index")
+db.Users.sync({force: true});
+....
+```
+If you want to have demo data, run following command:
+```bash
+npx sequelize-cli db:seed:all  
+```
+
+## How to write APIs
+**STEP 1**   
+Create `[your_name].js` at `/routes` directory with following content
+```javascript
+var express = require('express');
+var router = express.Router();
+
+module.exports = router;
+```
+**STEP 2**   
+Importing `route/[your_name].js` in `/app.js`
+```javascript
+var yourNameRouter = require('./routes/your_name');
+```
+And add following line to register your route:
+```javascript
+app.use('/yourName', yourNameRouter);
+```
+Now `http://server/yourName/*` is all yours.
+
+**STEP 3**   
+Create file `/apis/your_name/your_api.js` and write your api functions like
+```javascript
+var db = require("../../models/index"); // model is defined in /model
+// assume table banana exists
+// get all bananas
+function get_banana(req, res) {
+  db.Banana.findAll().then((dbRes)=>{
+    res.json({success: true, data: dbRes}) // send json request back
+  })
+}
+module.exports = {get_banana};
+```
+For `req` and `res` structs, refer to expressjs docs.  
+For `db` struct, refer to sequelize docs.
+
+**STEP 4**   
+Import `/apis/your_name/your_api.js` at `route/[your_name].js`
+```javascript
+var {get_banana} = require("../apis/admin/users");
+```
+And register the subroute
+```javascript
+router.get('/banana', get_banana);
+```
+Now you can use curl to test it out or visit with browser directly!
+
 ## Backend Stack 
 * MySQL
 * Sequelize
@@ -28,16 +93,3 @@ https://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/
 
 ### Helpful article explaining migrations & seeds 
 https://sequelize.org/master/manual/migrations.html
-
-## Testing Instructions
-Sequelize CLI
-npx sequelize --help
-
-Using MySQL, MySQL Workbench
-When MySQL server running locally can type 
-
-- to create tables in database run this command
-npx sequelize-cli db:migrate 
- 
-- inserts demo data (seeds) into database
-npx sequelize-cli db:seed:all  
