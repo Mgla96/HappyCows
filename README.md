@@ -93,3 +93,7 @@ https://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/
 
 ### Helpful article explaining migrations & seeds 
 https://sequelize.org/master/manual/migrations.html
+
+### RESTful Info
+https://www.restapitutorial.com/lessons/restquicktips.html
+I assume we are using restful + json?
