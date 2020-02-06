@@ -1,0 +1,194 @@
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <h5 class="card-header">Players</h5>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Perm</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Cows</th>
+                                    <th scope="col">Health</th>
+                                    <th scope="col">Money</th>
+                                    <th scope="col">Other Info?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Student</td>
+                                    <td>0000000</td>
+                                    <td>Student@ucsb.edu</td>
+                                    <td>4</td>
+                                    <td>92</td>
+                                    <td>10000</td>
+                                    <td>Other info?</td>
+                                    <td><button type="button" class="btn btn-danger btn-sm">X</button></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Student 2</td>
+                                    <td>011111111</td>
+                                    <td>Student2@ucsb.edu</td>
+                                    <td>40</td>
+                                    <td>56</td>
+                                    <td>2000</td>
+                                    <td>Other info?</td>
+                                    <td><button type="button" class="btn btn-danger btn-sm">X</button></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <h5 class="card-header">Configs</h5>
+                    <div class="card-body">
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Paramter</th>
+                                    <th scope="col">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Max Cows Per Person</td>
+                                    <td>10</td>
+                                    <td><button type="button" class="btn btn-primary btn-sm">Modify</button></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Cost Per Cow</td>
+                                    <td>1000</td>
+                                  
+                                    <td><button type="button" class="btn btn-primary btn-sm">Modify</button></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Degredation Rate</td>
+                                    <td>2</td>
+                                    <td><button type="button" class="btn btn-primary btn-sm">Modify</button></td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <h5 class="card-header">Taxes</h5>
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Lower</th>
+                                            <th scope="col">Upper</th>
+                                            <th scope="col">Rate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>0</td>
+                                            <td>10</td>
+                                            <td>10%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>11</td>
+                                            <td>20</td>
+                                            <td>15%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col">
+                                <button class="btn btn-primary" type="submit">Adjust Taxes</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <h5 class="card-header">Data</h5>
+                    <div class="card-body">
+                        <button class="btn btn-primary" type="submit">Download</button>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
