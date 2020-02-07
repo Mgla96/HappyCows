@@ -17,6 +17,12 @@ module.exports = {
       tax: {
         type: Sequelize.INTEGER
       },
+      tax2: {
+        type: Sequelize.INTEGER
+      },
+      tax3: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
