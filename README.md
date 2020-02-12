@@ -6,7 +6,7 @@ Private Repo to develop backend
 </p>
 
 
-## Getting Start
+## Getting Started
 Install MySQL on your computer and change accordingly in `config/config.js`.  
 Then, you can create tables by following command:
 ```bash
