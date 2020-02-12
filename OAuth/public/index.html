@@ -8,10 +8,12 @@
   <style>
     body { font-family: 'ABeeZee'; }
   </style>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
   <a id="link"><button>Login with Google</button></a>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
   <div id="user-info-wrapper">
     <img width="50" />
     <p></p><p></p><p></p>
