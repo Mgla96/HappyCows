@@ -68,7 +68,7 @@
                             <td>Commons1</td>
                             <td>97</td>
                             <td>4</td>
-                            <td><button type="button" class="btn btn-primary btn-sm">Settings</button></td>
+                            <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#settingsModal">Settings</button></td>
                           </tr>
 
                           <tr>
@@ -76,9 +76,30 @@
                             <td>Commons2</td>
                             <td>100</td>
                             <td>12</td>
-                            <td><button type="button" class="btn btn-primary btn-sm">Settings</button></td>
+                            <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#settingsModal">Settings</button></td>
                           </tr>
-                        
+                          
+                          <!-- Settings Modal -->
+                          <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+													  <div class="modal-dialog" role="document">
+													    <div class="modal-content">
+													      <div class="modal-header">
+													        <h5 class="modal-title" id="settingsModalLabel">Settings</h5>
+													        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													          <span aria-hidden="true">&times;</span>
+													        </button>
+													      </div>
+													      <div class="modal-body">
+													        Settings LOL
+													      </div>
+													      <div class="modal-footer">
+													        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+													        <button type="button" class="btn btn-primary">Save changes</button>
+													      </div>
+													    </div>
+													  </div>
+													</div>
+
                         </tbody>
                       </table>
 
