@@ -3,7 +3,7 @@
 const fetch = require("node-fetch")
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3000 
 
 const clientId = process.argv[2]
 const clientSecret = process.argv[3]
@@ -13,6 +13,12 @@ app.use(express.static('public'))
 app.get('/clientId', (req, res) => {
   res.send(JSON.stringify({ clientId }))
 })
+
+function onSignedIn(googleUser) {
+  const signoutElement = document.getElementById('signout');
+  signoutElement.innerHTML =
+      'Sign out ' + googleUser.getBasicProfile().getEmail();
+}
 
 app.get('/oauth2callback', handleOAuth2)
 async function handleOAuth2(req, res) {
