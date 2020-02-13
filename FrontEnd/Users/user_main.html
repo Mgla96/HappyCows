@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="user.css">
+</head>
+<body class="user_main">
+    <div class="info">
+        <p>Welcome farmer _ . Today is day _ . Please set the number of cows you would like to send to pasture below. 
+            If you send more than you currently own, you will automatically buy as many cows as you can afford to make up the difference. 
+            If you send fewer than you currently own, you will automatically sell off the excess. 
+            You must send at least one cow. Happy farming, and good luck.</p>
+        <br>
+        <button>Reminder</button>    
+    </div>
+
+    <div class="pasture">
+        <p>Yesterday you grazed _ cows <br> How many would you want today?</p>
+        <img src="img/cowhead.svg" alt="Cow's head">
+        <input id="cow_to_graze" type="number" value="0" style="text-align: center;">
+        <button onclick="decrease_cow()">-</button>
+        <button onclick="increase_cow()">+</button>
+        <button>Set Number</button>
+        <p id="pasture_info"></p>
+    </div>
+
+    <div class="farm">
+        <div class="money">
+            <img src="img/money.svg" alt="">
+            <p>$ ______</p>
+        </div>
+
+        <div class="cows">
+            <img src="img/cowtag.svg" alt="">
+            <p>_ cows</p>
+        </div>
+
+        <div class="health">
+            <img src="img/health.svg" alt="">
+            <p>__ %</p>
+        </div>
+    </div>
+
+    <script>
+        function increase_cow() {
+            document.getElementById("cow_to_graze").value = document.getElementById("cow_to_graze").value - (-1);
+        }
+        function decrease_cow() {
+            if (document.getElementById("cow_to_graze").value != 0)
+            document.getElementById("cow_to_graze").value = document.getElementById("cow_to_graze").value - 1;
+        }
+    </script>
+</body>
+</html>
