@@ -65,7 +65,7 @@ input[type=number] {
 .login > h1 {color: forestgreen;}
 .login > form {margin-top: 50px;}
 .login > h6 {
-  font-size: 12px; 
+  font-size: 13px; 
   color: darkgreen; 
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -74,6 +74,7 @@ input[type=number] {
   border: none; 
   background: none; 
   border-bottom: 1px solid forestgreen;
+  font-size: 15px;
 }
 #button {
   font-size: 15px; width: 80%; 
