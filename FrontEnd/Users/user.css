@@ -1,4 +1,4 @@
-/*** user.html ***/
+html {height: 100%;}
 /*Hide the arrows of number input*/
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -11,47 +11,34 @@ input[type=number] {
   -moz-appearance:textfield;
 }
 
-body.div* {
-    margin: 50px;
+/*** USER.HTML ***/
+.user_main {
+    background: url(img/background.svg); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: center;
 }
-
-.pasture {
-    background-color: gray;
+.pasture, .farm {
+    background-color: rgba(256, 256, 256, .9); 
+    max-width: 400px; 
+    margin: 20px;
+    border: 2px solid seagreen;
 }
-.pasture p, img {
-    margin: 10px;
-}
-.pasture input, button {
-    margin-bottom: 10px;
-}
-
-.farm {
-    background-color: green;
-}
-.farm * {
-    margin: 10px;
-}
-.farm div {
+.pasture p, img {margin: 10px;}
+.pasture {text-align: center;}
+.pasture button {
     position: relative;
+    right: 115px;
+    bottom: 40px;
+    padding: 4px;
 }
-
-.money p {
-    position: absolute;
-    top: 50%;
-    right: 0%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+#cow_to_graze {
+    position: relative;
+    bottom: 70px;
 }
-
-.cows p {
-    position: absolute;
-    top: 50%;
-    right: 0%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-
-.health p {
+.farm * {margin: 10px;}
+.farm div {position: relative;}
+.farm p {
     position: absolute;
     top: 50%;
     right: 0%;
@@ -60,11 +47,38 @@ body.div* {
 }
 
 
-
-/*** user_login.html ***/
-#user_login {
+/*** USER_LOGIN.HTML ***/
+.user_login {
    background: url(img/background.svg); 
    background-repeat: no-repeat; 
    background-size: cover;
+   background-position: center;
 }
-
+.login {
+  background-color: rgba(256, 256, 256, .8); 
+  border: 1px solid forestgreen; 
+  text-align: center; 
+  margin: 50px auto; 
+  width: 250px; 
+  padding: 20px;
+}
+.login > h1 {color: forestgreen;}
+.login > form {margin-top: 50px;}
+.login > h6 {
+  font-size: 12px; 
+  color: darkgreen; 
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.login input {
+  width: 80%; text-align: center; 
+  border: none; 
+  background: none; 
+  border-bottom: 1px solid forestgreen;
+}
+#button {
+  font-size: 15px; width: 80%; 
+  border: 2px solid rgb(37, 180, 37); 
+  color: forestgreen; 
+  background: none; 
+  padding: 3px;
+}
