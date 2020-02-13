@@ -1,3 +1,4 @@
+/*** user.html ***/
 /*Hide the arrows of number input*/
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -57,3 +58,13 @@ body.div* {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+
+
+/*** user_login.html ***/
+#user_login {
+   background: url(img/background.svg); 
+   background-repeat: no-repeat; 
+   background-size: cover;
+}
+
