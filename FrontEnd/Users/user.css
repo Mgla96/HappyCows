@@ -1,0 +1,59 @@
+/*Hide the arrows of number input*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+body.div* {
+    margin: 50px;
+}
+
+.pasture {
+    background-color: gray;
+}
+.pasture p, img {
+    margin: 10px;
+}
+.pasture input, button {
+    margin-bottom: 10px;
+}
+
+.farm {
+    background-color: green;
+}
+.farm * {
+    margin: 10px;
+}
+.farm div {
+    position: relative;
+}
+
+.money p {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.cows p {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.health p {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
