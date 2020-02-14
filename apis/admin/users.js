@@ -94,6 +94,28 @@ function delete_users_with_id(req, res) {
   res.json({success: true})
 }
 
+// GET /user/:id
+// Description: Delete a specific user with id
+// Example: curl -X DELETE /admins/user/1
+// Return 
+function does_user_exist(req, res) {
+  const userId = req.params.id;
+  db.Users.findAll({
+    where: { id: userId }
+  }).then((dbRes)=>{
+    if (dbRes.length == 1){
+      res.json({success: true, message: "User exists"})
+    } else {
+      res.json({success: false, message: "No user found"})
+    }
+  })
+  res.json({success: true})
+}
+
+
+
+
+
 module.exports = { 
   get_users, 
   get_users_with_id, 
