@@ -15,3 +15,11 @@ function buy_cow(req, res){
 function sell_cow(req, res){
 
 }
+
+function get_cow_total(req, res){
+    
+}
+
+function set_cows_on_pasture(req, res) {
+    
+}
