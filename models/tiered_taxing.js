@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     tax: DataTypes.INTEGER
   }, {});
   Tiered_Taxing.associate = function(models) {
-    models.Tiered_Taxing.belongsTo(models.Commons)
+    models.Tiered_Taxing.belongsTo(models.Config)
   };
   return Tiered_Taxing;
 };
