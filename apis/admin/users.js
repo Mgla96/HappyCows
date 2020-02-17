@@ -1,5 +1,7 @@
 var db = require("../../models/index")
 var paging = require("../../utils/pagination")
+const uuidv1 = require('uuid/v1');
+
 db.Users.sync();
 
 // GET /user
@@ -8,7 +10,7 @@ db.Users.sync();
 // Return {firstName:string, lastName:string, email:string, type:string}
 function get_users(req, res) {
   db.Users.findAll({
-    attributes: ['firstName', 'lastName', 'email', 'type'],
+    attributes: ['id', 'firstName', 'lastName', 'email', 'type'],
     ...paging(req),
   }).then((dbRes)=>{
     res.json({success: true, data: dbRes})
@@ -22,7 +24,7 @@ function get_users(req, res) {
 function get_users_with_id(req, res) {
   const userId = req.params.id;
   db.Users.findAll({
-    attributes: ['firstName', 'lastName', 'email', 'type'],
+    attributes: ['id', 'firstName', 'lastName', 'email', 'type'],
     where: { id: userId }
   }).then((dbRes)=>{
     if (dbRes.length == 1){
@@ -44,11 +46,13 @@ function create_user(req, res) {
     email,
     type,
   } = req.body;
+  token = uuidv1();
   db.Users.build({
       firstName: firstName,
       lastName: lastName,
       email: email,
       type: type,
+      token: token
     }).save()
   res.json({success: true})
 }
