@@ -49,15 +49,49 @@ function global_health(req, res){
 	})
 }
 
-function get_create_date(){
-
+function get_create_date(req, res){
+	const conID = req.params.id;
+	db.Config.findAll({
+		attributes: ['startDate'],
+		where: {id: conID}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			res.json({success: true, data: dbRes[0]})
+		}
+		else {
+			res.json({success: false, message: "No Config Found"})
+		}
+	})
 }
 
-function get_end_date(){
-
+function get_end_date(req, res){
+	const conID = req.params.id;
+	db.Config.findAll({
+		attributes: ['endDate'],
+		where: {id: conID}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			res.json({success: true, data: dbRes[0]})
+		}
+		else {
+			res.json({success: false, message: "No Config Found"})
+		}
+	})
 }
 
-function get_gen_info(){
+function get_gen_info(req, res){
+	const conID = req.params.id;
+	db.Config.findAll({
+		attributes: ['milkTime','cowPrice','startDate','endDate'],
+		where: {id: conID}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			res.json({success: true, data: dbRes[0]})
+		}
+		else {
+			res.json({success: false, message: "No Config Found"})
+		}
+	})
 
 }
 

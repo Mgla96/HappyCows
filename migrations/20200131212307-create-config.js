@@ -14,14 +14,11 @@ module.exports = {
       cowPrice: {
         type: Sequelize.STRING
       },
-      tax: {
-        type: Sequelize.INTEGER
+      startDate: {
+        type: DataTypes.DATE  
       },
-      tax2: {
-        type: Sequelize.INTEGER
-      },
-      tax3: {
-        type: Sequelize.INTEGER
+      endDate: {
+        type: DataTypes.DATE
       },
       createdAt: {
         allowNull: false,
