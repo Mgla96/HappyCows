@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    token: DataTypes.STRING,
   }, {});
   Users.associate = function(models) {
     models.Users.hasMany(models.Commons);

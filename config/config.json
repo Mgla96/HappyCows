@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "devriestest",
-    "database": "database_development",
+    "password": "12345678",
+    "database": "cows",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": 1
