@@ -1,0 +1,61 @@
+<%- include("header") %>
+
+<body class="user_main">
+    <!-- <div style="background-image: url('backround.svg');"></div> -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="info">
+                    <h1>Welcome farmer <%=data.userName%></h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card special-card">
+                    <h5 class="card-header">Manage Cows</h5>
+                    <div class="card-body">
+                        <p>Note: If you increase cows, they will be automatically bought, and if you decrease, they cows
+                            will be automatically sold</p>
+
+                        <div class="row">
+                            <div class="col">
+                                <img src="img/cowhead.svg" alt="Cow's head">
+                                <p>You Have <%= data.userCows%> cows</p>
+                            </div>
+                            <div class="col">
+                                <!-- On Click should verify IF user has enough money, also check floor on zero -->
+                                <button type="button" class="btn btn-secondary">-</button>
+                                <button type="button" class="btn btn-secondary">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="card special-card">
+                    <h5 class="card-header">Your Stats</h5>
+                    <div class="card-body">
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div class="money">
+                                    <img src="img/money.svg" alt="">
+                                    <p>$ <%= data.userMoney%></p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="health">
+                                    <img src="img/health.svg" alt="">
+                                    <p>Cow Health: <%= data.userCowsHealth%>%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include("footer") %>
