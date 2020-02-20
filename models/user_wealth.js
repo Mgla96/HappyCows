@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const UserWealth = sequelize.define('User_Wealth', {
+  const UserWealth = sequelize.define('UserWealth', {
     wealth: DataTypes.INTEGER
   }, {});
   UserWealth.associate = function(models) {
