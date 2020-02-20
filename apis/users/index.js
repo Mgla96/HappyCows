@@ -15,7 +15,9 @@ function update_self(req, res){
 }
 
 function get_user_wealth(req, res) {
+    
     //calls function from user_in_commons
+    
     
 }
 

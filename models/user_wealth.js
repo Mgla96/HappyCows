@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     wealth: DataTypes.INTEGER
   }, {});
   UserWealth.associate = function(models) {
-    models.UserWealth.belongsTo(models.Users)
+    models.UserWealth.belongsTo(models.Users);
+    models.UserWealth.belongsTo(models.Commons);
     // associations can be defined here
   };
   return UserWealth;
