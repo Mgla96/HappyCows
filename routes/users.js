@@ -1,20 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var {get_link, auth} = require('../apis/users/auth');
-let {auth_middleware, admin_middleware} = require("../utils/auth")
-/* GET users listing. */
-router.get('/auth/get_link', function(req, res, next) {
-  get_link(req, res)
-});
 
-router.post('/auth', function(req, res, next) {
-  auth(req, res)
-});
+var auth_get = require("../views/auth_get");
+var auth_callback_all = require("../views/auth_callback_all");
 
-router.get('/middleware_test', auth_middleware, function(req, res, next) {
-  res.json({
-    data: res.locals.user // user object
-  })
-});
+router.get('/auth', auth_get);
+router.all('/auth_callback', auth_callback_all);
+
 
 module.exports = router;

@@ -2,13 +2,14 @@ const {google} = require('googleapis');
 const fetch = require("node-fetch")
 const uuidv1 = require('uuid/v1');
 var db = require("../models/index")
+const Op = require("sequelize").Op
 
 // oauth
 function get_new_client(){
     return new google.auth.OAuth2(
         "223268329188-00a753ugkfeobh79lkugn64jsskqlf2e.apps.googleusercontent.com", // TODO: change it 
         "PbEMXojjo7rdghKqkgvG-tfV",
-        "https://localhost:3000"
+        "http://localhost:3000/users/auth_callback"
     );
 }
 
@@ -51,7 +52,11 @@ async function get_email_from_at(v){
 function get_token_for_email(email){
     return db.Users.findAll({
         attributes: ['id', 'token'],
-        where: { email: email }
+        where: { email: email, firstName: {
+            [Op.ne]: null
+        }, lastName: {
+            [Op.ne]: null
+        }}
     }).then((dbRes)=>{
         if (dbRes.length >= 1){
             return {
@@ -87,20 +92,14 @@ function get_user_from_token(token){
 }
 
 async function auth_middleware(req,res,next){
-    const token = req.body.token ? req.body.token : req.query.token;
+    const token = req.cookies.token;
     if (!token){
-        res.json({
-            success: false,
-            message: "No token"
-        })
+        res.redirect("/users/auth?message=Not%20Logged%20In")
         return
     }
     const user = await get_user_from_token(token)
     if (!user){
-        res.json({
-            success: false,
-            message: "Wrong token"
-        })
+        res.redirect("/users/auth?message=Login%20Expired")
         return
     }
     res.locals.user = user;
