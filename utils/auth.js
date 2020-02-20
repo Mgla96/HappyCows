@@ -18,7 +18,10 @@ const oauth2Client = get_new_client()
 function get_auth_url(){
     return oauth2Client.generateAuthUrl({
         access_type: 'offline',
-        scope: ['https://www.googleapis.com/auth/userinfo.email'],
+        scope: [
+            'https://www.googleapis.com/auth/userinfo.email', 
+            'https://www.googleapis.com/auth/userinfo.profile'
+        ],
     });
 }
 
@@ -43,20 +46,20 @@ async function get_email_from_at(v){
           }
         }
       )
-    const json = await response.json()
-    return json.email;
+    const json = await response.json();
+    return {
+        email: json.email,
+        first_name: json.given_name,
+        last_name: json.family_name,
+    };
 }
 
 // token
 // TODO: use redis for cache
-function get_token_for_email(email){
+function get_token_for_email(email, first_name, last_name){
     return db.Users.findAll({
         attributes: ['id', 'token'],
-        where: { email: email, firstName: {
-            [Op.ne]: null
-        }, lastName: {
-            [Op.ne]: null
-        }}
+        where: { email: email }
     }).then((dbRes)=>{
         if (dbRes.length >= 1){
             return {
@@ -68,10 +71,12 @@ function get_token_for_email(email){
             db.Users.build({
                 email: email,
                 token: token,
-                type: "user"
+                type: "user",
+                firstName: first_name, 
+                lastName: last_name
             }).save()
             return {
-                is_new: true,
+                is_new: false,
                 token: token
             };
         }
