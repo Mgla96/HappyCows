@@ -13,13 +13,13 @@
 
 <body class="user_main">
     <!-- <div style="background-image: url('backround.svg');"></div> -->
-
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="info">
                     <h1>Welcome farmer <%=data.userName%></h1>
                 </div>
+            </div>
             </div>
         </div>
         <div class="row">
@@ -32,7 +32,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <img src="img/cowhead.svg" alt="Cow's head">
+                                <img class="cowBounceTest" src="img/cowhead.svg" alt="Cow's head">
                                 <p>You Have <%= data.userCows%> cows</p>
                             </div>
                             <div class="col">
@@ -52,13 +52,13 @@
                         <div class="row mt-3">
                             <div class="col">
                                 <div class="money">
-                                    <img src="img/money.svg" alt="">
+                                    <img class="shakeMoney" src="img/money.svg" alt=""></img>
                                     <p>$ <%= data.userMoney%></p>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="health">
-                                    <img src="img/health.svg" alt="">
+                                    <img class="heart" src="img/health.svg" alt="">
                                     <p>Cow Health: <%= data.userCowsHealth%>%</p>
                                 </div>
                             </div>
@@ -71,3 +71,4 @@
 </body>
 
 </html>
+
