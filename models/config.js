@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     endDate: DataTypes.DATE
   }, {});
   Config.associate = function(models) {
-    models.Config.belongsTo(models.Commons)
+    models.Config.belongsTo(models.Commons) //association key in source model aka Config 
   };
   return Config;
 };

@@ -1,9 +1,7 @@
 var db = require("../../models/index");
-db.Cows.sync();
+db.Users.sync();
 
-function update_self(firstName, 
-    lastName){
-    
+function update_self(firstName, lastName){  
     let currentRes = res.locals.user;
     currentRes.firstName = firstName;
     currentRes.lastName = lastName;
