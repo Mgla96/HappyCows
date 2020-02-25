@@ -90,8 +90,8 @@ function delete_users_with_id(userId) {
 }
 
 // GET /user/:id
-// Description: Delete a specific user with id
-// Example: curl -X DELETE /admins/user/1
+// Description:
+// Example: 
 // Return 
 function does_user_exist(userId) {
   db.Users.findAll({
