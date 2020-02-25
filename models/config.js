@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Config.associate = function(models) {
     models.Config.belongsTo(models.Commons) //association key in source model aka Config 
+    models.Config.hasMany(models.TieredTaxing) //association key in target model aka TieredTaxing
   };
   return Config;
 };
