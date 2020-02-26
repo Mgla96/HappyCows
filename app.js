@@ -8,12 +8,12 @@ var usersRouter = require('./routes/users');
 var errorHandler = require('errorhandler');
 
 var app = express();
-// db.Users.sync();
-// db.Commons.sync();
-// db.Config.sync();
-// db.Cows.sync();
-// db.TieredTaxing.sync();
-// db.UserWealth.sync();
+ //db.Users.sync();
+ //db.Commons.sync();
+ //db.Config.sync();
+ //db.Cows.sync();
+ //db.TieredTaxing.sync();
+ //db.UserWealth.sync();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'templates'));

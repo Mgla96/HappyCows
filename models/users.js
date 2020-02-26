@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     token: DataTypes.STRING,
   }, {});
   Users.associate = function(models) {
-    models.Users.hasMany(models.Commons); //association key in Commons
+    models.Users.belongsToMany(models.Commons, {through: models.UserCommons}); 
     models.Users.hasMany(models.Cows); //association key in Cows
     models.Users.hasMany(models.UserWealth); //assocaition key in UserWealth
   };
