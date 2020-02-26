@@ -4,8 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     health: DataTypes.INTEGER
   }, {});
   Cows.associate = function(models) {
-    models.Cows.belongsTo(models.Users)
-    models.Cows.belongsTo(models.Commons)
+    models.Cows.belongsTo(models.Users) //association key in Cows model
+    models.Cows.belongsTo(models.Commons) //assocation key in Cows model
   };
   return Cows;
 };
