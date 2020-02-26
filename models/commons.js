@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Commons.associate = function(models) {
     models.Commons.hasOne(models.Config) // association key in Config model
-    models.Commons.belongsToMany(models.Users) //assocation key in Commons model
+    models.Commons.belongsToMany(models.Users, {through: models.UserCommons}) //assocation key in Commons model
     models.Commons.hasMany(models.Cows) //association key in Cows model
   };
   return Commons;
