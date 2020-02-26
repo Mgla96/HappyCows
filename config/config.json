@@ -1,9 +1,9 @@
 {	
     "development": {	
-      "username": "root",	
-      "password": "12345",	
-      "database": "cowing",	
-      "host": "127.0.0.1",	
+      "username": "MPrjKdktJN",	
+      "password": "h8YMqRTNrH",	
+      "database": "MPrjKdktJN",	
+      "host": "remotemysql.com",	
       "dialect": "mysql",	
       "operatorsAliases": 1	
     },	

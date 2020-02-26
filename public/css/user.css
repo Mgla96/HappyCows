@@ -96,3 +96,67 @@ input[type=number] {
   padding: 3px;
 }
 
+.heart{
+  animation: 1s heartBeat infinite;
+}
+
+@keyframes heartBeat{
+  0% {
+    transform: scale(1);
+  }
+  25%{
+    transform: scale(1.1);
+  }
+  40%{
+    transform: scale(1);
+  }
+  60%{
+    transform: scale(1.1);
+  }
+  100%{
+    transform: scale(1);
+  }
+
+}
+
+.shakeMoney{
+  animation: 10s moneyShake infinite;
+}
+@keyframes moneyShake{
+  0% {
+    transform: rotate(20deg);
+  }
+  25%{
+    transform: rotate(-20deg);
+  }
+  40%{
+    transform: rotate(20deg);
+  }
+  60%{
+    transform: rotate(-20deg);
+  }
+  100%{
+    transform: rotate(20deg);
+  }
+
+}
+.cowBounceTest{
+  animation: 10s cowBounce infinite;
+}
+@keyframes cowBounce{
+  0% {
+    transform: translateY(10px);
+  }
+  25%{
+    transform: translateY(-10px);
+  }
+  40%{
+    transform: translateY(10px);
+  }
+  60%{
+    transform: translateY(-10px);
+  }
+  100%{
+    transform: translateY(10px);
+  }
+}
