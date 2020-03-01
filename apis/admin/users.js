@@ -1,7 +1,6 @@
 var db = require("../../models/index")
 var paging = require("../../utils/pagination")
 const uuidv1 = require('uuid/v1');
-
 db.Users.sync();
 
 // GET /user
