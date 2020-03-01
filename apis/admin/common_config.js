@@ -4,7 +4,7 @@ db.Config.sync();
 function cow_price(commonId){
     db.Config.findAll({
 		attributes: ['cowPrice'], 
-		where: {id: commonId}
+		where: {CommonId: commonId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 0) {
 			return false, null
@@ -18,7 +18,7 @@ function cow_price(commonId){
 function milk_time(commonId){
     db.Config.findAll({
 		attributes: ['milkTime'], 
-		where: {id: commonId}
+		where: {CommonId: commonId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 0) {
 			return false, null
@@ -47,8 +47,10 @@ function global_health(commonId){
 		}
 	})
 }
-
-function get_create_date(configId){
+/*
+get create date with configId
+*/
+function get_create_date(configId){ 
 	db.Config.findAll({
 		attributes: ['startDate'],
 		where: {id: configId}
@@ -61,7 +63,9 @@ function get_create_date(configId){
 		}
 	})
 }
-
+/*
+get end date with configId
+*/
 function get_end_date(configId){
 	db.Config.findAll({
 		attributes: ['endDate'],
@@ -76,7 +80,43 @@ function get_end_date(configId){
 	})
 }
 
-function get_gen_info(configId){
+/*
+get create date with commonId
+*/
+function get_create_date_common(commonId){ 
+	db.Config.findAll({
+		attributes: ['startDate'],
+		where: {CommonId: commonId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
+		}
+	})
+}
+/*
+get end date with commonId
+*/
+function get_end_date_common(commonId){
+	db.Config.findAll({
+		attributes: ['endDate'],
+		where: {CommonId: commonId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
+		}
+	})
+}
+
+/*
+get gen info with configId
+*/
+function get_gen_info_common(configId){
 	db.Config.findAll({
 		attributes: ['milkTime','cowPrice','startDate','endDate'],
 		where: {id: configId}
@@ -88,6 +128,21 @@ function get_gen_info(configId){
 			return false, null
 		}
 	})
-
+}
+/*
+get gen info with commonID
+*/
+function get_gen_info(commonId){
+	db.Config.findAll({
+		attributes: ['milkTime','cowPrice','startDate','endDate'],
+		where: {CommonId: commonId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
+		}
+	})
 }
 
