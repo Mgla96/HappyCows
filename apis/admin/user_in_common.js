@@ -1,12 +1,16 @@
-/*
-User can have different wealth in different commons
+var db = require("../../models/index");
+db.UserWealths.sync();
 
-*/
-
-function get_user_wealth(userId, cId){
+/**
+ * GET 
+ * Description: Get the wealth of a user with the user id and the commons id as arguments
+ *  
+ * 
+**/
+function get_user_wealth(uId, cId){
 	db.UserWealth.findAll({
 		attributes: ['wealth'],
-		where: {userId: userID, commonsId: cId}
+		where: {id: uId, CommonId: cId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {
 			return true, dbRes[0]

@@ -10,8 +10,8 @@ db.Cows.sync();
 **/
 function get_cows_with_common_id(commonId) {
 	db.Cows.findAll({
-		attributes: ['health'], 
-		where: {id: commonId}
+		attributes: ['id','health'], 
+		where: {CommonId: commonId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 0) {
 			return false, null
@@ -21,7 +21,6 @@ function get_cows_with_common_id(commonId) {
 		}
 	})
 }
-
 
 /**
  * GET /cow/:id
@@ -42,7 +41,6 @@ function get_cow(cowId) {
 		}
 	})
 }
-
 
 /** 
  * POST /cow
@@ -70,6 +68,25 @@ function update_cow_with_id(cowId, health) {
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {
 			dbRes[0].health = health;
+			dbRes[0].save();
+			return true;
+		}
+		else {
+			return false;
+		}
+	})
+}
+
+/*
+* 
+* Description: Place cow with cowId into commons with commonId
+*/
+function update_cow_into_common(cowId, commonId){
+	db.Cows.findAll({
+		where: {id: cowId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			dbRes[0].CommonId = commonId;
 			dbRes[0].save();
 			return true;
 		}
