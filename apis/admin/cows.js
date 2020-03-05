@@ -4,7 +4,7 @@ db.Cows.sync();
 
 /**
  * GET /cows/:common_id
- * Descrioption: Get all the cows with common id
+ * Description: Get all the cows with common id
  * Example 
  * Return {health:integer}	
 **/
@@ -81,12 +81,13 @@ function update_cow_with_id(cowId, health) {
 * 
 * Description: Place cow with cowId into commons with commonId
 */
-function update_cow_into_common(cowId, commonId){
+function update_cow_into_common(cowId, commonId, uId){
 	db.Cows.findAll({
 		where: {id: cowId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {
 			dbRes[0].CommonId = commonId;
+			dbRes[0].UserId = uId;
 			dbRes[0].save();
 			return true;
 		}
