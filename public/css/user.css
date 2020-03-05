@@ -115,7 +115,7 @@ input[type=number] {
   }
   100%{
     transform: scale(1);
-  }
+  }  
 }
 
 .shakeMoney{
