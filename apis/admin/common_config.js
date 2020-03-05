@@ -1,30 +1,30 @@
+var db = require("../../models/index");
+db.Config.sync();
 
-function cow_price(req, res){
-    const commonId = req.params.id;
+function cow_price(commonId){
     db.Config.findAll({
 		attributes: ['cowPrice'], 
-		where: {id: commonId}
+		where: {CommonId: commonId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 0) {
-			res.json({success: false, message: "There's no common found to change config"})
+			return false, null
 		}
 		else {
-			res.json({success: true, data: dbRes})
+			return true, dbRes
 		}
 	})
 }
 
-function milk_time(req, res){
-    const commonId = req.params.id;
+function milk_time(commonId){
     db.Config.findAll({
 		attributes: ['milkTime'], 
-		where: {id: commonId}
+		where: {CommonId: commonId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 0) {
-			res.json({success: false, message: "There's no common found to change config"})
+			return false, null
 		}
 		else {
-			res.json({success: true, data: dbRes})
+			return true, dbRes
 		}
 	})
 
@@ -33,31 +33,116 @@ function milk_time(req, res){
 /*
 * Working on global_health 
 */
-function global_health(req, res){
-    const commonId = req.params.id;
+function global_health(commonId){
 	db.Cows.findAll({
         attributes: [commonId, [models.sequelize.fn('AVG', models.sequelize.col('health')),'healthAvg']], 
         group: [commonId],
         order: [[models.sequelize.fn('AVG', models.sequelize.col('health')), 'DESC']]
     }).then((dbRes)=>{
 		if (dbRes.length == 0) {
-			res.json({success: false, message: "Could not get global health"})
+			return false, null
 		}
 		else {
-			res.json({success: true, data: dbRes})
+			return true, dbRes
+		}
+	})
+}
+/*
+get create date with configId
+*/
+function get_create_date(configId){ 
+	db.Config.findAll({
+		attributes: ['startDate'],
+		where: {id: configId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
+		}
+	})
+}
+/*
+get end date with configId
+*/
+function get_end_date(configId){
+	db.Config.findAll({
+		attributes: ['endDate'],
+		where: {id: configId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
 		}
 	})
 }
 
-function get_create_date(){
-
+/*
+get create date with commonId
+*/
+function get_create_date_common(commonId){ 
+	db.Config.findAll({
+		attributes: ['startDate'],
+		where: {CommonId: commonId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
+		}
+	})
+}
+/*
+get end date with commonId
+*/
+function get_end_date_common(commonId){
+	db.Config.findAll({
+		attributes: ['endDate'],
+		where: {CommonId: commonId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
+		}
+	})
 }
 
-function get_end_date(){
-
+/*
+get gen info with configId
+*/
+function get_gen_info_common(configId){
+	db.Config.findAll({
+		attributes: ['milkTime','cowPrice','startDate','endDate'],
+		where: {id: configId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
+		}
+	})
 }
-
-function get_gen_info(){
-
+/*
+get gen info with commonID
+*/
+function get_gen_info(commonId){
+	db.Config.findAll({
+		attributes: ['milkTime','cowPrice','startDate','endDate'],
+		where: {CommonId: commonId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
+		}
+	})
 }
 
