@@ -1,14 +1,22 @@
-function get_user_wealth(req, res){
-    const userID = req.params.id;
-	db.User_Wealth.findAll({
+var db = require("../../models/index");
+db.UserWealths.sync();
+
+/**
+ * GET 
+ * Description: Get the wealth of a user with the user id and the commons id as arguments
+ *  
+ * 
+**/
+function get_user_wealth(uId, cId){
+	db.UserWealth.findAll({
 		attributes: ['wealth'],
-		where: {id: userID}
+		where: {id: uId, CommonId: cId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {
-			res.json({success: true, data: dbRes[0]})
+			return true, dbRes[0]
 		}
 		else {
-			res.json({success: false, message: "No user found"})
+			return false, null
 		}
 	})
 }

@@ -4,11 +4,13 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    token: DataTypes.STRING,
   }, {});
   Users.associate = function(models) {
-    models.Users.hasMany(models.Commons);
-    models.Users.hasMany(models.Cows);
+    models.Users.belongsToMany(models.Commons, {through: models.UserCommons}); 
+    models.Users.hasMany(models.Cows); //association key in Cows
+    models.Users.hasMany(models.UserWealth); //assocaition key in UserWealth
   };
   return Users;
 };
