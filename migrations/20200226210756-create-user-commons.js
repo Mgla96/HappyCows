@@ -1,24 +1,15 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Configs', {
+    return queryInterface.createTable('UserCommons', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      milkTime: {
+      log: {
         type: Sequelize.STRING
-      },
-      cowPrice: {
-        type: Sequelize.STRING
-      },
-      startDate: {
-        type: DataTypes.DATE  
-      },
-      endDate: {
-        type: DataTypes.DATE
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +22,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Configs');
+    return queryInterface.dropTable('UserCommons');
   }
 };
