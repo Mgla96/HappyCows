@@ -27,7 +27,6 @@ function milk_time(commonId){
 			return true, dbRes
 		}
 	})
-
 }
 
 /*
@@ -112,7 +111,6 @@ function get_end_date_common(commonId){
 		}
 	})
 }
-
 /*
 get gen info with configId
 */
