@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     models.Commons.hasOne(models.Config) // association key in Config model
     models.Commons.belongsToMany(models.Users, {through: models.UserCommons}) //assocation key in Commons model
     models.Commons.hasMany(models.Cows) //association key in Cows model
+    models.Commons.hasMany(models.UserWealth) //association key in UserWealth model
   };
   return Commons;
 };
