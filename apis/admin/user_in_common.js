@@ -21,7 +21,7 @@ function get_user_wealth(uId, cId){
 	})
 }
 
-function get_user_day_wealth(uId, cId, date){
+function get_user_day_profit(uId, cId, date){
 	db.UserWealth.findAll({
 		attributes: ['wealth'],
 		where: {id: uId, CommonId: cId, createdAt:date}

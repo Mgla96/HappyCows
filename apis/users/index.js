@@ -9,6 +9,7 @@ function update_self(firstName, lastName){
     currentRes.save();
     return true
 }
+
 //need user id and commons id
 function get_user_wealth(uId, cId){
 	db.UserWealth.findAll({
@@ -24,7 +25,9 @@ function get_user_wealth(uId, cId){
 	})
 }
 
-function get_user_day_wealth(uId, cId, date){
+//another table for user day wealth
+//date, profit, user common ids
+function get_user_day_profit(uId, cId, date){
 	db.UserWealth.findAll({
 		attributes: ['wealth'],
 		where: {id: uId, CommonId: cId, createdAt:date}
@@ -38,12 +41,6 @@ function get_user_day_wealth(uId, cId, date){
 	})
 }
 
-
-//another table for user day wealth
-//date, profit, user common ids
-function get_user_day_profit(req, res){
-
-}
 
 function buy_cow(cowId, commonId, uId){
 	db.Cows.findAll({
