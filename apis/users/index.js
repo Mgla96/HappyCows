@@ -10,9 +10,9 @@ function update_self(firstName, lastName){
     return true
 }
 //need user id and commons id
-function get_user_wealth(cId, uId){
+function get_user_wealth(uId, cId){
 	db.UserWealth.findAll({
-		attributes: ['wealth'],
+		attributes: [models.sequelize.fn('sum', models.sequelize.col('wealth'))],
 		where: {id: uId, CommonId: cId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {
@@ -23,6 +23,21 @@ function get_user_wealth(cId, uId){
 		}
 	})
 }
+
+function get_user_day_wealth(uId, cId, date){
+	db.UserWealth.findAll({
+		attributes: ['wealth'],
+		where: {id: uId, CommonId: cId, createdAt:date}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
+		}
+	})
+}
+
 
 //another table for user day wealth
 //date, profit, user common ids

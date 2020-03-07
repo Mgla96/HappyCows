@@ -1,11 +1,11 @@
 {	
     "development": {	
-      "username": "MPrjKdktJN",	
-      "password": "h8YMqRTNrH",	
-      "database": "MPrjKdktJN",	
-      "host": "remotemysql.com",	
+      "username": "cow",	
+      "password": "cow123",	
+      "database": "cow_test",	
+      "host": "34.94.204.212",	
       "dialect": "mysql",	
-      "operatorsAliases": 1		
+      "operatorsAliases": 1
     },	
     "test": {	
       "username": "root",	
@@ -14,5 +14,13 @@
       "host": "127.0.0.1",	
       "dialect": "mysql",	
       "operatorsAliases": false	
+    },
+    "test2": {	
+      "username": "MPrjKdktJN",	
+      "password": "h8YMqRTNrH",	
+      "database": "MPrjKdktJN",	
+      "host": "remotemysql.com",	
+      "dialect": "mysql",	
+      "operatorsAliases": 1		
     }
   }
