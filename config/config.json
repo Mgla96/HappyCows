@@ -15,12 +15,4 @@
       "dialect": "mysql",	
       "operatorsAliases": false	
     },	
-    "production": {
-      "username": "chem_chem123",	
-      "password": "eQ6$5sMBrW%u",	
-      "database": "chem_chem123",	
-      "host": "mysql-1.lifesci.ucsb.edu",	
-      "dialect": "mysql",	
-      "operatorsAliases": 1
-    }	
   }
