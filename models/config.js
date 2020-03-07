@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     milkTime: DataTypes.STRING,
     cowPrice: DataTypes.STRING,
     startDate: DataTypes.DATE,
-    endDate: DataTypes.DATE
+    endDate: DataTypes.DATE,
+    maxCowPerPerson: DataTypes.INT,
+    costPerCow: DataTypes.FLOAT,
+    degradeRate: DataTypes.FLOAT,
+
   }, {});
   Config.associate = function(models) {
     models.Config.belongsTo(models.Commons) //association key in source model aka Config 
