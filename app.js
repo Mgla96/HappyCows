@@ -5,15 +5,22 @@ var logger = require('morgan');
 var db = require("./models/index")
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var errorHandler = require('errorhandler');
+var adminRouter = require('./routes/admin');
 
+var errorHandler = require('errorhandler');
+var {get_users} = require("./apis/admin/users");
+console.log(get_users({
+  query: {
+    page: 1,
+  }
+}));
 var app = express();
- //db.Users.sync();
- //db.Commons.sync();
- //db.Config.sync();
- //db.Cows.sync();
- //db.TieredTaxing.sync();
- //db.UserWealth.sync();
+ // db.Users.sync();
+ // db.Commons.sync();
+ // db.Config.sync();
+ // db.Cows.sync();
+ // db.TieredTaxing.sync();
+ // db.UserWealth.sync();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'templates'));
@@ -33,6 +40,7 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(errorHandler());
