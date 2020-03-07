@@ -9,7 +9,7 @@ db.UserWealths.sync();
 **/
 function place_user_in_common(uId, cId){
 	db.UserCommons.build({
-		uId: health,
+		//uId: health,
 	}).save()
 	return true;
 }
