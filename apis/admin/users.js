@@ -1,6 +1,11 @@
 var db = require("../../models/index")
-var paging = require("../../utils/pagination")
+var paging = require("../../utils/pagination");
+var paging_raw = require("../../utils/pagination_raw")
+var {get_wealth, get_cows} = require("../../utils/sql")
+
 const uuidv1 = require('uuid/v1');
+const { QueryTypes } = require('sequelize');
+
 db.Users.sync();
 
 // GET /user
@@ -8,12 +13,20 @@ db.Users.sync();
 // Example: curl -X GET /admins/users?page=1
 // Return {firstName:string, lastName:string, email:string, type:string}
 function get_users(req) {
-  db.Users.findAll({
-    attributes: ['id', 'firstName', 'lastName', 'email', 'type'],
-    ...paging(req),
-  }).then((dbRes)=>{
-    return dbRes;
-  })
+  return db.sequelize.query(
+    'SELECT id, firstName, lastName, email, type, ' +
+    `(${get_wealth} id) AS wealth, ` +
+    `(${get_cows} id) AS cows ` +
+    'FROM Users LIMIT ?, ?',
+    {
+      replacements: [
+          ...paging_raw(req)
+      ],
+      type: QueryTypes.SELECT
+    }).then((dbRes)=>{
+      return dbRes;
+  });
+
 }
 
 // GET /user/:id
@@ -41,7 +54,7 @@ function create_user(firstName,
   lastName, 
   email,
   type) {
-  token = uuidv1();
+  let token = uuidv1();
   db.Users.build({
       firstName: firstName,
       lastName: lastName,
