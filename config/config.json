@@ -3,7 +3,8 @@
       "username": "cow",	
       "password": "cow123",	
       "database": "cow_test",	
-      "host": "34.94.204.212",	
+      "host": "34.94.204.212",
+      "port": 7911,
       "dialect": "mysql",	
       "operatorsAliases": 1
     },	
