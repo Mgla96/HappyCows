@@ -22,9 +22,9 @@
                             <tbody>
                                 <% data.users.forEach(result=>{ %>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <% result.forEach(item=>{ %>
-                                    <td><%=item%></td>
+                                    <th scope="row"><%= result["id"] %></th>
+                                    <% Object.keys(result).map((key)=>{ %>
+                                        <td><%=result[key]%></td>
                                     <% }); %>
                                     <td><button type="button" class="btn btn-danger btn-sm">X</button></td>
                                 </tr>
@@ -125,16 +125,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% data.taxes.forEach(result=>{ %>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <% result.forEach(item=>{ %>
-                                                <td><%=item%></td>
-                                                <% }); %>
-                                                <!-- <td><button type="button" class="btn btn-danger btn-sm">X</button></td> -->
-                                            </tr>
-                                            <% }); %>
-                                        
                                     </tbody>
 
                                     <tfoot>
