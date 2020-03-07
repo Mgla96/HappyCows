@@ -24,6 +24,8 @@ function get_user_wealth(cId, uId){
 	})
 }
 
+//another table for user day wealth
+//date, profit, user common ids
 function get_user_day_profit(req, res){
 
 }
@@ -91,7 +93,3 @@ function get_cow_total(cId, uId){
 	})
 }
 
-
-function set_cows_on_pasture(req, res) {
-    
-}
