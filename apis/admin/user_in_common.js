@@ -7,6 +7,13 @@ db.UserWealths.sync();
  *  
  * 
 **/
+function place_user_in_common(uId, cId){
+	db.UserCommons.build({
+		uId: health,
+	}).save()
+	return true;
+}
+
 function get_user_wealth(uId, cId){
 	db.UserWealth.findAll({
 		attributes: [models.sequelize.fn('sum', models.sequelize.col('wealth'))],
