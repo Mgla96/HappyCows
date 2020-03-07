@@ -11,7 +11,7 @@ function get_cow_health(cowId) {
 		attributes: ['health'],
 		where: {id: cowId}
 	}).then((dbRes)=>{
-		if (dbRes.length == 1) {
+		if (dbRes.length === 1) {
 			return true, dbRes[0]
 		}
 		else {

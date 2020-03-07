@@ -1,5 +1,5 @@
 var db = require("../../models/index");
-db.UserWealth.sync();
+db.UserWealths.sync();
 
 /**
  * GET 
@@ -15,7 +15,7 @@ function place_user_in_common(uId, cId){
 }
 
 function get_user_wealth(uId, cId){
-	db.UserWealth.findAll({
+	db.UserWealths.findAll({
 		attributes: [models.sequelize.fn('sum', models.sequelize.col('wealth'))],
 		where: {id: uId, CommonId: cId}
 	}).then((dbRes)=>{
@@ -29,7 +29,7 @@ function get_user_wealth(uId, cId){
 }
 
 function get_user_day_profit(uId, cId, date){
-	db.UserWealth.findAll({
+	db.UserWealths.findAll({
 		attributes: ['wealth'],
 		where: {id: uId, CommonId: cId, createdAt:date}
 	}).then((dbRes)=>{
