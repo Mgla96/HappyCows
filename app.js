@@ -6,15 +6,15 @@ var db = require("./models/index")
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var errorHandler = require('errorhandler');
-var api = require('./apis');
+//var api = require('./apis');
 
 var app = express();
- //db.Users.sync();
- //db.Commons.sync();
- //db.Config.sync();
- //db.Cows.sync();
- //db.TieredTaxing.sync();
- //db.UserWealth.sync();
+ db.Users.sync();
+ db.Commons.sync();
+ db.Config.sync();
+ db.Cows.sync();
+ db.TieredTaxing.sync();
+ db.UserWealth.sync();
 
 //testing api section
 
