@@ -1,5 +1,5 @@
 var db = require("../../models/index");
-db.UserWealths.sync();
+db.UserWealth.sync();
 
 /**
  * GET 
