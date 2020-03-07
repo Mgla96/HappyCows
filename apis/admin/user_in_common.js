@@ -9,8 +9,22 @@ db.UserWealths.sync();
 **/
 function get_user_wealth(uId, cId){
 	db.UserWealth.findAll({
-		attributes: ['wealth'],
+		attributes: [models.sequelize.fn('sum', models.sequelize.col('wealth'))],
 		where: {id: uId, CommonId: cId}
+	}).then((dbRes)=>{
+		if (dbRes.length == 1) {
+			return true, dbRes[0]
+		}
+		else {
+			return false, null
+		}
+	})
+}
+
+function get_user_day_wealth(uId, cId, date){
+	db.UserWealth.findAll({
+		attributes: ['wealth'],
+		where: {id: uId, CommonId: cId, createdAt:date}
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {
 			return true, dbRes[0]
