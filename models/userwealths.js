@@ -1,12 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const UserWealth = sequelize.define('UserWealth', {
+  const UserWealths = sequelize.define('UserWealths', {
     wealth: DataTypes.INTEGER
   }, {});
-  UserWealth.associate = function(models) {
-    //models.UserWealth.belongsTo(models.Users) // association key in UserWealth model
-    //models.UserWealth.belongsTo(models.Commons) //association key in UserWealth model 
+  UserWealths.associate = function(models) {
+    models.UserWealths.belongsTo(models.Users) // association key in UserWealth model
+    models.UserWealths.belongsTo(models.Commons) //association key in UserWealth model 
     // associations can be defined here
   };
-  return UserWealth;
+  return UserWealths;
 };
