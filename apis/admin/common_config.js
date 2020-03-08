@@ -1,8 +1,8 @@
 var db = require("../../models/index");
-db.Config.sync();
+db.Configs.sync();
 
 function cow_price(commonId){
-    db.Config.findAll({
+    db.Configs.findAll({
 		attributes: ['cowPrice'], 
 		where: {CommonId: commonId}
 	}).then((dbRes)=>{
@@ -16,7 +16,7 @@ function cow_price(commonId){
 }
 
 function milk_time(commonId){
-    db.Config.findAll({
+    db.Configs.findAll({
 		attributes: ['milkTime'], 
 		where: {CommonId: commonId}
 	}).then((dbRes)=>{
@@ -27,7 +27,6 @@ function milk_time(commonId){
 			return true, dbRes
 		}
 	})
-
 }
 
 /*
@@ -51,7 +50,7 @@ function global_health(commonId){
 get create date with configId
 */
 function get_create_date(configId){ 
-	db.Config.findAll({
+	db.Configs.findAll({
 		attributes: ['startDate'],
 		where: {id: configId}
 	}).then((dbRes)=>{
@@ -67,7 +66,7 @@ function get_create_date(configId){
 get end date with configId
 */
 function get_end_date(configId){
-	db.Config.findAll({
+	db.Configs.findAll({
 		attributes: ['endDate'],
 		where: {id: configId}
 	}).then((dbRes)=>{
@@ -84,7 +83,7 @@ function get_end_date(configId){
 get create date with commonId
 */
 function get_create_date_common(commonId){ 
-	db.Config.findAll({
+	db.Configs.findAll({
 		attributes: ['startDate'],
 		where: {CommonId: commonId}
 	}).then((dbRes)=>{
@@ -100,7 +99,7 @@ function get_create_date_common(commonId){
 get end date with commonId
 */
 function get_end_date_common(commonId){
-	db.Config.findAll({
+	db.Configs.findAll({
 		attributes: ['endDate'],
 		where: {CommonId: commonId}
 	}).then((dbRes)=>{
@@ -112,12 +111,11 @@ function get_end_date_common(commonId){
 		}
 	})
 }
-
 /*
 get gen info with configId
 */
 function get_gen_info_common(configId){
-	db.Config.findAll({
+	db.Configs.findAll({
 		attributes: ['milkTime','cowPrice','startDate','endDate'],
 		where: {id: configId}
 	}).then((dbRes)=>{
@@ -133,7 +131,7 @@ function get_gen_info_common(configId){
 get gen info with commonID
 */
 function get_gen_info(commonId){
-	db.Config.findAll({
+	db.Configs.findAll({
 		attributes: ['milkTime','cowPrice','startDate','endDate'],
 		where: {CommonId: commonId}
 	}).then((dbRes)=>{

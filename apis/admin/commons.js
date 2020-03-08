@@ -1,3 +1,8 @@
+var db = require("../../models/index");
+db.Commons.sync();
+db.Configs.sync();
+
+
 function create_common(name, user_id,
                        cow_price, milk_time,
                        start_date, end_date) {
