@@ -8,6 +8,7 @@ Private Repo to develop backend
 
 ## Getting Started
 Install MySQL on your computer and change accordingly in `config/config.js`.  
+
 Then, you can create tables by following command:
 ```bash
 npx sequelize-cli db:migrate 
@@ -18,7 +19,22 @@ var db = require("models/index")
 db.Users.sync({force: true});
 ....
 ```
-If you want to have demo data, run following command:
+Or you can uncomment out these functions from app.js : (* Recommended *)
+```javascript
+//db.Users.sync();
+//db.UserCommons.sync();
+//db.Commons.sync();
+//db.Configs.sync();
+//db.Cows.sync();
+//db.TieredTaxings.sync();
+//db.UserWealths.sync();
+```
+Then run: 
+```bash
+node app.js 
+```
+
+If you want to have demo data, run following command: (no demo data here so will not work currently)
 ```bash
 npx sequelize-cli db:seed:all  
 ```
