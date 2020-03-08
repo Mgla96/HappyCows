@@ -1,20 +1,26 @@
 var db = require("../../models/index")
 var paging = require("../../utils/pagination");
 var paging_raw = require("../../utils/pagination_raw")
-var {get_wealth, get_cows} = require("../../utils/sql")
+var {get_health, get_players} = require("../../utils/sql")
+const { QueryTypes } = require('sequelize');
 
-function create_common(name, user_id,
+async function create_common(name, user_id,
                        cow_price, milk_time,
                        start_date, end_date) {
-    db.Commons.build({
+    let common = db.Commons.build({
         admin_uid: user_id,
         name: name,
-    }).save();
+    });
+    await common.save();
     db.Configs.build({
         milkTime: milk_time,
         cowPrice: cow_price,
         startDate: start_date,
-        endDate: end_date
+        endDate: end_date,
+        maxCowPerPerson: 1000,
+        costPerCow: 1000,
+        degradeRate: 15,
+        CommonId: common.id
     }).save();
     return true;
 }
@@ -22,9 +28,10 @@ function create_common(name, user_id,
 function get_commons(req) {
     return db.sequelize.query(
         'SELECT c.name, u.firstName, ' +
-        `(${get_wealth} id) AS health, ` +
-        `JOIN Users AS u ON u.id = c.admin_uid ` +
-        'FROM Commons AS c  LIMIT ?, ?',
+        `(${get_health} c.id) AS health, ` +
+        `(${get_players} c.id) AS players ` +
+        `FROM Commons AS c JOIN Users AS u ON u.id = c.admin_uid ` +
+        'LIMIT ?, ?',
         {
             replacements: [
                 ...paging_raw(req)
@@ -35,5 +42,6 @@ function get_commons(req) {
     });
 }
 module.exports = {
-    create_common
+    create_common,
+    get_commons
 }

@@ -1,11 +1,11 @@
-const {get_users} = require("../apis/admin/users");
+const {get_commons} = require("../apis/admin/commons");
 
 module.exports = async (req, res) => {
-    const users = await get_users(req);
+    const commons = await get_commons(req);
     res.render('admin_main',
         {data :
                 {
-                    users: users,
+                    commons: commons,
                 }
         }
     )
