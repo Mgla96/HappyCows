@@ -28,10 +28,6 @@ var app = express();
 //db.UserWealths.sync();
 
 //testing api section
-//api.users.create_user("Matt","Gottlieb","mattgottlieb96@gmail.com", 1);
-//api.users.create_user("Joe","Schmoe","JS@gmail.com", 0);
-//api.users.create_user("Test","Person","TP@gmail.com", 0);
-//api.commons.create_commons("Chem123 Spring");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'templates'));
