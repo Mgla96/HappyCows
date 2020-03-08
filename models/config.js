@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     cowPrice: DataTypes.STRING,
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,
-    maxCowPerPerson: DataTypes.INT,
+    maxCowPerPerson: DataTypes.INTEGER,
     costPerCow: DataTypes.FLOAT,
     degradeRate: DataTypes.FLOAT,
 

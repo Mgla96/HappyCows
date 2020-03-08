@@ -17,12 +17,12 @@ console.log(get_users({
 }));
 var app = express();
 
- //db.Users.sync();
- //db.Commons.sync();
- //db.Config.sync();
- //db.Cows.sync();
- //db.TieredTaxing.sync();
- //db.UserWealth.sync();
+ db.Users.sync();
+ db.Commons.sync();
+ db.Configs.sync();
+ db.Cows.sync();
+ db.TieredTaxings.sync();
+ db.UserWealths.sync();
 
 //testing api section
 
