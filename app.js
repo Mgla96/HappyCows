@@ -10,6 +10,8 @@ var adminRouter = require('./routes/admin');
 
 var errorHandler = require('errorhandler');
 var {get_users} = require("./apis/admin/users");
+var api = require("./apis/admin");
+
 console.log(get_users({
   query: {
     page: 1,
@@ -17,19 +19,19 @@ console.log(get_users({
 }));
 var app = express();
 
-db.Users.sync();
-db.UserCommons.sync();
-db.Commons.sync();
-db.Configs.sync();
-db.Cows.sync();
-db.TieredTaxings.sync();
-db.UserWealths.sync();
+//db.Users.sync();
+//db.UserCommons.sync();
+//db.Commons.sync();
+//db.Configs.sync();
+//db.Cows.sync();
+//db.TieredTaxings.sync();
+//db.UserWealths.sync();
 
 //testing api section
-//api.admin.users.create_user("Matt","Gottlieb","mattgottlieb96@gmail.com", 1);
-//api.admin.users.create_user("Joe","Schmoe","JS@gmail.com", 0);
-//api.admin.users.create_user("Test","Person","TP@gmail.com", 0);
-//api.admin.commons.create_commons("Chem123 Spring");
+//api.users.create_user("Matt","Gottlieb","mattgottlieb96@gmail.com", 1);
+//api.users.create_user("Joe","Schmoe","JS@gmail.com", 0);
+//api.users.create_user("Test","Person","TP@gmail.com", 0);
+//api.commons.create_commons("Chem123 Spring");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'templates'));
