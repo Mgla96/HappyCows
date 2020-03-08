@@ -17,15 +17,15 @@ console.log(get_users({
 }));
 var app = express();
 
- db.Users.sync();
- db.Commons.sync();
- db.Configs.sync();
- db.Cows.sync();
- db.TieredTaxings.sync();
- db.UserWealths.sync();
+db.Users.sync();
+db.UserCommons.sync();
+db.Commons.sync();
+db.Configs.sync();
+db.Cows.sync();
+db.TieredTaxings.sync();
+db.UserWealths.sync();
 
 //testing api section
-
 //api.admin.users.create_user("Matt","Gottlieb","mattgottlieb96@gmail.com", 1);
 //api.admin.users.create_user("Joe","Schmoe","JS@gmail.com", 0);
 //api.admin.users.create_user("Test","Person","TP@gmail.com", 0);
