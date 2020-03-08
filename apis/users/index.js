@@ -69,7 +69,7 @@ function sell_cow(cowId, cId, uId){
 	db.Cows.destroy({
 		where: {id: cowId}
 	})
-	db.UserWealths.findAll({
+	db.UserWealth.findAll({
 		where: {CommonId: cId, UserId: uId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {

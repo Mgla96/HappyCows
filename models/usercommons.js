@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     log: DataTypes.STRING
   }, {});
   UserCommons.associate = function(models) {
+    models.UserCommons.hasMany(models.Commons);
+    models.UserCommons.hasMany(models.Users);
+    // models.UserCommons.hasOne(models.Users) 
+    // models.UserCommons.hasOne(models.Commons) 
     // associations can be defined here
   };
   return UserCommons;
