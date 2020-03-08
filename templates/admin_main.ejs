@@ -19,11 +19,18 @@
           <h5 class="card-header">Make New Commons</h5>
           <div class="card-body">
 
-            <form>
+            <form action="/admin/common" method="post">
               <div class="form-group">
-                <label for="exampleInputEmail1">Commons Name</label>
-                <input type="text" class="form-control" id="CommonName">
-
+                <label for="name">Commons Name</label>
+                <input type="text" class="form-control" name="name" id="name">
+                <label for="cow_price">Cow Price</label>
+                <input type="text" class="form-control" name="cow_price" id="cow_price">
+                <label for="milk_time">Milk Time</label>
+                <input type="text" class="form-control" name="milk_time" id="milk_time">
+                <label for="start_date">Start Date</label>
+                <input type="text" class="form-control" name="start_date" id="start_date">
+                <label for="end_date">End Date</label>
+                <input type="text" class="form-control" name="end_date" id="end_date">
               </div>
 
               <button type="submit" class="btn btn-primary">Submit</button>
@@ -56,8 +63,8 @@
                 <% data.commons.forEach(result=>{ %>
                 <tr>
                   <th scope="row">1</th>
-                  <% result.forEach(item=>{ %>
-                    <td><%=item%></td>
+                  <% Object.keys(result).forEach(key=>{ %>
+                    <td><%= result[key] %></td>
                   <% }); %>
                   <!-- On Click this button redirects to server admin_common.html for each commongit config user.email “your.email@example.com" -->
                   <td><button type="button" class="btn btn-primary btn-sm" >Settings</button></td>
