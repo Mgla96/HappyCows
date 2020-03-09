@@ -20,6 +20,15 @@ module.exports = {
       endDate: {
         type: Sequelize.DATE
       },
+      maxCowPerPerson: {
+        type: Sequelize.INTEGER
+      },
+      costPerCow: {
+        type: Sequelize.INTEGER
+      },
+      degradeRate: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

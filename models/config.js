@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,
     maxCowPerPerson: DataTypes.INTEGER,
-    costPerCow: DataTypes.FLOAT,
-    degradeRate: DataTypes.FLOAT,
+    costPerCow: DataTypes.INTEGER,
+    degradeRate: DataTypes.INTEGER,
 
   }, {});
   Configs.associate = function(models) {
