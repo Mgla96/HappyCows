@@ -5,7 +5,10 @@ ON SCHEDULE
   DO
     INSERT INTO UserWealths (wealth, CommonId, UserId, createdAt, updatedAt)
         SELECT
-            (SELECT milkPrice FROM Configs) AS wealth,
+            (SELECT milkPrice FROM Configs AS conf WHERE conf.CommonId = CommonId) *
+            (SELECT tax FROM TieredTaxings AS t INNER JOIN
+                Configs AS c ON c.Id = t.ConfigId WHERE c.CommonId = CommonId)
+            AS wealth,
             CommonId,
             UserId,
             createdAt,
