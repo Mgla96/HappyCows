@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Commons = sequelize.define('Commons', {
     name: {
       type: DataTypes.STRING,
+      name: DataTypes.STRING,
       admin_uid: DataTypes.INTEGER
     }
   }, {});
