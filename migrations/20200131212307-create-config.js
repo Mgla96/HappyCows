@@ -8,8 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      milkTime: {
-        type: Sequelize.STRING
+      milkPrice: {
+        type: Sequelize.INTEGER
       },
       cowPrice: {
         type: Sequelize.STRING

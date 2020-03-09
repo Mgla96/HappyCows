@@ -29,6 +29,8 @@ var app = express();
 
 //testing api section
 
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'templates'));
 app.use( express.static( "public" ) );
