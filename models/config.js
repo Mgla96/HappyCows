@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Configs = sequelize.define('Configs', {
-    milkTime: DataTypes.STRING,
+    milkPrice: DataTypes.INTEGER,
     cowPrice: DataTypes.STRING,
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,
