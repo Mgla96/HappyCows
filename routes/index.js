@@ -7,5 +7,5 @@ let {auth_middleware} = require("../utils/auth")
 
 /* GET home page. */
 router.get('/', auth_middleware, main);
-router.get('/choosecommons', auth_middleware, commonschoice);
+router.get('/choosecommons', auth_middleware, commonschoice); //user choosing commons
 module.exports = router;
