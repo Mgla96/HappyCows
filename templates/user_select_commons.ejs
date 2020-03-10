@@ -16,7 +16,6 @@
 </head>
 
 <body>
-    <!-- <div style="background-image: url('backround.svg');"></div> -->
     <div class="background">
         <div class="container h-100 text-center">
             <div class="card-block mb30">
@@ -34,8 +33,28 @@
                                 <div data-aos="zoom-in" data-aos-duration="2000">
                                     <h2 class="page-title">Select A Common</h2>
                                 </div>
+                                <!--do we want the start and end date of common? to place in table as well-->
                                  <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
-                            
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Common Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% data.commons.forEach(result=>{ %>
+                                        <tr>
+                                            <th scope="row"><%= result["id"] %></th>
+                                            <% Object.keys(result).map((key)=>{ %>
+                                                <td><%=result[key]%></td>
+                                            <% }); %>
+                                            <td><button type="button" class="btn btn-danger btn-sm">Join</button></td>
+                                        </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
+                                <!-- 
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
                                         <p>Chem123 - Spring 2020
@@ -58,6 +77,7 @@
                                             </p>
                                     </div>
                                 </div>
+                            -->
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-6">
@@ -66,18 +86,28 @@
                                     <h2 class="page-title">Join A New Common</h2>
                                 </div>
                                 
-                    
                                  <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
-                            <!--     <table class="table">
+                                 <table class="table">
                                         <thead>
                                             <tr>
+                                                <th scope="col">#</th>
                                                 <th scope="col">Common Name</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <% data.commons.forEach(result=>{ %>
+                                            <tr>
+                                                <th scope="row"><%= result["id"] %></th>
+                                                <% Object.keys(result).map((key)=>{ %>
+                                                    <td><%=result[key]%></td>
+                                                <% }); %>
+                                                <td><button type="button" class="btn btn-danger btn-sm">Join</button></td>
+                                            </tr>
+                                            <% }); %>
                                         </tbody>
                                     </table>
-                        -->
+                            
+                                <!--
                                 <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
                                             <p>Chem123 - Winter 2020
@@ -100,6 +130,7 @@
                                                 </p>
                                         </div>
                                     </div>
+                                    -->
                             </div>
                         </div>
 

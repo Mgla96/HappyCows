@@ -1,4 +1,8 @@
 var db = require("../../models/index");
+var paging = require("../../utils/pagination");
+var paging_raw = require("../../utils/pagination_raw")
+const { QueryTypes } = require('sequelize');
+
 db.Users.sync();
 db.Cows.sync();
 
@@ -103,5 +107,30 @@ function get_cow_total(cId, uId){
 			return false, null
 		}
 	})
+}
+
+/*
+get id and name of every commons
+*/
+function get_all_commons(req) { 
+    return db.sequelize.query(
+        'SELECT c.id, c.name ' +
+        `FROM Commons AS c`,
+        {
+            replacements: [
+                ...paging_raw(req)
+            ],
+            type: QueryTypes.SELECT
+        }).then((dbRes)=>{
+        return dbRes;
+    });
+}
+
+/*
+function get_user_commons(req)
+*/
+
+module.exports = {
+    get_all_commons
 }
 
