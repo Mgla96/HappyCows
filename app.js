@@ -19,15 +19,22 @@ console.log(get_users({
 }));
 var app = express();
 
-//db.Users.sync();
-//db.UserCommons.sync();
-//db.Commons.sync();
-//db.Configs.sync();
-//db.Cows.sync();
-//db.TieredTaxings.sync();
-//db.UserWealths.sync();
+//Uncomment this line to place tables back in database
+/*
+db.Users.sync();
+db.UserCommons.sync();
+db.Commons.sync();
+db.Configs.sync();
+db.Cows.sync();
+db.TieredTaxings.sync();
+db.UserWealths.sync();
+*/
+
 
 //testing api section
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'templates'));

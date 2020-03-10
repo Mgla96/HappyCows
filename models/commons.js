@@ -3,9 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   const Commons = sequelize.define('Commons', {
     name: {
       type: DataTypes.STRING,
-      name: DataTypes.STRING,
-      admin_uid: DataTypes.INTEGER
-    }
+      unique: true
+    },
+    admin_uid: DataTypes.INTEGER
   }, {});
   Commons.associate = function(models) {
     models.Commons.hasOne(models.Configs) // association key in Config model
