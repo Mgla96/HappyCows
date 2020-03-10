@@ -35,9 +35,7 @@
                                     <h2 class="page-title">Select A Common</h2>
                                 </div>
                                  <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
-                                <tbody> 
-                                    
-                                </tbody>
+                            
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
                                         <p>Chem123 - Spring 2020
@@ -67,6 +65,27 @@
                                 <div data-aos="zoom-in" data-aos-duration="2000">
                                     <h2 class="page-title">Join A New Common</h2>
                                 </div>
+                                <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Name</th>
+
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <% data.commons.forEach(result=>{ %>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <% Object.keys(result).forEach(key=>{ %>
+                                          <td><%= result[key] %></td>
+                                        <% }); %>
+                                        <!-- On Click this button redirects to server admin_common.html for each commongit config user.email “your.email@example.com" -->
+                                        <td><button type="button" class="btn btn-primary btn-sm" >Settings</button></td>
+                                      </tr>
+                                      <% }); %>
+                                    </tbody>
+                                  </table>
                                  <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
                             <!--     <table class="table">
                                         <thead>

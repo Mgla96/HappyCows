@@ -7,6 +7,28 @@ Private Repo to develop backend
 
 
 ## Getting Started
+You can run this program by using this command: (although you might need to install some dependencies first)
+```bash
+./bin/www 
+```
+**Resetting Tables**
+If the tables are corrupted in the database you can drop the tables<br>
+The uncomment out these functions from app.js
+```javascript
+//db.Users.sync();
+//db.UserCommons.sync();
+//db.Commons.sync();
+//db.Configs.sync();
+//db.Cows.sync();
+//db.TieredTaxings.sync();
+//db.UserWealths.sync();
+```
+Then run: 
+```bash
+node app.js 
+```
+
+**Running Locally** 
 Install MySQL on your computer and change accordingly in `config/config.js`.  
 
 Then, you can create tables by following command:
@@ -38,7 +60,6 @@ If you want to have demo data, run following command: (no demo data here so will
 ```bash
 npx sequelize-cli db:seed:all  
 ```
-
 ## How to write APIs
 **STEP 1**   
 Create `[your_name].js` at `/routes` directory with following content
