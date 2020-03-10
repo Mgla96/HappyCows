@@ -126,11 +126,31 @@ function get_all_commons(req) {
     });
 }
 
+function get_user_commons(req, userId) { 
+    return db.sequelize.query(
+        'SELECT c.id, c.name ' +
+		'FROM Commons c '+
+		'WHERE c.id IN '+
+		'(SELECT uc.CommonId '+
+		'FROM UserCommons uc '+
+		'WHERE uc.UserID = '+
+		userId + ');',
+        {
+            replacements: [
+                ...paging_raw(req)
+            ],
+            type: QueryTypes.SELECT
+        }).then((dbRes)=>{
+        return dbRes;
+    });
+}
+
 /*
 function get_user_commons(req)
 */
 
 module.exports = {
-    get_all_commons
+	get_all_commons,
+	get_user_commons
 }
 
