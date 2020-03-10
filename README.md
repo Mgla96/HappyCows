@@ -11,7 +11,10 @@ You can run this program by using this command: (although you might need to inst
 ```bash
 ./bin/www 
 ```
-**Resetting Tables**
+You can access the game by visiting 127.0.0.1:3000 <br>
+You can also access subpages like so 127.0.0.1:3000/subpagename
+
+**Resetting Tables** <br>
 If the tables are corrupted in the database you can drop the tables<br>
 The uncomment out these functions from app.js
 ```javascript
@@ -28,7 +31,7 @@ Then run:
 node app.js 
 ```
 
-**Running Locally** 
+**Running Locally** <br>
 Install MySQL on your computer and change accordingly in `config/config.js`.  
 
 Then, you can create tables by following command:
