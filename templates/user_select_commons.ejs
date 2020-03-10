@@ -6,12 +6,14 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <link href="/css/choose_commons.css" rel="stylesheet" type="text/css">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Scroll Animations -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- icons -->
+
+
     <title>Select Commons</title>
 </head>
 
@@ -35,25 +37,25 @@
                                 </div>
                                 <!--do we want the start and end date of common? to place in table as well-->
                                  <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Common Name</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% data.commons.forEach(result=>{ %>
-                                        <tr>
-                                            <th scope="row"><%= result["id"] %></th>
-                                            <% Object.keys(result).map((key)=>{ %>
-                                                <td><%=result[key]%></td>
+                                 <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Common Name</th>
+                                                <th scope="col">Select</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% data.commons_user.forEach(result=>{ %>
+                                            <tr>
+                                                <% Object.keys(result).map((key)=>{ %>
+                                                    <td><%=result[key]%></td>
+                                                <% }); %>
+                                                <td><button type="button" class="btn btn-danger btn-sm"><ion-icon name="arrow-forward-outline"></ion-icon></button></td>
+                                            </tr>
                                             <% }); %>
-                                            <td><button type="button" class="btn btn-danger btn-sm">Join</button></td>
-                                        </tr>
-                                        <% }); %>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
                                 <!-- 
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
@@ -92,16 +94,16 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Common Name</th>
+                                                <th scope="col">Join</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <% data.commons.forEach(result=>{ %>
                                             <tr>
-                                                <th scope="row"><%= result["id"] %></th>
                                                 <% Object.keys(result).map((key)=>{ %>
                                                     <td><%=result[key]%></td>
                                                 <% }); %>
-                                                <td><button type="button" class="btn btn-danger btn-sm">Join</button></td>
+                                                <td><button type="button" class="btn btn-danger btn-sm"><ion-icon name="arrow-forward-outline"></ion-icon></button></td>
                                             </tr>
                                             <% }); %>
                                         </tbody>
@@ -141,6 +143,7 @@
     </div>
 </body>
 
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
