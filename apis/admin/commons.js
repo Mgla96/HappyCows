@@ -5,7 +5,7 @@ var {get_health, get_players} = require("../../utils/sql")
 const { QueryTypes } = require('sequelize');
 
 async function create_common(name, user_id,
-                       cow_price, milk_time,
+                       cow_price, milk_price,
                        start_date, end_date) {
     let common = db.Commons.build({
         admin_uid: user_id,
@@ -13,7 +13,7 @@ async function create_common(name, user_id,
     });
     await common.save();
     db.Configs.build({
-        milkTime: milk_time,
+        milkPrice: milk_price,
         cowPrice: cow_price,
         startDate: start_date,
         endDate: end_date,
