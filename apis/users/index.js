@@ -5,6 +5,7 @@ const { QueryTypes } = require('sequelize');
 
 db.Users.sync();
 db.Cows.sync();
+db.UserCommons.sync();
 
 function update_self(firstName, lastName){  
     let currentRes = res.locals.user;
@@ -146,11 +147,28 @@ function get_user_commons(req, userId) {
 }
 
 /*
+let currentRes = res.locals.user;
+*/
+/*
+async function join_common(cid, uid, log) {
+	let UserCommons = db.UserCommons.build({
+		log: log,
+		CommonId: cid,
+		UserId: uid,
+	});
+	await UserCommons.save();
+	
+	return true;
+}
+*/
+
+/*
 function get_user_commons(req)
 */
 
 module.exports = {
 	get_all_commons,
 	get_user_commons
+	//join_common
 }
 
