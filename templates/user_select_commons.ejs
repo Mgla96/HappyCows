@@ -36,50 +36,28 @@
                                     <h2 class="page-title">Select A Common</h2>
                                 </div>
                                 <!--do we want the start and end date of common? to place in table as well-->
-                                 <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
-                                 <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Common Name</th>
-                                                <th scope="col">Select</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <% data.commons_user.forEach(result=>{ %>
-                                            <tr>
-                                                <% Object.keys(result).map((key)=>{ %>
-                                                    <td><%=result[key]%></td>
-                                                <% }); %>
-                                                <td><button type="button" class="btn btn-danger btn-sm"><ion-icon name="arrow-forward-outline"></ion-icon></button></td>
-                                            </tr>
+                                <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Common Name</th>
+                                            <th scope="col">Select</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% data.commons_user.forEach(result=>{ %>
+                                        <tr>
+                                            <% Object.keys(result).map((key)=>{ %>
+                                            <td><%=result[key]%></td>
                                             <% }); %>
-                                        </tbody>
-                                    </table>
-                                <!-- 
-                                <div class="row">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
-                                        <p>Chem123 - Spring 2020
-                                        <button type="button" class="btn btn-primary pull-right">Select</button>
-                                        </p>
-                                    </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
-                                            <p>Chem123 - Spring 2020
-                                            <button type="button" class="btn btn-primary pull-right">Select</button>
-                                            </p>
-                                    </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
-                                            <p>Chem123 - Spring 2020
-                                            <button type="button" class="btn btn-primary pull-right">Select</button>
-                                            </p>
-                                    </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
-                                            <p>Chem123 - Spring 2020
-                                            <button type="button" class="btn btn-primary pull-right">Select</button>
-                                            </p>
-                                    </div>
-                                </div>
-                            -->
+                                            <td><button type="button" class="btn btn-danger btn-sm">
+                                                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                                                </button></td>
+                                        </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-6">
@@ -87,52 +65,29 @@
                                 <div data-aos="zoom-in" data-aos-duration="2000">
                                     <h2 class="page-title">Join A New Common</h2>
                                 </div>
-                                
-                                 <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
-                                 <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Common Name</th>
-                                                <th scope="col">Join</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <% data.commons.forEach(result=>{ %>
-                                            <tr>
-                                                <% Object.keys(result).map((key)=>{ %>
-                                                    <td><%=result[key]%></td>
-                                                <% }); %>
-                                                <td><button type="button" class="btn btn-danger btn-sm"><ion-icon name="arrow-forward-outline"></ion-icon></button></td>
-                                            </tr>
+
+                                <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Common Name</th>
+                                            <th scope="col">Join</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% data.commons.forEach(result=>{ %>
+                                        <tr>
+                                            <% Object.keys(result).map((key)=>{ %>
+                                            <td><%=result[key]%></td>
                                             <% }); %>
-                                        </tbody>
-                                    </table>
-                            
-                                <!--
-                                <div class="row">
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
-                                            <p>Chem123 - Winter 2020
-                                            <button type="button" class="btn btn-primary pull-right">Select</button>
-                                            </p>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
-                                                <p>Chem123 - Spring 2020
-                                                <button type="button" class="btn btn-primary pull-right">Select</button>
-                                                </p>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
-                                                <p>OtherSchool - Winter 2020
-                                                <button type="button" class="btn btn-primary pull-right">Select</button>
-                                                </p>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-6 col-12">
-                                                <p>Random - Spring 2020
-                                                <button type="button" class="btn btn-primary pull-right">Select</button>
-                                                </p>
-                                        </div>
-                                    </div>
-                                    -->
+                                            <td><button type="button" class="btn btn-danger btn-sm">
+                                                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                                                </button></td>
+                                        </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 

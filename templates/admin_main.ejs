@@ -1,7 +1,7 @@
 <%- include("header") %>
 
 <body>
-
+  <div class="background parallax">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Admin</a>
     <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
@@ -11,8 +11,7 @@
   </nav>
 
 
-
-  <div class="container">
+  <div class="container prettyspace">
     <div class="row">
       <div class="col">
         <div class="card">
@@ -24,13 +23,22 @@
                 <label for="name">Commons Name</label>
                 <input type="text" class="form-control" name="name" id="name">
                 <label for="cow_price">Cow Price</label>
-                <input type="text" class="form-control" name="cow_price" id="cow_price">
-                <label for="milk_time">Milk Time</label>
-                <input type="text" class="form-control" name="milk_time" id="milk_time">
+                <input type="text" class="form-control" name="cow_price" id="cow_price" placeholder="100">
+                <label for="milk_time">Milk Price</label>
+                <input type="text" class="form-control" name="milk_price" id="milk_price" placeholder="10">
+
+                <label for="start_date">Start Date</label>
+                <input type="date" class="form-control" name="start_date" id="start_date">
+                <!--
                 <label for="start_date">Start Date</label>
                 <input type="text" class="form-control" name="start_date" id="start_date">
+                -->
+                <label for="end_date">End Date</label>
+                <input type="date" class="form-control" name="end_date" id="end_date">
+                <!--
                 <label for="end_date">End Date</label>
                 <input type="text" class="form-control" name="end_date" id="end_date">
+                -->
               </div>
 
               <button type="submit" class="btn btn-primary">Submit</button>
@@ -72,6 +80,7 @@
         </div>
       </div>
     </div>
+  </div>
 </body>
 
 <%- include("footer") %>
