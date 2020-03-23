@@ -54,9 +54,11 @@
                                             <% Object.keys(result).map((key)=>{ %>
                                             <td><%=result[key]%></td>
                                             <% }); %>
-                                            <td><button type="button" class="btn btn-danger btn-sm">
+                                            <td>
+                                                <button type="button" class="btn btn-danger btn-sm btnSelect" >
                                                     <ion-icon name="arrow-forward-outline"></ion-icon>
-                                                </button></td>
+                                                </button>
+                                            </td>
                                         </tr>
                                         <% }); %>
                                     </tbody>
@@ -83,15 +85,30 @@
                                         <tr>
                                             <% Object.keys(result).map((key)=>{ %>
                                             <td><%=result[key]%></td>
+                                          
                                             <% }); %>
-                                            <td><!--place common_join function here prob not in form
-                                            
-                                               -->
-                                                    <button type="submit" class="btn btn-danger btn-sm" id="btnJoin">
+                                           <!-- <td name="cid"><%=result.id%></td>-->
+                                            <!--place common_join function here
+                                              <input type="hidden" name="cid" value="{{result.id}}" /> -->
+
+                                                 <!--
+                                                    <button type="submit" class="btn btn-danger btn-sm btnJoin" >   
+                                                            <input type="hidden" class="form-control" name="cid2" id="cid2" value="<%=result.id%>">  
                                                             <ion-icon name="arrow-forward-outline"></ion-icon>
                                                     </button>
-                                                </form>
-                                                
+                                                    -->
+                                            <td>
+                                                    <form action="/choosecommons/:join" method="post">
+                                                        <div class="form-group">
+                                                          <input type="hidden" class="form-control" name="cid" id="cid" value="<%=result.id%>"> 
+                                                          <input type="hidden" class="form-control" name="log" id="log" value="logstuff">  
+                                                        </div>
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                                <ion-icon name="arrow-forward-outline"></ion-icon>
+                                                        </button>
+                                                      </form>
+                                           
+                                          
                                                </td>
                                         </tr>
                                         <% }); %>
@@ -100,7 +117,6 @@
                                 </table>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -124,36 +140,42 @@
     AOS.init();
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<!--
+
+     req.body.cid,
+        res.locals.user.id,
+        req.body.log
+-->
 <script>
-$("#btnJoin").on('click', function() {
+$(".btnJoin").on('click', function() {
+    alert(toString(cid2)+' okerrrr:');
     $.ajax({
       type: 'POST',
       url: '/choosecommons/:join',
-      data: { cid: '1', uid: '2', logID: 'someid' },
+      data: { cid: cid, logId: 'someid' },
       success: function(resultData) {
-         alert(resultData);
+        if (response == 'success') 
+            alert(resultData);
+        else 
+         alert("error :(");
       }
+
     });
 });
 
 </script>
-<!--
-<script>
-   invoke = (event) => {
-    let nameOfFunction = this[event.target.comJoin];
-    let cId = event.target.getAttribute('data-arg1');
-    //We can add more args as needed...
-    window[nameOfFunction](cId) 
-    //hope function is in window. 
-    //Else the respective object need to be used 
-    }
-  
-  /*
-    function comJoin(){
-        alert("button clicked - get id of common and call function to join user to common");
-        alert(result);
-    } */
-</script>
--->
 
+<!--
+For Select A Common buttons.
+This will take user to commons page they select.
+-->
+<script>
+    $(".btnSelect").on('click', function() {
+  
+      alert("CLICKED!");
+ 
+    });
+        
+        </script>
 </html>
