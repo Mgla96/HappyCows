@@ -24,11 +24,14 @@
                 <div class="p-3 mb-5rounded">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card special-card">
                             <div class="page-caption">
                                 <div data-aos="fade-right" data-aos-duration="1000">
-                                    <h1 class="page-title light-text">Welcome Farmers!</h1>
+                                    <h1 class="page-title">Welcome Farmers!</h1>
                                 </div>
                             </div>
+                            </div>
+
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-6">
                             <div class="card special-card">
@@ -81,9 +84,15 @@
                                             <% Object.keys(result).map((key)=>{ %>
                                             <td><%=result[key]%></td>
                                             <% }); %>
-                                            <td><button type="button" class="btn btn-danger btn-sm">
-                                                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                                                </button></td>
+                                            <td><!--place common_join function here prob not in form
+                                            
+                                               -->
+                                                    <button type="submit" class="btn btn-danger btn-sm" id="btnJoin">
+                                                            <ion-icon name="arrow-forward-outline"></ion-icon>
+                                                    </button>
+                                                </form>
+                                                
+                                               </td>
                                         </tr>
                                         <% }); %>
                                     </tbody>
@@ -113,6 +122,20 @@
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
     AOS.init();
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script>
+$("#btnJoin").on('click', function() {
+    $.ajax({
+      type: 'POST',
+      url: '/choosecommons/:join',
+      data: { cid: '1', uid: '2', logID: 'someid' },
+      success: function(resultData) {
+         alert(resultData);
+      }
+    });
+});
+
 </script>
 <!--
 <script>

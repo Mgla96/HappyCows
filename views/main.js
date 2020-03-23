@@ -4,8 +4,8 @@ module.exports = (req, res)=>{
         {
             userCows: 4,
             userName: user_obj.firstName,
-            userMoney: 420,
-            userCowsHealth: 69
+            userMoney: 400,
+            userCowsHealth: 30
         }
     }
 )}

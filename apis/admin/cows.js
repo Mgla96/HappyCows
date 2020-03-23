@@ -51,6 +51,7 @@ function get_cow(cowId) {
 function create_cow(health) {
 	db.Cows.build({
 		health: health,
+		status: "status"
 	}).save()
 	return true;
 }
@@ -80,6 +81,7 @@ function update_cow_with_id(cowId, health) {
 /*
 * 
 * Description: Place cow with cowId into commons with commonId
+*
 */
 function update_cow_into_common(cowId, commonId, uId){
 	db.Cows.findAll({
