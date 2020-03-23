@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   Users.associate = function(models) {
     models.Users.belongsToMany(models.Commons, {through: models.UserCommons}); 
     models.Users.hasMany(models.Cows) //association key in Cows
-    models.Users.hasMany(models.UserWealths) //assocaition key in UserWealth
+    models.Users.hasMany(models.UserWealths) //association key in UserWealth
   };
   return Users;
 };

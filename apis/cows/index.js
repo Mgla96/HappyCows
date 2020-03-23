@@ -9,8 +9,8 @@ db.Cows.sync();
 function get_cow_health(cowId) {
 	db.Cows.findAll({
 		attributes: ['health'],
-		where: {id: cowId}
-	}).then((dbRes)=>{
+		where: { id: cowId }
+	}).then((dbRes) => {
 		if (dbRes.length === 1) {
 			return true, dbRes[0]
 		}
@@ -19,3 +19,20 @@ function get_cow_health(cowId) {
 		}
 	})
 }
+
+
+function create_cow(health,status,cId,uId) {
+	db.Cows.build({
+		health: health,
+		status: status,
+		CommonId: cId,
+		uId: uId,
+	}).save()
+	return true;
+}
+
+/*
+module.exports = {
+	create_cow,
+	get_cow_health
+} */
