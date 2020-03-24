@@ -11,14 +11,4 @@ module.exports = async (req, res)=>{
             commons_user: commons_user
         }
     }
-    /*
-    res.render('user_select_commons', 
-    {data : 
-        { 
-            id: 1,
-            name: "Chem123-Winter2020",
-            admin_uid: 0
-        }
-    }
-    */
 )};
