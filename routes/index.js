@@ -12,6 +12,7 @@ let {auth_middleware} = require("../utils/auth")
 /* GET home page. */
 router.get('/', auth_middleware, main);
 router.post('//:common', auth_middleware, user_cow_post);
+
 //router.get('/', auth_middleware, main);
 router.get('/choosecommons', auth_middleware, commonschoice); //user choosing commons
 router.post('/choosecommons/:join', auth_middleware, commonsjoin); //user joining common (posting to db)

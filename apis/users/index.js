@@ -7,6 +7,7 @@ const { QueryTypes } = require('sequelize');
 db.Users.sync();
 db.Cows.sync();
 db.UserCommons.sync();
+db.UserWealths.sync();
 
 function update_self(firstName, lastName) {
 	let currentRes = res.locals.user;
@@ -26,15 +27,18 @@ function get_user_wealth(cId, uId) {
 		{
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
-			return dbRes;
+			console.log(dbRes);
+			var key = Object.keys(dbRes[0]);
+			console.log(Object.keys(dbRes[0]));
+			console.log(dbRes[0][key]);
+			return dbRes[0][key];
 		});
 		if(result == null){
-			return 0;
+			return -1;
 		}
 		else{
-			var key = Object.keys(result)[0];
-			return result[key];
-
+			console.log(result);
+			return result;
 		}
 }
 
@@ -223,17 +227,28 @@ async function user_buy_cow(health, status, cId, uId) {
 
 
 /*
-let currentRes = res.locals.user;
+Places user in selected common and gives them a starting wealth
+for that common
 */
-
 async function join_common(cid, uid, log) {
 	let UserCommons = db.UserCommons.build({
 		log: log,
 		CommonId: cid,
 		UserId: uid,
-	});
+	})
 	await UserCommons.save();
 	
+	var today = new Date();  
+
+	let UserWealths = db.UserWealths.build({
+		wealth: 1000,
+		createdAt: today,
+		updatedAt: today,
+		CommonId: cid,
+		UserId: uid
+	})
+
+	await UserWealths.save();
 	return true;
 }
 
