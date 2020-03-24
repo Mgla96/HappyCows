@@ -3,6 +3,7 @@ var paging = require("../../utils/pagination");
 var paging_raw = require("../../utils/pagination_raw")
 const { QueryTypes } = require('sequelize');
 
+
 db.Users.sync();
 db.Cows.sync();
 db.UserCommons.sync();
@@ -15,19 +16,26 @@ function update_self(firstName, lastName) {
 	return true
 }
 
-//need user id and commons id
-function get_user_wealth(uId, cId) {
-	db.UserWealth.findAll({
-		attributes: [models.sequelize.fn('sum', models.sequelize.col('wealth'))],
-		where: { id: uId, CommonId: cId }
-	}).then((dbRes) => {
-		if (dbRes.length == 1) {
-			return true, dbRes[0]
+//need commons id and user id
+function get_user_wealth(cId, uId) {
+	result = db.sequelize.query(
+		'SELECT SUM(uw.wealth) ' +
+		`FROM UserWealths AS uw `+
+		'WHERE uw.UserId = ' + uId +
+		' AND uw.CommonId = ' + cId  ,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			return dbRes;
+		});
+		if(result == null){
+			return 0;
 		}
-		else {
-			return false, null
+		else{
+			var key = Object.keys(result)[0];
+			return result[key];
+
 		}
-	})
 }
 
 //another table for user day wealth
@@ -92,7 +100,43 @@ function sell_cow(cowId, cId, uId) {
 Total cows of a current user in a commons
 */
 function get_cow_total(cId, uId) {
+	
+	result = db.sequelize.query(
+		'SELECT COUNT(c.id) ' +
+		`FROM Cows AS c `+
+		'WHERE c.UserId = ' + uId +
+		' AND c.CommonId = ' + cId  ,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			return dbRes;
+			/*
+			console.log(dbRes);
+			var key = Object.keys(dbRes)[0];
+			//value = dbRes[key];
+			//console.log(value);
+			console.log(key);
+
+			if(dbRes == null){
+				return 0;
+			}
+			else{
+				//return key;
+				return 2;
+			}
+			*/
+		});
+		if(result == null){
+			return 0;
+		}
+		else{
+			var key = Object.keys(result)[0];
+			return result[key];
+
+
+		}
 	//function to get current user id as uId
+	/*
 	db.Cows.findAll({
 		attributes: {
 			include: [
@@ -108,6 +152,7 @@ function get_cow_total(cId, uId) {
 			return false, null
 		}
 	})
+	*/
 }
 
 /*
@@ -201,6 +246,8 @@ module.exports = {
 	get_all_commons,
 	get_user_commons,
 	user_buy_cow,
-	join_common
+	join_common,
+	get_cow_total,
+	get_user_wealth
 }
 
