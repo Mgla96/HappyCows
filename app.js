@@ -20,7 +20,7 @@ console.log(get_users({
 var app = express();
 
 //Uncomment this line to place tables back in database
-/*
+
 db.Users.sync();
 db.UserCommons.sync();
 db.Commons.sync();
@@ -28,7 +28,7 @@ db.Configs.sync();
 db.Cows.sync();
 db.TieredTaxings.sync();
 db.UserWealths.sync();
-*/
+
 
 
 //testing api section

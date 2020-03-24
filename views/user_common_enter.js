@@ -5,10 +5,10 @@ also data is loaded for that user in the common
 
 this file isn't needed think I could do it directly in main
 */
-module.exports = (req, res)=>{
+module.exports = async (req, res)=>{
     const user_obj = res.locals.user;
-    cowTotal = get_cow_total(req.body.cid, res.locals.user.id);
-    userWealth = get_user_wealth(req.body.cid, res.locals.user.id);
+    cowTotal = await get_cow_total(req.body.cid, res.locals.user.id);
+    userWealth = await get_user_wealth(req.body.cid, res.locals.user.id);
     //userWealth = 100;
     res.render('user_main', {data : 
         {
