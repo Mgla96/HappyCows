@@ -1,7 +1,7 @@
-const {user_buy_cow} = require("../apis/users/index");
+const {user_sell_cow} = require("../apis/users/index");
 
 module.exports = async (req, res) => {
-    await user_buy_cow(
+    await user_sell_cow(
         req.body.cid,
         res.locals.user.id,
     );

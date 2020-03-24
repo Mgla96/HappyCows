@@ -15,7 +15,8 @@ module.exports = async (req, res)=>{
             userCows: cowTotal,
             userName: user_obj.firstName,
             userMoney: userWealth,
-            userCowsHealth: 30
+            userCowsHealth: 30,
+            cid:req.body.cid
         }
     }
    // res.redirect("/")

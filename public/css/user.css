@@ -22,6 +22,7 @@ input[type=number] {
   
     opacity: .9;
   }
+  
 .user_main {
     background: url(../img/background.svg); 
     background-size: cover;

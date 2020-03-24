@@ -21,18 +21,19 @@
     <div class="background">
         <div class="container h-100 text-center">
             <div class="card-block mb30">
-                <div class="p-3 mb-5rounded">
+                <div class="p-3 mb-5 rounded">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="card special-card">
-                            <div class="page-caption">
-                                <div data-aos="fade-right" data-aos-duration="1000">
-                                    <h1 class="page-title">Welcome Farmers!</h1>
+                            <div class="card special-card">
+                                <div class="page-caption">
+                                    <div data-aos="fade-right" data-aos-duration="1000">
+                                        <h1 class="page-title">Welcome Farmers!</h1>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-
                         </div>
+                    </div>
+                    <div class = "row mt-5">
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-6">
                             <div class="card special-card">
                                 <div data-aos="zoom-in" data-aos-duration="2000">
@@ -56,14 +57,15 @@
                                             <% }); %>
                                             <!--    <form action="/choosecommons/:enter" method="get">-->
                                             <td>
-                                                    <form action="/play" method="post">
-                                                        <div class="form-group">
-                                                          <input type="hidden" class="form-control" name="cid" id="cid" value="<%=result.id%>"> 
-                                                        </div>
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                                <ion-icon name="arrow-forward-outline"></ion-icon>
-                                                        </button>
-                                                      </form>
+                                                <form action="/play" method="post">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="cid" id="cid"
+                                                            value="<%=result.id%>">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                                                    </button>
+                                                </form>
                                             </td>
                                             <!--
                                                  <button type="button" class="btn btn-danger btn-sm btnSelect" >
@@ -96,25 +98,27 @@
                                         <tr>
                                             <% Object.keys(result).map((key)=>{ %>
                                             <td><%=result[key]%></td>
-                                          
+
                                             <% }); %>
                                             <td>
-                                                    <form action="/choosecommons/:join" method="post">
-                                                        <div class="form-group">
-                                                          <input type="hidden" class="form-control" name="cid" id="cid" value="<%=result.id%>"> 
-                                                          <input type="hidden" class="form-control" name="log" id="log" value="logstuff">  
-                                                        </div>
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                                <ion-icon name="arrow-forward-outline"></ion-icon>
-                                                        </button>
-                                                      </form>
-                                           
-                                          
-                                               </td>
+                                                <form action="/choosecommons/:join" method="post">
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="cid" id="cid"
+                                                            value="<%=result.id%>">
+                                                        <input type="hidden" class="form-control" name="log" id="log"
+                                                            value="logstuff">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                                                    </button>
+                                                </form>
+
+
+                                            </td>
                                         </tr>
                                         <% }); %>
                                     </tbody>
-                                
+
                                 </table>
                             </div>
                         </div>
@@ -148,11 +152,12 @@ For Select A Common buttons.
 This will take user to commons page they select.
 -->
 <script>
-    $(".btnSelect").on('click', function() {
-  
-      alert("CLICKED!");
- 
+    $(".btnSelect").on('click', function () {
+
+        alert("CLICKED!");
+
     });
-        
-        </script>
+
+</script>
+
 </html>
