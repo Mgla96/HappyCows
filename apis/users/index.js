@@ -198,27 +198,30 @@ function get_user_commons(req, userId) {
 /*
 buy cow so add cow to table and subtract wealth of user
 */
-async function user_buy_cow(health, status, cId, uId) {
+async function user_buy_cow(cid, uid) {
 	let cows = db.Cows.build({
-		health: health,
-		status: status,
-		CommonId: cId,
-		uId: uId,
+		health: 100,
+		status: "available",
+		CommonId: cid,
+		uid: uid,
 	});
+	console.log(cows);
+
 	await common.save();
+
 	let cowPrice = db.Configs.findAll({
 		attributes: ['cowPrice'],
-		where: { CommonId: commonId }
+		where: { CommonId: cid}
 	}).then((dbRes) => {
 		if (dbRes.length == 0) {
 			return false, null
 		}
 		else {
+			console.log(dbRes);
 			db.UserWealths.build({
-				wealth: dbRes,
-				CommonId: cId,
-				UserId: cId,
-				uId: uId,
+				wealth: -dbRes,
+				CommonId: cid,
+				UserId: uid,
 			})
 			//return true, dbRes
 		}
