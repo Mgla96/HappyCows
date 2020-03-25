@@ -1,8 +1,8 @@
 var db = require("../../models/index");
 var paging = require("../../utils/pagination");
 var paging_raw = require("../../utils/pagination_raw")
-const { QueryTypes } = require('sequelize');
-
+const { Sequelize, QueryTypes } = require('sequelize');
+const uuid = require('uuid/v4'); // ES5
 
 db.Users.sync();
 db.Cows.sync();
@@ -27,10 +27,10 @@ function get_user_wealth(cId, uId) {
 		{
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
-			console.log(dbRes);
+			//console.log(dbRes);
 			var key = Object.keys(dbRes[0]);
-			console.log(Object.keys(dbRes[0]));
-			console.log(dbRes[0][key]);
+			//console.log(Object.keys(dbRes[0]));
+			//console.log(dbRes[0][key]);
 			return dbRes[0][key];
 		});
 		if(result == null){
@@ -74,6 +74,52 @@ function buy_cow(cowId, commonId, uId) {
 		}
 	})
 }
+
+
+async function buy_cow_transaction(cost, cid, uid) {
+
+	await db.sequelize.query(
+		'SELECT SUM(uw.wealth) ' +
+		`FROM UserWealths AS uw `+
+		'WHERE uw.UserId = ' + uid +
+		' AND uw.CommonId = ' + cid  ,
+		{
+			raw: true,
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var current_wealth = dbRes[0][key];
+			console.log("current_wealth: " +current_wealth);
+			console.log("cost: " + cost);
+			var result = parseInt(current_wealth, 10)+parseInt(cost, 10);
+			console.log("cw+cost: "+ result);
+			costres = parseInt(cost, 10);
+
+			//wealth: parseInt(cost,10),
+			if(result >= 0){
+				var today = new Date();  
+				let UserWealths = db.UserWealths.build({
+					wealth: -110,
+					createdAt: today,
+					updatedAt: today,
+					CommonId: cid,
+					UserId: uid
+				})
+				//await UserWealths.save();
+				console.log(UserWealths);
+				console.log("You have purchased cow!");
+				return true;
+			}
+			else{
+				console.log("You do not have enough money to purchase another cow!");
+				return false;
+			}
+		})
+		//await UserWealths.save();
+		
+}
+
+
 
 /*
 -remove cow from user
@@ -203,13 +249,17 @@ async function user_buy_cow(cid, uid) {
 		health: 100,
 		status: "available",
 		CommonId: cid,
-		uid: uid,
+		UserId: uid,
 	});
+
+	await cows.save();
+	
 	console.log(cows);
+	console.log("id");
+	console.log(cows.id);
 
-	await common.save();
-
-	let cowPrice = db.Configs.findAll({
+	db.Configs.findAll({
+		raw: true,
 		attributes: ['cowPrice'],
 		where: { CommonId: cid}
 	}).then((dbRes) => {
@@ -217,13 +267,59 @@ async function user_buy_cow(cid, uid) {
 			return false, null
 		}
 		else {
-			console.log(dbRes);
-			db.UserWealths.build({
-				wealth: -dbRes,
-				CommonId: cid,
-				UserId: uid,
-			})
-			//return true, dbRes
+			var key = Object.keys(dbRes[0]);
+			//console.log(key);
+			//console.log(Object.keys(dbRes[0]));
+			var sol = dbRes[0][key];
+			//bitwise to get negative value
+			sol = ~sol + 1;
+			console.log("sol " + sol);
+			console.log("uid: " + uid);
+			buy_cow_transaction(sol,cid,uid);
+		}
+	})
+	/*
+	console.log(val);
+	if(val!=null){
+		db.UserWealths.build({
+			wealth: val,
+			CommonId: cid,
+			UserId: uid,
+		})
+	}
+	*/
+}
+
+async function user_sell_cow(cid, uid) {
+	let cows = db.Cows.build({
+		health: 100,
+		status: "available",
+		CommonId: cid,
+		uid: uid,
+	});
+
+	await cows.save();
+	
+	console.log(cows);
+	console.log("id");
+	console.log(cows.id);
+
+	db.Configs.findAll({
+		raw: true,
+		attributes: ['cowPrice'],
+		where: { CommonId: cid}
+	}).then((dbRes) => {
+		if (dbRes.length == 0) {
+			return false, null
+		}
+		else {
+			//console.log(dbRes);
+			var key = Object.keys(dbRes[0]);
+			//console.log(key);
+			//console.log(Object.keys(dbRes[0]));
+			var sol = dbRes[0][key];
+			console.log(sol);
+			buy_cow_transaction(sol,cid,uid);
 		}
 	})
 }
@@ -264,8 +360,10 @@ module.exports = {
 	get_all_commons,
 	get_user_commons,
 	user_buy_cow,
+	user_sell_cow,
 	join_common,
 	get_cow_total,
-	get_user_wealth
+	get_user_wealth,
+	buy_cow_transaction
 }
 
