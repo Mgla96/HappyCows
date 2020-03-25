@@ -1,7 +1,6 @@
 <%- include("header") %>
 
 <body class="user_main">
-    <!-- <div style="background-image: url('backround.svg');"></div> -->
     <div class="container">
         <div class="row">
             <div class="col">
@@ -19,15 +18,13 @@
                 <div class="card special-card">
                     <h5 class="card-header">Manage Cows</h5>
                     <div class="card-body">
-                        
-                        <h5>Market Cow Price: $<%= data.cowPrice%> </h5>  <!--fill in data here for cow price-->
+                        <h5>Market Cow Price: $<%= data.cowPrice%> </h5> 
                         <div class="row">
                             <div class="col">
                                 <img class="cowBounceTest" src="img/cowhead.svg" alt="Cow's head">
                                 <p>You Have <%= data.userCows%> cows</p>
                             </div>
                             <div class="col">
-                                <!-- On Click should verify IF user has enough money, also check floor on zero -->
                                 <form action="/sellcow" method="post">
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" name="cid" id="cid"
@@ -37,10 +34,7 @@
                                         <ion-icon name="remove-outline"></ion-icon>
                                     </button>
                                 </form>
-
-                                <!-- <button type="button" class="btn btn-secondary" onclick="user_sell_cow()">-</button> -->
-                                
-                                <form action="/buycow" method="post">
+                                <form action="/play/:buycow" method="post">
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" name="cid" id="cid"
                                             value="<%=data.cid%>">
@@ -49,13 +43,10 @@
                                         <ion-icon name="add-outline"></ion-icon>
                                     </button>
                                 </form>
-                                
-
-                                <!-- <button type="button" class="btn btn-secondary" onclick="user_buy_cow()">+</button> -->
                             </div>
                         </div>
                         <p>Note: If you increase cows, they will be automatically bought, and if you decrease, they cows
-                                will be automatically sold</p>
+                                will be automatically sold for 70% of original price.</p>
                     </div>
                 </div>
             </div>
@@ -84,33 +75,17 @@
         </div>
     </div>
 </body>
+<!--
 <script>
-    function user_buy_sound(){
-        var audio = new Audio('../public/audio/toggle_002.ogg') ;
-        audio.play();
-    } 
-</script>
-<script>
-    function user_sell_sound() {
-        var audio = new Audio('../public/audio/glass_006.ogg') ;
-        audio.play();
-    } 
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-<script>
-var textWrapper = document.querySelector('.ml9 .letters');
-textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    function PlaySound(melody) {
+        console.log("On Press of ");
+        var path = "/public/audio/"
+        var snd = new Audio(path + melody + ".mp3");
+        snd.play();
+    }
 
-anime.timeline({loop: false})
-  .add({
-    targets: '.ml9 .letter',
-    scale: [0, 1],
-    duration: 1500,
-    elasticity: 600,
-    delay: (el, i) => 45 * (i+1)
-  });
 </script>
-
+-->
 <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

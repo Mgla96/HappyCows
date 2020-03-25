@@ -22,7 +22,7 @@ router.post('/choosecommons/:join', auth_middleware, commonsjoin); //user joinin
 
 router.get('/play', auth_middleware, usercommons);
 router.post('/enter', auth_middleware, commonsenter);
-router.post('/buycow', auth_middleware, user_cow_post);
+router.post('/play/:buycow', auth_middleware, user_cow_post);
 router.post('/sellcow', auth_middleware, user_sell_cow_post);
 
 
