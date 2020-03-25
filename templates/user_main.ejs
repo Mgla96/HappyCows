@@ -25,7 +25,7 @@
                             </div>
                             <div class="col">
                                 <!-- On Click should verify IF user has enough money, also check floor on zero -->
-                                <form action="/play/:sellcow" method="post">
+                                <form action="/:sellcow" method="post">
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" name="cid" id="cid"
                                             value="<%=data.cid%>">
@@ -34,8 +34,10 @@
                                         <ion-icon name="remove-outline"></ion-icon>
                                     </button>
                                 </form>
+
                                 <!-- <button type="button" class="btn btn-secondary" onclick="user_sell_cow()">-</button> -->
-                                <form action="/play/:buycow" method="post">
+                                
+                                <form action="/:buycow" method="post">
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" name="cid" id="cid"
                                             value="<%=data.cid%>">
@@ -44,6 +46,7 @@
                                         <ion-icon name="add-outline"></ion-icon>
                                     </button>
                                 </form>
+                                
 
                                 <!-- <button type="button" class="btn btn-secondary" onclick="user_buy_cow()">+</button> -->
                             </div>
@@ -77,13 +80,13 @@
     </div>
 </body>
 <script>
-    function user_buy_cow(){
+    function user_buy_sound(){
         var audio = new Audio('../public/audio/toggle_002.ogg') ;
         audio.play();
     } 
 </script>
 <script>
-    function user_sell_cow() {
+    function user_sell_sound() {
         var audio = new Audio('../public/audio/glass_006.ogg') ;
         audio.play();
     } 

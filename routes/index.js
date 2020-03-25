@@ -19,9 +19,11 @@ router.get('/', auth_middleware, main);
 router.get('/choosecommons', auth_middleware, commonschoice); //user choosing commons
 router.post('/choosecommons/:join', auth_middleware, commonsjoin); //user joining common (posting to db)
 router.post('/play', auth_middleware, commonsenter);
+router.post('/:sellcow', auth_middleware, user_sell_cow_post);
+router.post('/:buycow', auth_middleware, user_cow_post);
 
-router.post('/play/:buycow', auth_middleware, user_cow_post);
-router.post('/play/:sellcow', auth_middleware, user_sell_cow_post);
+
+
 
 /* custom page when no page exists not working correctly - for future implementation */
 router.get('/?err',auth_middleware, notapage);
