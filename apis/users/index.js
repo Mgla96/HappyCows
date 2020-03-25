@@ -77,7 +77,6 @@ function buy_cow(cowId, commonId, uId) {
 
 
 async function buy_cow_transaction(cost, cid, uid) {
-
 	await db.sequelize.query(
 		'SELECT SUM(uw.wealth) ' +
 		`FROM UserWealths AS uw `+
@@ -94,19 +93,18 @@ async function buy_cow_transaction(cost, cid, uid) {
 			var result = parseInt(current_wealth, 10)+parseInt(cost, 10);
 			console.log("cw+cost: "+ result);
 			costres = parseInt(cost, 10);
-
 			//wealth: parseInt(cost,10),
 			if(result >= 0){
 				var today = new Date();  
 				let UserWealths = db.UserWealths.build({
-					wealth: -110,
+					wealth: costres,
 					createdAt: today,
 					updatedAt: today,
 					CommonId: cid,
 					UserId: uid
 				})
-				//await UserWealths.save();
-				console.log(UserWealths);
+				UserWealths.save();
+				console.log("UserWealths" + UserWealths);
 				console.log("You have purchased cow!");
 				return true;
 			}
@@ -115,8 +113,14 @@ async function buy_cow_transaction(cost, cid, uid) {
 				return false;
 			}
 		})
-		//await UserWealths.save();
-		
+}
+/*
+checks if user has 1 or more cows and if so sells cow and adds money to userwealth table for user
+*/
+async function sell_cow_transaction(cost, cid, uid) {
+	let result = get_cow_total(cid,uid);
+	console.log("result: " + result);
+
 }
 
 
@@ -150,7 +154,7 @@ function sell_cow(cowId, cId, uId) {
 Total cows of a current user in a commons
 */
 function get_cow_total(cId, uId) {
-	
+	console.log("get_cow_total: ");
 	result = db.sequelize.query(
 		'SELECT COUNT(c.id) ' +
 		`FROM Cows AS c `+
@@ -159,50 +163,19 @@ function get_cow_total(cId, uId) {
 		{
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
-			return dbRes;
-			/*
-			console.log(dbRes);
-			var key = Object.keys(dbRes)[0];
-			//value = dbRes[key];
-			//console.log(value);
-			console.log(key);
-
-			if(dbRes == null){
+			//return dbRes;
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			console.log("total cows: " + sol);
+			if(sol==null){
 				return 0;
 			}
 			else{
-				//return key;
-				return 2;
-			}
-			*/
+				return sol;
+			}		
 		});
-		if(result == null){
-			return 0;
-		}
-		else{
-			var key = Object.keys(result)[0];
-			return result[key];
-
-
-		}
-	//function to get current user id as uId
-	/*
-	db.Cows.findAll({
-		attributes: {
-			include: [
-				[sequelize.fn('COUNT', sequelize.col('id')), 'n_cows']
-			]
-		},
-		where: { CommonId: cId, UserId: uId }
-	}).then((dbRes) => {
-		if (dbRes.length == 1) {
-			return true, dbRes[0]
-		}
-		else {
-			return false, null
-		}
-	})
-	*/
+		//console.log("result: " + result);
+		return result;
 }
 
 /*
@@ -268,42 +241,23 @@ async function user_buy_cow(cid, uid) {
 		}
 		else {
 			var key = Object.keys(dbRes[0]);
-			//console.log(key);
-			//console.log(Object.keys(dbRes[0]));
 			var sol = dbRes[0][key];
 			//bitwise to get negative value
 			sol = ~sol + 1;
 			console.log("sol " + sol);
 			console.log("uid: " + uid);
 			buy_cow_transaction(sol,cid,uid);
+
+
 		}
 	})
-	/*
-	console.log(val);
-	if(val!=null){
-		db.UserWealths.build({
-			wealth: val,
-			CommonId: cid,
-			UserId: uid,
-		})
-	}
-	*/
 }
 
 async function user_sell_cow(cid, uid) {
-	let cows = db.Cows.build({
-		health: 100,
-		status: "available",
-		CommonId: cid,
-		uid: uid,
-	});
-
+	/*
+	let cows = db.Cows.destroy .... 
 	await cows.save();
-	
-	console.log(cows);
-	console.log("id");
-	console.log(cows.id);
-
+	*/
 	db.Configs.findAll({
 		raw: true,
 		attributes: ['cowPrice'],
@@ -313,13 +267,10 @@ async function user_sell_cow(cid, uid) {
 			return false, null
 		}
 		else {
-			//console.log(dbRes);
 			var key = Object.keys(dbRes[0]);
-			//console.log(key);
-			//console.log(Object.keys(dbRes[0]));
 			var sol = dbRes[0][key];
 			console.log(sol);
-			buy_cow_transaction(sol,cid,uid);
+			sell_cow_transaction(sol,cid,uid);
 		}
 	})
 }
@@ -364,6 +315,7 @@ module.exports = {
 	join_common,
 	get_cow_total,
 	get_user_wealth,
-	buy_cow_transaction
+	buy_cow_transaction,
+	sell_cow_transaction
 }
 

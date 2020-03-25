@@ -13,6 +13,6 @@ module.exports = async (req, res) => {
     if (is_new){
         res.redirect("/users/update_info")
     } else{
-        res.redirect("/")
+        res.redirect("/choosecommons")
     }
 }
