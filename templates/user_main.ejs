@@ -24,7 +24,7 @@
                             </div>
                             <div class="col">
                                 <!-- On Click should verify IF user has enough money, also check floor on zero -->
-                                <form action="/:sellcow" method="post">
+                                <form action="/sellcow" method="post">
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" name="cid" id="cid"
                                             value="<%=data.cid%>">
@@ -36,7 +36,7 @@
 
                                 <!-- <button type="button" class="btn btn-secondary" onclick="user_sell_cow()">-</button> -->
                                 
-                                <form action="/:buycow" method="post">
+                                <form action="/buycow" method="post">
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" name="cid" id="cid"
                                             value="<%=data.cid%>">

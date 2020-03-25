@@ -5,10 +5,17 @@ also data is loaded for that user in the common
 this file isn't needed think I could do it directly in main
 */
 module.exports = async (req, res)=>{
+    /*
     const user_obj = res.locals.user;
     cowTotal = await get_cow_total(req.body.cid, res.locals.user.id);
     userWealth = await get_user_wealth(req.body.cid, res.locals.user.id);
     cowPrice = await get_cow_common_price(req.body.cid, res.locals.user.id);
+    */
+    cid = req.body.cid;
+    //res.redirect("/play/?cid="+req.body.cid);
+    res.redirect("/play");
+
+    /*
     res.render('user_main', {data : 
         {
             userCows: cowTotal,
@@ -19,4 +26,6 @@ module.exports = async (req, res)=>{
             cid:req.body.cid
         }
     },
-)}
+    */
+    
+}
