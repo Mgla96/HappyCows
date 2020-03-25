@@ -14,7 +14,7 @@ function update_self(firstName, lastName) {
 	currentRes.firstName = firstName;
 	currentRes.lastName = lastName;
 	currentRes.save();
-	return true
+	return true;
 }
 
 //need commons id and user id
@@ -40,6 +40,31 @@ function get_user_wealth(cId, uId) {
 			console.log(result);
 			return result;
 		}
+}
+
+/*
+average health of all user's cows rounded to 2 decimal places
+*/
+async function get_user_cow_health(cid,uid){
+	result = await db.sequelize.query(
+		'SELECT AVG(c.health) ' +
+		`FROM Cows AS c `+
+		'WHERE c.UserId = ' + uid +
+		' AND c.CommonId = ' + cid  ,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			console.log("avg cow health: " + parseInt(sol, 10).toFixed(2));
+			if(sol==null){
+				return 0;
+			}
+			else{
+				return parseInt(sol, 10).toFixed(2);
+			}		
+		});
+	return result;
 }
 
 //another table for user day wealth
@@ -183,7 +208,6 @@ function get_cow_total(cId, uId) {
 
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
-			//return dbRes;
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
 			console.log("total cows: " + sol);
@@ -194,7 +218,6 @@ function get_cow_total(cId, uId) {
 				return sol;
 			}		
 		});
-		//console.log("result: " + result);
 		return result;
 }
 
@@ -369,6 +392,7 @@ module.exports = {
 	get_user_wealth,
 	buy_cow_transaction,
 	sell_cow_transaction,
-	get_cow_common_price
+	get_cow_common_price,
+	get_user_cow_health
 }
 
