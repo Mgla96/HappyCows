@@ -1,4 +1,4 @@
-const {get_cow_total, get_user_wealth} = require("../apis/users/index");
+const {get_cow_total, get_user_wealth, get_cow_common_price} = require("../apis/users/index");
 /*
 when user selects commons from choose commons page it will redirect user to that specific commons
 also data is loaded for that user in the common
@@ -8,12 +8,14 @@ module.exports = async (req, res)=>{
     const user_obj = res.locals.user;
     cowTotal = await get_cow_total(req.body.cid, res.locals.user.id);
     userWealth = await get_user_wealth(req.body.cid, res.locals.user.id);
+    cowPrice = await get_cow_common_price(req.body.cid, res.locals.user.id);
     res.render('user_main', {data : 
         {
             userCows: cowTotal,
             userName: user_obj.firstName,
             userMoney: userWealth,
             userCowsHealth: 30,
+            cowPrice: cowPrice,
             cid:req.body.cid
         }
     },

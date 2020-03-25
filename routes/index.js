@@ -24,7 +24,6 @@ router.post('/:buycow', auth_middleware, user_cow_post);
 
 
 
-
 /* custom page when no page exists not working correctly - for future implementation */
 router.get('/?err',auth_middleware, notapage);
 

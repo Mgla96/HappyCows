@@ -135,3 +135,7 @@ https://sequelize.org/master/manual/migrations.html
 ### RESTful Info
 https://www.restapitutorial.com/lessons/restquicktips.html  
 I assume we are using restful + json?
+
+### Queries
+https://sequelize.org/master/manual/raw-queries.html
+

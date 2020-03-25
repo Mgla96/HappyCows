@@ -235,17 +235,18 @@ function get_user_commons(req, userId) {
 }
 
 async function get_cow_common_price(cid, uid){
-	db.Configs.findAll({
+	return await db.Configs.findAll({
 		raw: true,
 		attributes: ['cowPrice'],
 		where: { CommonId: cid}
-	}).then((dbRes) => {
+	}).then(function(dbRes) {
 		if (dbRes.length == 0) {
 			return false, null
 		}
 		else {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
+			console.log("cow Price: " + sol);
 			return sol
 		}
 	})
