@@ -1,31 +1,8 @@
-const {get_cow_total, get_user_wealth, get_cow_common_price} = require("../apis/users/index");
 /*
-when user selects commons from choose commons page it will redirect user to that specific commons
-also data is loaded for that user in the common
-this file isn't needed think I could do it directly in main
+when user selects commons from choose commons page it saves the common id and redirects
+that value to where game is played which uses it to render data for that specific commons 
 */
 module.exports = async (req, res)=>{
-    /*
-    const user_obj = res.locals.user;
-    cowTotal = await get_cow_total(req.body.cid, res.locals.user.id);
-    userWealth = await get_user_wealth(req.body.cid, res.locals.user.id);
-    cowPrice = await get_cow_common_price(req.body.cid, res.locals.user.id);
-    */
     cid = req.body.cid;
-    //res.redirect("/play/?cid="+req.body.cid);
     res.redirect("/play");
-
-    /*
-    res.render('user_main', {data : 
-        {
-            userCows: cowTotal,
-            userName: user_obj.firstName,
-            userMoney: userWealth,
-            userCowsHealth: 30,
-            cowPrice: cowPrice,
-            cid:req.body.cid
-        }
-    },
-    */
-    
 }

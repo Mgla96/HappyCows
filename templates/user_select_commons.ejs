@@ -26,9 +26,11 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card special-card">
                                 <div class="page-caption">
-                                    <div data-aos="fade-right" data-aos-duration="1000">
-                                        <h1 class="page-title">Welcome Farmers!</h1>
-                                    </div>
+                                    <h1 class="ml9">
+                                        <span class="text-wrapper">
+                                            <span class="letters">Welcome farmer <%=data.userName%></span>
+                                        </span>
+                                    </h1>
                                 </div>
                             </div>
                         </div>
@@ -36,11 +38,9 @@
                     <div class = "row mt-5">
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-6">
                             <div class="card special-card">
-                                <div data-aos="zoom-in" data-aos-duration="2000">
+                                <div data-aos="flip-right" data-aos-duration="2000">
                                     <h2 class="page-title">Select A Common</h2>
                                 </div>
-                                <!--do we want the start and end date of common? to place in table as well-->
-                                <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -55,7 +55,6 @@
                                             <% Object.keys(result).map((key)=>{ %>
                                             <td><%=result[key]%></td>
                                             <% }); %>
-                                            <!--    <form action="/choosecommons/:enter" method="get">-->
                                             <td>
                                                 <form action="/enter" method="post">
                                                     <div class="form-group">
@@ -67,11 +66,6 @@
                                                     </button>
                                                 </form>
                                             </td>
-                                            <!--
-                                                 <button type="button" class="btn btn-danger btn-sm btnSelect" >
-                                                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                                                </button>
-                                            -->
                                         </tr>
                                         <% }); %>
                                     </tbody>
@@ -80,11 +74,9 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-6">
                             <div class="card special-card">
-                                <div data-aos="zoom-in" data-aos-duration="2000">
+                                <div data-aos="flip-left" data-aos-duration="2000">
                                     <h2 class="page-title">Join A New Common</h2>
                                 </div>
-
-                                <!--Will Populate Data in Tbody instead of below filler way. Each data will also have a button to it's right to click -->
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -112,8 +104,6 @@
                                                         <ion-icon name="arrow-forward-outline"></ion-icon>
                                                     </button>
                                                 </form>
-
-
                                             </td>
                                         </tr>
                                         <% }); %>
@@ -140,12 +130,26 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 <script src="editcommons.js"></script>
+
+
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
     AOS.init();
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script>
+        var textWrapper = document.querySelector('.ml9 .letters');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+        anime.timeline({loop: false})
+          .add({
+            targets: '.ml9 .letter',
+            scale: [0, 1],
+            duration: 2000,
+            elasticity: 600,
+            delay: (el, i) => 45 * (i+1)
+          });
+</script>
 
 <!--
 For Select A Common buttons.

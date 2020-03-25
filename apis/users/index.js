@@ -321,7 +321,7 @@ async function user_sell_cow(cid, uid) {
 		else {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
-			sell_cow_transaction(sol,100,cid,uid);
+			sell_cow_transaction(sol,70,cid,uid);
 			
 		}
 	})

@@ -5,6 +5,5 @@ module.exports = async (req, res) => {
         req.body.cid,
         res.locals.user.id,
     )
-    //res.redirect("/play/?cid="+req.body.cid);
     res.redirect("/play");
 };
