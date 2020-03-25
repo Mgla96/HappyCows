@@ -6,7 +6,11 @@
         <div class="row">
             <div class="col">
                 <div class="info">
-                    <h1>Welcome farmer <%=data.userName%></h1>
+                        <h1 class="ml9">
+                            <span class="text-wrapper">
+                                <span class="letters">Welcome farmer <%=data.userName%></span>
+                            </span>
+                        </h1>
                 </div>
             </div>
         </div>
@@ -15,7 +19,7 @@
                 <div class="card special-card">
                     <h5 class="card-header">Manage Cows</h5>
                     <div class="card-body">
-        
+                        
                         <h5>Market Cow Price: $<%= data.cowPrice%> </h5>  <!--fill in data here for cow price-->
                         <div class="row">
                             <div class="col">
@@ -92,6 +96,21 @@
         audio.play();
     } 
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script>
+var textWrapper = document.querySelector('.ml9 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: false})
+  .add({
+    targets: '.ml9 .letter',
+    scale: [0, 1],
+    duration: 1500,
+    elasticity: 600,
+    delay: (el, i) => 45 * (i+1)
+  });
+</script>
+
 <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
