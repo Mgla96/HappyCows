@@ -16,7 +16,7 @@ router.get('/', auth_middleware, admin_get);
 router.get('/common/:commonId', auth_middleware, admin_common_get);
 router.post('/common', auth_middleware, admin_common_post);
 
-router.post('/cost_update', auth_middleware, admin_cost_update);
+router.post('/cow_cost_update', auth_middleware, admin_cost_update);
 router.post('/degradation_update', auth_middleware, admin_degradation_update);
 router.post('/max_cow_update', auth_middleware, admin_max_cow_update);
 router.post('/taxes_update', auth_middleware, admin_taxes_update);

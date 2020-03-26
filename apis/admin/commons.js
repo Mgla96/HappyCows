@@ -42,8 +42,34 @@ function get_commons(req) {
     });
 }
 
+async function get_common_info(cid) {
+    return await db.sequelize.query(
+		'SELECT c.id, c.name ' +
+		'FROM Commons as c WHERE c.id = ?',
+		{
+			replacements: [
+				cid
+			],
+			type: QueryTypes.SELECT
+		}).then((dbRes)=>{
+		return dbRes;
+	});
+
+
+ /*
+    return await db.sequelize.query(
+        'SELECT c.id, c.name ' +
+        `FROM Commons AS c WHERE c.id= ` + cid,
+        {
+            type: QueryTypes.SELECT
+        }).then((dbRes)=>{
+        return dbRes;
+    }); */
+}
+
 
 module.exports = {
     create_common,
-    get_commons
+    get_commons,
+    get_common_info
 }
