@@ -77,7 +77,7 @@
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>Max Cows Per Person</td>
-                                    <td>23</th>
+                                    <td><%= data.cowMax %></td>
                                     <td>
                                             <form action="/max_cow_update" method="post">
                                                 <input type="hidden" class="form-control" name="cid" id="cid"
@@ -94,7 +94,7 @@
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>Cost Per Cow</td>
-                                    <td>23</td>
+                                    <td><%= data.cowPrice %></td>
                                     <td>
                                         <form action="/cow_cost_update" method="post">
                                             <input type="hidden" class="form-control" name="cid" id="cid"
@@ -110,7 +110,7 @@
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>Degredation Rate</td>
-                                    <td>23</td>
+                                    <td><%= data.degradeRate %></td>
                                     <td>
                                         <form action="/degradation_update" method="post">
                                             <input type="hidden" class="form-control" name="cid" id="cid"
@@ -126,7 +126,7 @@
                                 <tr>
                                         <th scope="row">4</th>
                                         <td>Milk Cow Price</td>
-                                        <td>23</td>
+                                        <td><%= data.milkPrice %></td>
                                         <td>
                                             <form action="/milk_price_update" method="post">
                                                 <input type="hidden" class="form-control" name="cid" id="cid"
@@ -184,7 +184,7 @@
                                     </thead>
                                     <tbody>
                                             <td>
-                                                23
+                                                   23
                                             </td>
                                             <td>
                                                     <form action="/taxes_update" method="post">
@@ -235,9 +235,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
-
 </div>
+<div class= "background3 parallax"></div>
+
+
+
 </body>
+
 <%- include("footer") %>

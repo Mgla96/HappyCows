@@ -6,5 +6,5 @@ module.exports = async (req, res) => {
         req.body.cid,
         res.locals.user.id
     );
-    res.redirect("/admin/common/"+req.body.cid);
+    //res.redirect("/admin/common/"+req.body.cid);
 };

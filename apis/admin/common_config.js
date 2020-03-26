@@ -1,6 +1,10 @@
 var db = require("../../models/index");
+const { QueryTypes } = require('sequelize');
+
 db.Configs.sync();
 db.TieredTaxings.sync();
+db.Cows.sync();
+
 function cow_price(commonId){
     db.Configs.findAll({
 		attributes: ['cowPrice'], 
@@ -200,12 +204,129 @@ async function tax_rate_update(confId,sol){
 	  return true
 }
 
+async function get_cow_price(uid) {
+	return await db.sequelize.query(
+		'SELECT c.cowPrice ' +
+		`FROM Configs AS c `+
+		'WHERE c.CommonId = ' + uid,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			if(sol==null){
+				return 0;
+			}
+			else{
+				return sol;
+			}		
+		});
+}
+
+async function get_max_cow(uid) {
+	return await db.sequelize.query(
+		'SELECT c.maxCowPerPerson ' +
+		`FROM Configs AS c `+
+		'WHERE c.CommonId = ' + uid,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			if(sol==null){
+				return 0;
+			}
+			else{
+				return sol;
+			}		
+		});
+}
+async function get_degrade_rate(uid) {
+	return await db.sequelize.query(
+		'SELECT c.degradeRate ' +
+		`FROM Configs AS c `+
+		'WHERE c.CommonId = ' + uid,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			if(sol==null){
+				return 0;
+			}
+			else{
+				return sol;
+			}		
+		});
+}
+async function get_start_date(uid) {
+	return await db.sequelize.query(
+		'SELECT c.startDate ' +
+		`FROM Configs AS c `+
+		'WHERE c.CommonId = ' + uid,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			if(sol==null){
+				return 0;
+			}
+			else{
+				return sol;
+			}		
+		});
+}
+async function get_end_date(uid) {
+	return await db.sequelize.query(
+		'SELECT c.endDate ' +
+		`FROM Configs AS c `+
+		'WHERE c.CommonId = ' + uid,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			if(sol==null){
+				return 0;
+			}
+			else{
+				return sol;
+			}		
+		});
+}
+async function get_milk_price(uid) {
+	return await db.sequelize.query(
+		'SELECT c.milkPrice ' +
+		`FROM Configs AS c `+
+		'WHERE c.CommonId = ' + uid,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			if(sol==null){
+				return 0;
+			}
+			else{
+				return sol;
+			}		
+		});
+}
+
+
 
 
 module.exports = {
     max_cow_update,
 	cost_per_cow_update,
 	degradation_rate_update,
-	tax_rate_update
+	tax_rate_update,
+	get_cow_price,
+	get_max_cow,
+	get_degrade_rate,
+	get_start_date,
+	get_end_date,
+	get_milk_price
 }
 
