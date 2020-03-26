@@ -101,27 +101,18 @@ function buy_cow(cowId, commonId, uId) {
 }
 
 
+async function get_user_w(cost,wealth,cid,uid){
+	
+}
+
 async function buy_cow_transaction(cost, cid, uid) {
-	await db.sequelize.query(
-		'SELECT SUM(uw.wealth) ' +
-		`FROM UserWealths AS uw `+
-		'WHERE uw.UserId = ' + uid +
-		' AND uw.CommonId = ' + cid  ,
-		{
-			raw: true,
-			type: QueryTypes.SELECT
-		}).then((dbRes) => {
-			var key = Object.keys(dbRes[0]);
-			var current_wealth = dbRes[0][key];
-			console.log("current_wealth: " +current_wealth);
-			console.log("cost: " + cost);
-			var result = parseInt(current_wealth, 10)+parseInt(cost, 10);
-			console.log("cw+cost: "+ result);
+	var current_wealth = await get_user_wealth(cid,uid);
+	var result = parseInt(current_wealth, 10)+parseInt(cost, 10); //cost is negative
+			console.log("cw+cost: "+ result); 
 			costres = parseInt(cost, 10);
-			//wealth: parseInt(cost,10),
 			if(result >= 0){
 				var today = new Date();  
-				let UserWealths = db.UserWealths.build({
+				let UserWealths = await db.UserWealths.build({
 					wealth: costres,
 					createdAt: today,
 					updatedAt: today,
@@ -129,7 +120,7 @@ async function buy_cow_transaction(cost, cid, uid) {
 					UserId: uid
 				})
 				UserWealths.save();
-				let cows = db.Cows.build({
+				let cows = await db.Cows.build({
 					health: 100,
 					status: "alive",
 					CommonId: cid,
@@ -143,7 +134,6 @@ async function buy_cow_transaction(cost, cid, uid) {
 				console.log("You do not have enough money to purchase another cow!");
 				return false;
 			}
-		})
 }
 /*
 checks if user has 1 or more cows and if so sells cow and adds money to userwealth table for user
@@ -154,10 +144,10 @@ async function sell_cow_transaction(cost, health, cid, uid) {
 	if(result>0){
 		var today = new Date(); 
 		var cowId = await get_a_cow(cid,uid);
-		await db.Cows.destroy({
+		let lessCow = await db.Cows.destroy({
 			where: { id: cowId }
 		})
-		let UserWealths = db.UserWealths.build({
+		let UserWealths = await db.UserWealths.build({
 			wealth: value,
 			createdAt: today,
 			updatedAt: today,
@@ -174,7 +164,6 @@ async function sell_cow_transaction(cost, health, cid, uid) {
 	}
 
 }
-
 
 
 /*
