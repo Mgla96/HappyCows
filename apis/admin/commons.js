@@ -42,6 +42,7 @@ function get_commons(req) {
     });
 }
 
+
 module.exports = {
     create_common,
     get_commons

@@ -144,3 +144,27 @@ function get_gen_info(commonId){
 	})
 }
 
+async function max_cow_update(cid,uid){
+	
+}
+
+async function cost_per_cow_update(cid,uid){
+
+}
+async function degradation_rate_update(cid,uid){
+
+}
+
+async function tax_rate_update(cid,uid){
+
+}
+
+
+
+module.exports = {
+    max_cow_update,
+	cost_per_cow_update,
+	degradation_rate_update,
+	tax_rate_update
+}
+
