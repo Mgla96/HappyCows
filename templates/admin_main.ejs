@@ -72,27 +72,16 @@
               <tbody>
                 <% data.commons.forEach(result=>{ %>
                 <tr>
-                  <th scope="row">1</th>
                   <% Object.keys(result).forEach(key=>{ %>
                     <td><%= result[key] %></td>
                   <% }); %>
                   <!-- On Click this button redirects to server admin_common.html for each commongit config user.email “your.email@example.com" -->
                   <td>
-                     
-                      <form action="/admin/common/" method="get">
-                        <!--
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" name="cid" id="cid"
-                                value="<%result.id%>" >
-                  
-                        </div>
-                        -->
+                      <form action="/admin/common/<%= result.id %>" method="get">
                         <button type="submit" class="btn btn-primary btn-sm">
                             <ion-icon name="settings-outline"></ion-icon>
                         </button>
-                    <!--
-                    <button type="button" class="btn btn-primary btn-sm" >Settings</button>
-                    -->
+                      </form>
                   </td>
                 </tr>
                 <% }); %>

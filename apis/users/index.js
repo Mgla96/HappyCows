@@ -129,7 +129,13 @@ async function buy_cow_transaction(cost, cid, uid) {
 					UserId: uid
 				})
 				UserWealths.save();
-				console.log("UserWealths" + UserWealths);
+				let cows = db.Cows.build({
+					health: 100,
+					status: "alive",
+					CommonId: cid,
+					UserId: uid,
+				});
+				cows.save();
 				console.log("You have purchased cow!");
 				return true;
 			}
@@ -144,10 +150,13 @@ checks if user has 1 or more cows and if so sells cow and adds money to userweal
 */
 async function sell_cow_transaction(cost, health, cid, uid) {
 	var result = await get_cow_total(cid,uid);
-	console.log("result: " + result);
 	var value = cost*(health/100);
 	if(result>0){
-		var today = new Date();  
+		var today = new Date(); 
+		var cowId = await get_a_cow(cid,uid);
+		await db.Cows.destroy({
+			where: { id: cowId }
+		})
 		let UserWealths = db.UserWealths.build({
 			wealth: value,
 			createdAt: today,
@@ -278,14 +287,6 @@ async function get_cow_common_price(cid, uid){
 buy cow so add cow to table and subtract wealth of user
 */
 async function user_buy_cow(cid, uid) {
-	let cows = db.Cows.build({
-		health: 100,
-		status: "alive",
-		CommonId: cid,
-		UserId: uid,
-	});
-
-	await cows.save();
 
 	await db.Configs.findAll({
 		raw: true,
@@ -329,10 +330,6 @@ async function get_a_cow(cid,uid){
 }
 
 async function user_sell_cow(cid, uid) {
-	var cowId = await get_a_cow(cid,uid);
-	let cows = await db.Cows.destroy({
-		where: { id: cowId }
-	})
 	db.Configs.findAll({
 		raw: true,
 		attributes: ['cowPrice'],
@@ -345,7 +342,6 @@ async function user_sell_cow(cid, uid) {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
 			sell_cow_transaction(sol,70,cid,uid);
-			
 		}
 	})
 }
