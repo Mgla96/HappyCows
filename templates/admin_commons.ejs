@@ -14,10 +14,11 @@
 <body>
     <div class= "background parallax">
     <div class="container">
-        <div class="row">
+        <div class="row ">
             <div class="col mt-3">
+                <h1 style="color: white" >CommonId: <%= data.commonId %> </h1>
                 <div class="card">
-                    <h5 class="card-header">Players</h5>
+                    <h5 class="card-header">Players </h5>
                     <div class="card-body">
                         <table class="table">
                             <thead>
@@ -41,7 +42,8 @@
                                     <% }); %>
                                     <td>
                                         <form action="/remove_player" method="post">
-                                            <input type="hidden" class="form-control" name="" id="" value="">
+                                            <input type="hidden" class="form-control" name="cid" id="cid"
+                                                            value="<%= data.commonId %>">
                                             <button type="submit" class="btn btn-danger btn-sm">
                                                 <ion-icon name="close-outline"></ion-icon>
                                             </button>
@@ -49,7 +51,6 @@
                                     </td>
                                 </tr>
                                 <% }); %>
-
                             </tbody>
                         </table>
                     </div>
@@ -66,7 +67,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="#">Parameters</th>
                                     <th scope="col">Parameters</th>
                                     <th scope="col">Value</th>
                                     <th scope="col">Update</th>
@@ -76,12 +77,14 @@
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>Max Cows Per Person</td>
-                                    <td>10</td>
+                                    <td>23</th>
                                     <td>
                                             <form action="/max_cow_update" method="post">
+                                                <input type="hidden" class="form-control" name="cid" id="cid"
+                                                            value="<%= data.commonId %>">
                                                 <div class="form-group">
-                                                  <label for="name">New Value</label>
-                                                  <input type="text" class="form-control" name="name" id="name">
+                                                  <label for="val">New Value</label>
+                                                  <input type="text" class="form-control" name="val" id="val">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary btn-sm">Modify</button>
                                             </form>
@@ -91,32 +94,51 @@
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>Cost Per Cow</td>
-                                    <td>1000</td>
+                                    <td>23</td>
                                     <td>
                                         <form action="/cow_cost_update" method="post">
+                                            <input type="hidden" class="form-control" name="cid" id="cid"
+                                                            value="<%= data.commonId %>">
                                             <div class="form-group">
-                                                <label for="name">New Value</label>
-                                                <input type="text" class="form-control" name="name" id="name">
+                                                <label for="val">New Value</label>
+                                                <input type="text" class="form-control" name="val" id="val">
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-sm">Modify</button>
                                         </form>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>Degredation Rate</td>
-                                    <td>2</td>
+                                    <td>23</td>
                                     <td>
                                         <form action="/degradation_update" method="post">
+                                            <input type="hidden" class="form-control" name="cid" id="cid"
+                                                            value="<%= data.commonId %>">
                                             <div class="form-group">
-                                                <label for="name">New Value</label>
-                                                <input type="text" class="form-control" name="name" id="name">
+                                                <label for="val">New Value</label>
+                                                <input type="text" class="form-control" name="val" id="val">
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-sm">Modify</button>
                                         </form>
                                     </td>
                                 </tr>
+                                <tr>
+                                        <th scope="row">4</th>
+                                        <td>Milk Cow Price</td>
+                                        <td>23</td>
+                                        <td>
+                                            <form action="/milk_price_update" method="post">
+                                                <input type="hidden" class="form-control" name="cid" id="cid"
+                                                                value="<%= data.commonId %>">
+                                                <div class="form-group">
+                                                    <label for="val">New Value</label>
+                                                    <input type="text" class="form-control" name="val" id="val">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-sm">Modify</button>
+                                            </form>
+                                        </td>
+                                    </tr>
 
                                 <!-- Modify Modal -->
                                 <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog"
@@ -148,7 +170,6 @@
             </div>
         </div>
 
-
         <div class="row mt-3">
             <div class="col">
                 <div class="card">
@@ -160,30 +181,22 @@
                                     <thead>
                                         <th scope="col">Rate</th>
                                         <th scope="col">Update</th>
-                                        <!--
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Lower</th>
-                                            <th scope="col">Upper</th>
-                                            <th scope="col">Rate</th>
-                                        </tr>
-                                        -->
                                     </thead>
                                     <tbody>
                                             <td>
-                                                Example
+                                                23
                                             </td>
                                             <td>
                                                     <form action="/taxes_update" method="post">
+                                                        <input type="hidden" class="form-control" name="cid" id="cid"
+                                                            value="<%= data.commonId %>">
                                                         <div class="form-group">
-                                                            <label for="name">New Value</label>
-                                                                <input type="text" style="width: 200px;" class="form-control" name="name" id="name">
+                                                            <label for="val">New Value</label>
+                                                            <input type="text" style="width: 200px;" class="form-control" name="val" id="val">
                                                         </div>
                                                         <button type="submit" class="btn btn-primary btn-sm">Adjust Taxes</button>
                                                     </form>
                                                 </td>
-
-
                                     </tbody>
                                         <!--
                                     <tfoot>

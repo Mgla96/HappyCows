@@ -1,6 +1,6 @@
 var db = require("../../models/index");
 db.Configs.sync();
-
+db.TieredTaxings.sync();
 function cow_price(commonId){
     db.Configs.findAll({
 		attributes: ['cowPrice'], 
@@ -144,19 +144,60 @@ function get_gen_info(commonId){
 	})
 }
 
-async function max_cow_update(cid,uid){
-	
+async function max_cow_update(cid,sol){
+	return await db.Configs.findAll({
+		where: { CommonId: cid }
+	  }).then((dbRes)=>{
+		if (dbRes.length == 1){
+		  let currentRes = dbRes[0];
+		  currentRes.maxCowPerPerson = sol;
+		  currentRes.save();
+		} else {
+		  return false
+		}
+	  })
 }
 
-async function cost_per_cow_update(cid,uid){
-
+async function cost_per_cow_update(cid,sol){
+	return await db.Configs.findAll({
+		where: { CommonId: cid }
+	  }).then((dbRes)=>{
+		if (dbRes.length == 1){
+		  let currentRes = dbRes[0];
+		  currentRes.costPerCow = sol;
+		  currentRes.save();
+		} else {
+		  return false
+		}
+	  })
 }
-async function degradation_rate_update(cid,uid){
-
+async function degradation_rate_update(cid,sol){
+	return await db.Configs.findAll({
+		where: { CommonId: cid }
+	  }).then((dbRes)=>{
+		if (dbRes.length == 1){
+		  let currentRes = dbRes[0];
+		  currentRes.degradeRate = sol;
+		  currentRes.save();
+		} else {
+		  return false
+		}
+	  })
 }
 
-async function tax_rate_update(cid,uid){
-
+async function tax_rate_update(confId,sol){
+	db.TieredTaxings.findAll({
+		where: { ConfigId: confId }
+	  }).then((dbRes)=>{
+		if (dbRes.length == 1){
+		  let currentRes = dbRes[0];
+		  currentRes.tax = sol;
+		  currentRes.save();
+		} else {
+		  return false
+		}
+	  })
+	  return true
 }
 
 

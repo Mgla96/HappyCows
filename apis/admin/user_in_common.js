@@ -4,6 +4,7 @@ var paging_raw = require("../../utils/pagination_raw")
 var {get_wealth, get_cows} = require("../../utils/sql")
 const { QueryTypes } = require('sequelize');
 db.UserWealths.sync();
+db.UserCommons.sync();
 
 /**
  * GET 
@@ -56,8 +57,11 @@ function get_user_day_profit(uId, cId, date){
 	})
 }
 
-async function remove_user_common(uId, cId){
-  
+async function remove_user_from_common(cid, uid){
+	return await db.UserCommons.destroy({
+		where: { CommonId: cid, UserId: uid }
+	})
 }
 
-module.exports = {get_users_in_common, remove_user_common}
+
+module.exports = {get_users_in_common, remove_user_from_common}
