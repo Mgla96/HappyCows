@@ -196,8 +196,8 @@ function sell_cow(cowId, cId, uId) {
 /*
 Total cows of a current user in a commons
 */
-function get_cow_total(cId, uId) {
-	result = db.sequelize.query(
+async function get_cow_total(cId, uId) {
+	return await db.sequelize.query(
 		'SELECT COUNT(c.id) ' +
 		`FROM Cows AS c `+
 		'WHERE c.UserId = ' + uId +
@@ -216,14 +216,13 @@ function get_cow_total(cId, uId) {
 				return sol;
 			}		
 		});
-		return result;
 }
 
 /*
 get id and name of every commons
 */
-function get_all_commons(req) {
-	return db.sequelize.query(
+async function get_all_commons(req) {
+	return await db.sequelize.query(
 		'SELECT c.id, c.name ' +
 		`FROM Commons AS c`,
 		{
@@ -236,8 +235,8 @@ function get_all_commons(req) {
 		});
 }
 
-function get_user_commons(req, userId) {
-	return db.sequelize.query(
+async function get_user_commons(req, userId) {
+	return await db.sequelize.query(
 		'SELECT c.id, c.name ' +
 		'FROM Commons c ' +
 		'WHERE c.id IN ' +
