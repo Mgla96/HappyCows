@@ -9,4 +9,5 @@ router.get('/', auth_middleware, admin_get);
 router.get('/common/:commonId', auth_middleware, admin_common_get);
 router.post('/common', auth_middleware, admin_common_post);
 
+
 module.exports = router;

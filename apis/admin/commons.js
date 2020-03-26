@@ -27,7 +27,7 @@ async function create_common(name, user_id,
 
 function get_commons(req) {
     return db.sequelize.query(
-        'SELECT c.name, u.firstName, ' +
+        'SELECT c.id, c.name, u.firstName, ' +
         `(${get_health} c.id) AS health, ` +
         `(${get_players} c.id) AS players ` +
         `FROM Commons AS c JOIN Users AS u ON u.id = c.admin_uid ` +
