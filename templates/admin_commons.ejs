@@ -23,11 +23,12 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Perm</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Cows</th>
-                                    <th scope="col">Health</th>
+                                    <!-- <th scope="col">Health</th> -->
                                     <th scope="col">Money</th>
                                 </tr>
                             </thead>
@@ -38,7 +39,14 @@
                                     <% Object.keys(result).map((key)=>{ %>
                                         <td><%=result[key]%></td>
                                     <% }); %>
-                                    <td><button type="button" class="btn btn-danger btn-sm">X</button></td>
+                                    <td>
+                                        <form action="/remove_player" method="post">
+                                            <input type="hidden" class="form-control" name="" id="" value="">
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <ion-icon name="close-outline"></ion-icon>
+                                            </button>
+                                        </form>                    
+                                    </td>
                                 </tr>
                                 <% }); %>
 
@@ -61,6 +69,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Parameters</th>
                                     <th scope="col">Value</th>
+                                    <th scope="col">Update</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,25 +77,45 @@
                                     <th scope="row">1</th>
                                     <td>Max Cows Per Person</td>
                                     <td>10</td>
-                                    <td><button type="button" class="btn btn-primary btn-sm" data-id="Maxcowsperperson"
-                                            data-toggle="modal" data-target="#exampleModal">Modify</button></td>
+                                    <td>
+                                            <form action="/max_cow_update" method="post">
+                                                <div class="form-group">
+                                                  <label for="name">New Value</label>
+                                                  <input type="text" class="form-control" name="name" id="name">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-sm">Modify</button>
+                                            </form>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>Cost Per Cow</td>
                                     <td>1000</td>
-
-                                    <td><button type="button" class="btn btn-primary btn-sm" data-id="costpercow"
-                                            data-toggle="modal" data-target="#exampleModal">Modify</button></td>
+                                    <td>
+                                        <form action="/cow_cost_update" method="post">
+                                            <div class="form-group">
+                                                <label for="name">New Value</label>
+                                                <input type="text" class="form-control" name="name" id="name">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-sm">Modify</button>
+                                        </form>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>Degredation Rate</td>
                                     <td>2</td>
-                                    <td><button type="button" class="btn btn-primary btn-sm" data-id="degredation"
-                                            data-toggle="modal" data-target="#exampleModal">Modify</button></td>
+                                    <td>
+                                        <form action="/degradation_update" method="post">
+                                            <div class="form-group">
+                                                <label for="name">New Value</label>
+                                                <input type="text" class="form-control" name="name" id="name">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-sm">Modify</button>
+                                        </form>
+                                    </td>
                                 </tr>
 
                                 <!-- Modify Modal -->
@@ -123,27 +152,52 @@
         <div class="row mt-3">
             <div class="col">
                 <div class="card">
-                    <h5 class="card-header">Taxes (WIP)</h5>
+                    <h5 class="card-header">Taxes (WIP) - (only 1 tax supported now)</h5>
                     <div class="container">
                         <div class="row ">
                             <div class="col">
                                 <table class="table table-striped">
                                     <thead>
+                                        <th scope="col">Rate</th>
+                                        <th scope="col">Update</th>
+                                        <!--
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Lower</th>
                                             <th scope="col">Upper</th>
                                             <th scope="col">Rate</th>
                                         </tr>
+                                        -->
                                     </thead>
                                     <tbody>
-                                    </tbody>
+                                            <td>
+                                                Example
+                                            </td>
+                                            <td>
+                                                    <form action="/taxes_update" method="post">
+                                                        <div class="form-group">
+                                                            <label for="name">New Value</label>
+                                                                <input type="text" style="width: 200px;" class="form-control" name="name" id="name">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary btn-sm">Adjust Taxes</button>
+                                                    </form>
+                                                </td>
 
+
+                                    </tbody>
+                                        <!--
                                     <tfoot>
-                                        <td><button type="button" class="btn btn-primary" data-id="Taxes"
-                                                data-toggle="modal" data-target="#exampleModal">Adjust Taxes</button>
+                                        <td>
+                                            <form action="" method="post">
+                                                <div class="form-group">
+                                                    <label for="name">New Value</label>
+                                                        <input type="text" class="form-control" name="name" id="name">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-sm">Adjust Taxes</button>
+                                            </form>
                                         </td>
                                     </tfoot>
+                                    -->
                                 </table>
                             </div>
                         </div>
@@ -156,8 +210,15 @@
             <div class="col">
                 <div class="card">
                     <h5 class="card-header">Data (WIP)</h5>
+                   
                     <div class="card-body">
-                        <button class="btn btn-primary" type="submit">Download</button>
+                            <td>
+                                    <form action="" method="get">
+                                        <input type="hidden" class="form-control" name="" id="" value="">
+                                        <button type="submit" class="btn btn-primary btn-sm">Download</button>
+                                    </form>
+                            </td>
+                       
                     </div>
                 </div>
             </div>

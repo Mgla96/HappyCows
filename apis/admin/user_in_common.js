@@ -56,4 +56,8 @@ function get_user_day_profit(uId, cId, date){
 	})
 }
 
-module.exports = {get_users_in_common}
+async function remove_user_common(uId, cId){
+  
+}
+
+module.exports = {get_users_in_common, remove_user_common}
