@@ -1,4 +1,5 @@
 # HappyCows
+A digital simulation game used as a teaching tool for Professor de Vries at UCSB on the Tragedy of the Commons. 
 
 <p align="center">
 <img src="https://media.giphy.com/media/W54Zt0bgS87x6/giphy.gif" width="50%" alt="gif">
@@ -42,7 +43,7 @@ var db = require("models/index")
 db.Users.sync({force: true});
 ....
 ```
-Or you can uncomment out these functions from app.js : (* Recommended *)
+Or you can uncomment out these functions from app.js :
 ```javascript
 //db.Users.sync();
 //db.UserCommons.sync();
@@ -54,7 +55,7 @@ Or you can uncomment out these functions from app.js : (* Recommended *)
 ```
 Then run: 
 ```bash
-node app.js 
+./bin/www
 ```
 
 If you want to have demo data, run following command: (no demo data here so will not work currently)

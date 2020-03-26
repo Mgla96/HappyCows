@@ -1,7 +1,18 @@
-<%- include("header") %>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/css/admin.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Admin Page</title>
+</head>
 
 <body>
-  <div class="background parallax">
+  <div class="background2 parallax">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Admin</a>
     <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
@@ -53,6 +64,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
+                  <th scope="col">Admin</th>
                   <th scope="col">Health</th>
                   <th scope="col">Players</th>
                 </tr>
@@ -65,7 +77,23 @@
                     <td><%= result[key] %></td>
                   <% }); %>
                   <!-- On Click this button redirects to server admin_common.html for each commongit config user.email “your.email@example.com" -->
-                  <td><button type="button" class="btn btn-primary btn-sm" >Settings</button></td>
+                  <td>
+                     
+                      <form action="/admin/common/" method="get">
+                        <!--
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="cid" id="cid"
+                                value="<%result.id%>" >
+                  
+                        </div>
+                        -->
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </button>
+                    <!--
+                    <button type="button" class="btn btn-primary btn-sm" >Settings</button>
+                    -->
+                  </td>
                 </tr>
                 <% }); %>
               </tbody>

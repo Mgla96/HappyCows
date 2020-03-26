@@ -43,7 +43,7 @@ function get_user_wealth(cId, uId) {
 }
 
 /*
-average health of all user's cows rounded to 2 decimal places
+average health of all user's cows rounded to nearest integer
 */
 async function get_user_cow_health(cid,uid){
 	result = await db.sequelize.query(
@@ -61,7 +61,7 @@ async function get_user_cow_health(cid,uid){
 				return 0;
 			}
 			else{
-				return parseInt(sol, 10).toFixed(2);
+				return parseInt(sol, 10).toFixed(0);
 			}		
 		});
 	return result;
@@ -280,7 +280,7 @@ buy cow so add cow to table and subtract wealth of user
 async function user_buy_cow(cid, uid) {
 	let cows = db.Cows.build({
 		health: 100,
-		status: "available",
+		status: "alive",
 		CommonId: cid,
 		UserId: uid,
 	});
