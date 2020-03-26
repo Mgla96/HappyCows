@@ -41,6 +41,7 @@ function get_commons(req) {
         return dbRes;
     });
 }
+
 module.exports = {
     create_common,
     get_commons
