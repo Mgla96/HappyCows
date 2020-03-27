@@ -8,6 +8,7 @@ db.Configs.sync();
 db.TieredTaxings.sync();
 db.Cows.sync();
 db.Commons.sync();
+db.UserWealths.sync();
 
 async function get_conf_id_2(cid){
     console.log("cid: "+ cid);
@@ -79,8 +80,23 @@ async function get_common_info(cid) {
 	});
 }
 
+
+async function milk_test(cid, uid) {
+    console.log("uid for milking:" + uid + "\n\n\n\n");
+    let milk = db.UserWealths.build({
+        wealth: "70",
+        type: "milk",
+        CommonId: cid,
+        UserId: uid
+    });
+    await milk.save();
+    return true;
+}
+
+
 module.exports = {
     create_common,
     get_commons,
-    get_common_info
+    get_common_info,
+    milk_test
 }

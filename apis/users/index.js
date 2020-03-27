@@ -101,10 +101,6 @@ function buy_cow(cowId, commonId, uId) {
 }
 
 
-async function get_user_w(cost,wealth,cid,uid){
-	
-}
-
 async function buy_cow_transaction(cost, cid, uid) {
 	var current_wealth = await get_user_wealth(cid,uid);
 	var result = parseInt(current_wealth, 10)+parseInt(cost, 10); //cost is negative
@@ -114,6 +110,7 @@ async function buy_cow_transaction(cost, cid, uid) {
 				var today = new Date();  
 				let UserWealths = await db.UserWealths.build({
 					wealth: costres,
+					type:"buy",
 					createdAt: today,
 					updatedAt: today,
 					CommonId: cid,
@@ -149,6 +146,7 @@ async function sell_cow_transaction(cost, health, cid, uid) {
 		})
 		let UserWealths = await db.UserWealths.build({
 			wealth: value,
+			type: "sell",
 			createdAt: today,
 			updatedAt: today,
 			CommonId: cid,
@@ -320,6 +318,7 @@ async function join_common(cid, uid, log) {
 
 	let UserWealths = db.UserWealths.build({
 		wealth: 1000,
+		type: "initial",
 		createdAt: today,
 		updatedAt: today,
 		CommonId: cid,
@@ -396,6 +395,29 @@ async function get_end_date(cid) {
 		});
 }
 
+async function get_all_milkings(req, cid,uid) {
+	return await db.sequelize.query(
+		'SELECT uw.wealth, uw.createdAt ' +
+		`FROM UserWealths AS uw `+
+		'WHERE uw.CommonId = ?'+
+		' AND uw.UserId = ?'+
+		' AND type = "milk"',
+		{
+			replacements: [
+				cid,uid, ...paging_raw(req)
+			],
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			if (dbRes.length >= 1) {
+				return dbRes
+			}
+			else {
+				return dbRes;
+			}
+			
+		});
+}
+
 
 
 
@@ -416,6 +438,7 @@ module.exports = {
 	get_cow_common_price,
 	get_user_cow_health,
 	get_common_day,
-	get_end_date
+	get_end_date,
+	get_all_milkings
 }
 

@@ -11,6 +11,8 @@ var admin_milk_price_update =  require('../views/admin_milk_price_post');
 var admin_taxes_update =  require('../views/admin_taxes_post');
 var admin_remove_player =  require('../views/admin_remove_player_post');
 
+var admin_milking_test =  require('../views/admin_milking_test');
+
 let {auth_middleware} = require("../utils/auth");
 
 router.get('/', auth_middleware, admin_get);
@@ -23,5 +25,7 @@ router.post('/common/max_cow_update', auth_middleware, admin_max_cow_update);
 router.post('/common/taxes_update', auth_middleware, admin_taxes_update);
 router.post('/common/remove_player', auth_middleware, admin_remove_player);
 router.post('/common/milk_price_update', auth_middleware, admin_milk_price_update);
+
+router.post('/common/milk_test', auth_middleware, admin_milking_test);
 
 module.exports = router;
