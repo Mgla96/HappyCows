@@ -163,18 +163,34 @@ async function max_cow_update(cid,sol){
 }
 
 async function cost_per_cow_update(cid,sol){
+	console.log("COSTPERCOW CALLED: cid:"+cid+" sol:" + sol +"\n\n");
 	return await db.Configs.findAll({
 		where: { CommonId: cid }
 	  }).then((dbRes)=>{
 		if (dbRes.length == 1){
 		  let currentRes = dbRes[0];
-		  currentRes.costPerCow = sol;
+		  currentRes.cowPrice = sol;
 		  currentRes.save();
 		} else {
 		  return false
 		}
 	  })
 }
+
+async function milk_price_update(cid,sol){
+	return await db.Configs.findAll({
+		where: { CommonId: cid }
+	  }).then((dbRes)=>{
+		if (dbRes.length == 1){
+		  let currentRes = dbRes[0];
+		  currentRes.milkPrice = sol;
+		  currentRes.save();
+		} else {
+		  return false
+		}
+	  })
+}
+
 async function degradation_rate_update(cid,sol){
 	return await db.Configs.findAll({
 		where: { CommonId: cid }
@@ -327,6 +343,7 @@ module.exports = {
 	get_degrade_rate,
 	get_start_date,
 	get_end_date,
-	get_milk_price
+	get_milk_price,
+	milk_price_update
 }
 
