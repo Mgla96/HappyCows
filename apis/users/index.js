@@ -119,14 +119,14 @@ async function buy_cow_transaction(cost, cid, uid) {
 					CommonId: cid,
 					UserId: uid
 				})
-				UserWealths.save();
+				await UserWealths.save();
 				let cows = await db.Cows.build({
 					health: 100,
 					status: "alive",
 					CommonId: cid,
 					UserId: uid,
 				});
-				cows.save();
+				await cows.save();
 				console.log("You have purchased cow!");
 				return true;
 			}
@@ -144,7 +144,7 @@ async function sell_cow_transaction(cost, health, cid, uid) {
 	if(result>0){
 		var today = new Date(); 
 		var cowId = await get_a_cow(cid,uid);
-		let lessCow = await db.Cows.destroy({
+		await db.Cows.destroy({
 			where: { id: cowId }
 		})
 		let UserWealths = await db.UserWealths.build({
@@ -154,7 +154,7 @@ async function sell_cow_transaction(cost, health, cid, uid) {
 			CommonId: cid,
 			UserId: uid
 		})
-		UserWealths.save();
+		await UserWealths.save();
 		console.log("You have sold cow!");
 		return true;
 	}
@@ -163,34 +163,6 @@ async function sell_cow_transaction(cost, health, cid, uid) {
 		return false;
 	}
 
-}
-
-
-/*
--remove cow from user
--get cow price (from config table) w 
-and maybe selling a cow is 70% of that or so?
-in future we can add this option in commons config
--add to user's wealth 
-
---OUTDATED
-*/
-function sell_cow(cowId, cId, uId) {
-	db.Cows.destroy({
-		where: { id: cowId }
-	})
-	db.UserWealth.findAll({
-		where: { CommonId: cId, UserId: uId }
-	}).then((dbRes) => {
-		if (dbRes.length == 1) {
-			dbRes[0].wealth += (.7 * 20); //whatever % of cow price will be (will have to call get cowprice function)
-			dbRes[0].save();
-			return true;
-		}
-		else {
-			return false;
-		}
-	})
 }
 
 /*
@@ -203,7 +175,6 @@ async function get_cow_total(cId, uId) {
 		'WHERE c.UserId = ' + uId +
 		' AND c.CommonId = ' + cId  ,
 		{
-
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
@@ -275,8 +246,7 @@ async function get_cow_common_price(cid, uid){
 buy cow so add cow to table and subtract wealth of user
 */
 async function user_buy_cow(cid, uid) {
-
-	await db.Configs.findAll({
+	let res = await db.Configs.findAll({
 		raw: true,
 		attributes: ['cowPrice'],
 		where: { CommonId: cid}
@@ -287,13 +257,11 @@ async function user_buy_cow(cid, uid) {
 		else {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
-			//bitwise to get negative value
-			sol = ~sol + 1;
-			console.log("sol " + sol);
-			console.log("uid: " + uid);
-			buy_cow_transaction(sol,cid,uid);
+			sol = ~sol + 1; //bitwise to get negative value
+			return sol;
 		}
 	})
+	await buy_cow_transaction(res,cid,uid);
 }
 
 async function get_a_cow(cid,uid){
@@ -318,7 +286,7 @@ async function get_a_cow(cid,uid){
 }
 
 async function user_sell_cow(cid, uid) {
-	db.Configs.findAll({
+	let res = await db.Configs.findAll({
 		raw: true,
 		attributes: ['cowPrice'],
 		where: { CommonId: cid}
@@ -329,9 +297,10 @@ async function user_sell_cow(cid, uid) {
 		else {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
-			sell_cow_transaction(sol,70,cid,uid);
+			return sol;
 		}
 	})
+	await sell_cow_transaction(res,70,cid,uid);
 }
 
 
@@ -356,7 +325,6 @@ async function join_common(cid, uid, log) {
 		CommonId: cid,
 		UserId: uid
 	})
-
 	await UserWealths.save();
 	return true;
 }
