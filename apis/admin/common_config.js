@@ -4,7 +4,7 @@ const { QueryTypes } = require('sequelize');
 db.Configs.sync();
 db.TieredTaxings.sync();
 db.Cows.sync();
-
+/*
 function cow_price(commonId){
     db.Configs.findAll({
 		attributes: ['cowPrice'], 
@@ -18,9 +18,10 @@ function cow_price(commonId){
 		}
 	})
 }
+*/
 
-function milk_time(commonId){
-    db.Configs.findAll({
+async function milk_time(commonId){
+    return await db.Configs.findAll({
 		attributes: ['milkTime'], 
 		where: {CommonId: commonId}
 	}).then((dbRes)=>{
@@ -36,6 +37,7 @@ function milk_time(commonId){
 /*
 * Working on global_health 
 */
+/*
 function global_health(commonId){
 	db.Cows.findAll({
         attributes: [commonId, [models.sequelize.fn('AVG', models.sequelize.col('health')),'healthAvg']], 
@@ -50,6 +52,8 @@ function global_health(commonId){
 		}
 	})
 }
+*/
+
 /*
 get create date with configId
 */
@@ -86,8 +90,8 @@ function get_end_date(configId){
 /*
 get create date with commonId
 */
-function get_create_date_common(commonId){ 
-	db.Configs.findAll({
+async function get_create_date_common(commonId){ 
+	await db.Configs.findAll({
 		attributes: ['startDate'],
 		where: {CommonId: commonId}
 	}).then((dbRes)=>{
@@ -102,8 +106,8 @@ function get_create_date_common(commonId){
 /*
 get end date with commonId
 */
-function get_end_date_common(commonId){
-	db.Configs.findAll({
+async function get_end_date_common(commonId){
+	await db.Configs.findAll({
 		attributes: ['endDate'],
 		where: {CommonId: commonId}
 	}).then((dbRes)=>{
