@@ -418,7 +418,25 @@ async function get_all_milkings(req, cid,uid) {
 		});
 }
 
-
+async function get_user_total(cid) {
+	return await db.sequelize.query(
+		'SELECT COUNT(c.UserId) ' +
+		`FROM UserCommons AS c `+
+		'WHERE c.CommonId = ' + cid,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			console.log("total users: " + sol);
+			if(sol==null){
+				return 0;
+			}
+			else{
+				return sol;
+			}		
+		});
+}
 
 
 /*
@@ -439,6 +457,7 @@ module.exports = {
 	get_user_cow_health,
 	get_common_day,
 	get_end_date,
-	get_all_milkings
+	get_all_milkings,
+	get_user_total
 }
 
