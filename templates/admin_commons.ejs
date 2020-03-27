@@ -29,8 +29,9 @@
                                     <th scope="col">Last</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Cows</th>
-                                    <!-- <th scope="col">Health</th> -->
                                     <th scope="col">Money</th>
+                                    <th scope="col">Something</th>
+                                    <th scope="col">Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,7 +42,7 @@
                                         <td><%=result[key]%></td>
                                     <% }); %>
                                     <td>
-                                        <form action="/remove_player" method="post">
+                                        <form action="remove_player" method="post">
                                             <input type="hidden" class="form-control" name="cid" id="cid"
                                                             value="<%= data.commonId %>">
                                             <button type="submit" class="btn btn-danger btn-sm">
@@ -79,7 +80,7 @@
                                     <td>Max Cows Per Person</td>
                                     <td><%= data.cowMax %></td>
                                     <td>
-                                            <form action="/max_cow_update" method="post">
+                                            <form action="max_cow_update" method="post">
                                                 <input type="hidden" class="form-control" name="cid" id="cid"
                                                             value="<%= data.commonId %>">
                                                 <div class="form-group">
@@ -96,7 +97,7 @@
                                     <td>Cost Per Cow</td>
                                     <td><%= data.cowPrice %></td>
                                     <td>
-                                        <form action="/cow_cost_update" method="post">
+                                        <form action="cow_cost_update" method="post">
                                             <input type="hidden" class="form-control" name="cid" id="cid"
                                                             value="<%= data.commonId %>">
                                             <div class="form-group">
@@ -112,7 +113,7 @@
                                     <td>Degredation Rate</td>
                                     <td><%= data.degradeRate %></td>
                                     <td>
-                                        <form action="/degradation_update" method="post">
+                                        <form action="degradation_update" method="post">
                                             <input type="hidden" class="form-control" name="cid" id="cid"
                                                             value="<%= data.commonId %>">
                                             <div class="form-group">
@@ -128,7 +129,7 @@
                                         <td>Milk Cow Price</td>
                                         <td><%= data.milkPrice %></td>
                                         <td>
-                                            <form action="/milk_price_update" method="post">
+                                            <form action="milk_price_update" method="post">
                                                 <input type="hidden" class="form-control" name="cid" id="cid"
                                                                 value="<%= data.commonId %>">
                                                 <div class="form-group">
@@ -187,7 +188,7 @@
                                                    23
                                             </td>
                                             <td>
-                                                    <form action="/taxes_update" method="post">
+                                                    <form action="taxes_update" method="post">
                                                         <input type="hidden" class="form-control" name="cid" id="cid"
                                                             value="<%= data.commonId %>">
                                                         <div class="form-group">
