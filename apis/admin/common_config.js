@@ -163,7 +163,7 @@ async function max_cow_update(cid,sol){
 }
 
 async function cost_per_cow_update(cid,sol){
-	console.log("COSTPERCOW CALLED: cid:"+cid+" sol:" + sol +"\n\n");
+	//console.log("COSTPERCOW CALLED: cid:"+cid+" sol:" + sol +"\n\n");
 	return await db.Configs.findAll({
 		where: { CommonId: cid }
 	  }).then((dbRes)=>{
@@ -205,20 +205,67 @@ async function degradation_rate_update(cid,sol){
 	  })
 }
 
-async function tax_rate_update(confId,sol){
-	db.TieredTaxings.findAll({
+
+
+async function get_conf_id(cid){
+	console.log("cid: "+ cid);
+	return await db.Configs.findAll({
+		attributes: ['id'],
+		where: { CommonId: cid }
+	  }).then((dbRes)=>{
+		if (dbRes.length == 1){
+		  let currentRes = dbRes[0];
+		  return currentRes.id;
+		} else {
+		  return false
+		}
+	  })
+}
+
+async function tax_rate_update(cid,sol){
+	let confId = await get_conf_id(cid);
+	console.log("tax rate update confId: "+confId);
+	return await db.TieredTaxings.findAll({
 		where: { ConfigId: confId }
 	  }).then((dbRes)=>{
 		if (dbRes.length == 1){
 		  let currentRes = dbRes[0];
 		  currentRes.tax = sol;
 		  currentRes.save();
+		  return true;
 		} else {
-		  return false
+		  return false;
 		}
 	  })
-	  return true
 }
+
+async function get_tax_rate(cid) {
+	let confId = await get_conf_id(cid);
+	console.log("get tax rate confId: "+confId);
+	return await db.sequelize.query(
+		'SELECT d.tax ' +
+		`FROM TieredTaxings AS d `+
+		'WHERE d.ConfigId = ' + confId,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			if (dbRes.length == 0) {
+				return 0;
+			}
+			else {
+				var key = Object.keys(dbRes[0]);
+				var sol = dbRes[0][key];
+				if(sol==null){
+					return 0;
+				}
+				else{
+					return sol;
+				}			
+			}
+		});
+}
+
+
 
 async function get_cow_price(uid) {
 	return await db.sequelize.query(
@@ -337,7 +384,9 @@ module.exports = {
     max_cow_update,
 	cost_per_cow_update,
 	degradation_rate_update,
+	get_conf_id,
 	tax_rate_update,
+	get_tax_rate,
 	get_cow_price,
 	get_max_cow,
 	get_degrade_rate,
