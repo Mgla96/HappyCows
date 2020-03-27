@@ -1,7 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const UserWealths = sequelize.define('UserWealths', {
-    wealth: DataTypes.INTEGER
+    wealth: DataTypes.INTEGER,
+    type: DataTypes.STRING //either initial,buy,sell,or milk
   }, {});
   UserWealths.associate = function(models) {
     models.UserWealths.belongsTo(models.Users) // association key in UserWealth model

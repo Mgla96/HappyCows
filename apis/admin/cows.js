@@ -102,6 +102,8 @@ function update_cow_into_common(cowId, commonId, uId){
 }
 
 
+
+
 /**
  * DELETE /cow/:id
  * Description: Delete a cow with given id
@@ -140,6 +142,9 @@ async function get_cow_total(cId, uId) {
 			}		
 		});
 }
+
+
+
 
 
 
