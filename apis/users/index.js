@@ -330,6 +330,75 @@ async function join_common(cid, uid, log) {
 }
 
 
+async function get_common_day(cid) {
+	let start = await db.Configs.findAll({
+		raw: true,
+		attributes: ['startDate'],
+		where: { CommonId: cid}
+	}).then((dbRes) => {
+		if (dbRes.length == 0) {
+			return null;
+		}
+		else {
+			var key = Object.keys(dbRes[0]);
+			var res = dbRes[0][key];
+			return res;
+		}
+	})
+	var today = new Date(); 
+	console.log("today: "+today);
+	// To calculate the time difference of two dates 
+	var Difference_In_Time = today.getTime() - start.getTime(); 
+	console.log("differenceintime: "+Difference_In_Time);
+	// To calculate the no. of days between two dates 
+	var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+	console.log("differenceindays: "+Difference_In_Days);
+	return Math.ceil(Difference_In_Days);
+}
+
+async function get_start_date(cid) {
+	return await db.sequelize.query(
+		'SELECT c.startDate ' +
+		`FROM Configs AS c `+
+		'WHERE c.CommonId = ' + cid,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			if(sol==null){
+				return 0;
+			}
+			else{
+				return sol;
+			}		
+		});
+}
+
+async function get_end_date(cid) {
+	return await db.sequelize.query(
+		'SELECT c.endDate ' +
+		`FROM Configs AS c `+
+		'WHERE c.CommonId = ' + cid,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			if(sol==null){
+				return 0;
+			}
+			else{
+				console.log(sol);
+				var month = sol.getUTCMonth() + 1;
+				return month + "/" + sol.getUTCDate() + "/" + sol.getUTCFullYear();
+			}		
+		});
+}
+
+
+
+
 /*
 function get_user_commons(req)
 */
@@ -345,6 +414,8 @@ module.exports = {
 	buy_cow_transaction,
 	sell_cow_transaction,
 	get_cow_common_price,
-	get_user_cow_health
+	get_user_cow_health,
+	get_common_day,
+	get_end_date
 }
 

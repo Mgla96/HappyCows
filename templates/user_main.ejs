@@ -9,7 +9,9 @@
                             <span class="text-wrapper">
                                 <span class="letters">Welcome farmer <%=data.userName%></span>
                             </span>
+                            <h6>Today is Day <%=data.day%>! This game will end on <%=data.endDate%>.</h6>
                         </h1>
+
                 </div>
             </div>
         </div>
@@ -22,7 +24,7 @@
                         <div class="row">
                             <div class="col">
                                 <img class="cowBounceTest" src="img/cowhead.svg" alt="Cow's head">
-                                <p>You Have <%= data.userCows%> cows</p>
+                                <h6>You Have <%= data.userCows%> cows</h6>
                             </div>
                             <div class="col">
                                 <form action="/sellcow" method="post">
@@ -53,25 +55,48 @@
 
             <div class="col-sm-4">
                 <div class="card special-card">
-                    <h5 class="card-header">Your Stats</h5>
+                    <h5 class="card-header">Your Farm Stats</h5>
                     <div class="card-body">
                         <div class="row mt-3">
                             <div class="col">
                                 <div class="money">
                                     <img class="shakeMoney" src="img/money.svg" alt="">
-                                    <p>$ <%= data.userMoney%></p>
+                                    <h6>Total Wealth: $<%= data.userMoney%></h6>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="health">
                                     <img class="heart" src="img/health.svg" alt="">
-                                    <p>Cow Health: <%= data.userCowsHealth%>%</p>
+                                    <h6>Cow Health: <%= data.userCowsHealth%>%</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-sm-4">
+                <div class="card special-card">
+                    <h5 class="card-header">Your Profits</h5>
+                    <div class="card-body">
+                        <div class="row mt-3">
+                            <div class="col">
+                                <h6>You will earn profits from milking your cows every day at <%= data.milkTime %> </h6>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div class="money">
+                                    <img class="shakeMoney" src="img/money.svg" alt="">
+                                    <h6>$20</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>
