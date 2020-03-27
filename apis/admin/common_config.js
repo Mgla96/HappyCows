@@ -55,74 +55,47 @@ function global_health(commonId){
 */
 
 /*
-get create date with configId
-*/
-function get_create_date(configId){ 
-	db.Configs.findAll({
-		attributes: ['startDate'],
-		where: {id: configId}
-	}).then((dbRes)=>{
-		if (dbRes.length == 1) {
-			return true, dbRes[0]
-		}
-		else {
-			return false, null
-		}
-	})
-}
-/*
-get end date with configId
-*/
-function get_end_date(configId){
-	db.Configs.findAll({
-		attributes: ['endDate'],
-		where: {id: configId}
-	}).then((dbRes)=>{
-		if (dbRes.length == 1) {
-			return true, dbRes[0]
-		}
-		else {
-			return false, null
-		}
-	})
-}
-
-/*
 get create date with commonId
+other way to do this below
 */
-async function get_create_date_common(commonId){ 
-	await db.Configs.findAll({
+/*
+async function get_start_date_common(commonId){ 
+	return await db.Configs.findAll({
 		attributes: ['startDate'],
 		where: {CommonId: commonId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {
-			return true, dbRes[0]
+			return dbRes[0]
 		}
 		else {
-			return false, null
+			return null
 		}
 	})
 }
+*/
 /*
 get end date with commonId
+other way to do this is below
 */
+/*
 async function get_end_date_common(commonId){
-	await db.Configs.findAll({
+	return await db.Configs.findAll({
 		attributes: ['endDate'],
 		where: {CommonId: commonId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {
-			return true, dbRes[0]
+			return dbRes[0]
 		}
 		else {
-			return false, null
+			return null
 		}
 	})
 }
+*/
 /*
 get gen info with configId
 */
-function get_gen_info_common(configId){
+async function get_gen_info_common(configId){
 	db.Configs.findAll({
 		attributes: ['milkTime','cowPrice','startDate','endDate'],
 		where: {id: configId}
@@ -138,7 +111,7 @@ function get_gen_info_common(configId){
 /*
 get gen info with commonID
 */
-function get_gen_info(commonId){
+async function get_gen_info(commonId){
 	db.Configs.findAll({
 		attributes: ['milkTime','cowPrice','startDate','endDate'],
 		where: {CommonId: commonId}
@@ -167,7 +140,6 @@ async function max_cow_update(cid,sol){
 }
 
 async function cost_per_cow_update(cid,sol){
-	//console.log("COSTPERCOW CALLED: cid:"+cid+" sol:" + sol +"\n\n");
 	return await db.Configs.findAll({
 		where: { CommonId: cid }
 	  }).then((dbRes)=>{
@@ -271,11 +243,11 @@ async function get_tax_rate(cid) {
 
 
 
-async function get_cow_price(uid) {
+async function get_cow_price(cid) {
 	return await db.sequelize.query(
 		'SELECT c.cowPrice ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ' + uid,
+		'WHERE c.CommonId = ' + cid,
 		{
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
@@ -290,11 +262,11 @@ async function get_cow_price(uid) {
 		});
 }
 
-async function get_max_cow(uid) {
+async function get_max_cow(cid) {
 	return await db.sequelize.query(
 		'SELECT c.maxCowPerPerson ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ' + uid,
+		'WHERE c.CommonId = ' + cid,
 		{
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
@@ -308,11 +280,11 @@ async function get_max_cow(uid) {
 			}		
 		});
 }
-async function get_degrade_rate(uid) {
+async function get_degrade_rate(cid) {
 	return await db.sequelize.query(
 		'SELECT c.degradeRate ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ' + uid,
+		'WHERE c.CommonId = ' + cid,
 		{
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
@@ -326,11 +298,11 @@ async function get_degrade_rate(uid) {
 			}		
 		});
 }
-async function get_start_date(uid) {
+async function get_start_date(cid) {
 	return await db.sequelize.query(
 		'SELECT c.startDate ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ' + uid,
+		'WHERE c.CommonId = ' + cid,
 		{
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
@@ -344,11 +316,11 @@ async function get_start_date(uid) {
 			}		
 		});
 }
-async function get_end_date(uid) {
+async function get_end_date(cid) {
 	return await db.sequelize.query(
 		'SELECT c.endDate ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ' + uid,
+		'WHERE c.CommonId = ' + cid,
 		{
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
@@ -362,6 +334,10 @@ async function get_end_date(uid) {
 			}		
 		});
 }
+
+
+
+
 async function get_milk_price(uid) {
 	return await db.sequelize.query(
 		'SELECT c.milkPrice ' +
