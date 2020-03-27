@@ -1,5 +1,5 @@
 
-const {get_cow_total, get_user_wealth, get_cow_common_price, get_user_cow_health,get_common_day,get_end_date,get_all_milkings} = require("../apis/users/index");
+const {get_cow_total, get_user_wealth, get_cow_common_price, get_user_cow_health,get_common_day,get_end_date,get_all_milkings,get_user_total} = require("../apis/users/index");
 module.exports = async (req, res)=>{
     const user_obj = res.locals.user;
     cowTotal = await get_cow_total(cid, res.locals.user.id);
@@ -9,6 +9,7 @@ module.exports = async (req, res)=>{
     daynum = await get_common_day(cid);
     endDate = await get_end_date(cid);
     milkProfits = await get_all_milkings(req, cid,res.locals.user.id);
+    userTotal = await get_user_total(cid);
     res.render('user_main', {data : 
         {
             userCows: cowTotal,
@@ -19,7 +20,8 @@ module.exports = async (req, res)=>{
             cid:cid,
             day:daynum,
             endDate:endDate,
-            milkProfits: milkProfits
+            milkProfits: milkProfits,
+            userTotal:userTotal
         }
     },
 )}
