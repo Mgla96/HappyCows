@@ -9,8 +9,6 @@ db.TieredTaxings.sync();
 db.Cows.sync();
 db.Commons.sync();
 
-
-
 async function get_conf_id_2(cid){
     console.log("cid: "+ cid);
     return await db.Configs.findAll({
@@ -25,9 +23,7 @@ async function get_conf_id_2(cid){
         }
       })
 }
-async function create_common(name, user_id,
-                       cow_price, milk_price,
-                       start_date, end_date) {
+async function create_common(name, user_id,cow_price, milk_price,start_date, end_date) {
     let common = db.Commons.build({
         admin_uid: user_id,
         name: name,
@@ -39,22 +35,16 @@ async function create_common(name, user_id,
         startDate: start_date,
         endDate: end_date,
         maxCowPerPerson: 1000,
-        costPerCow: 1000,
         degradeRate: 15,
         CommonId: common.id
     });
-
     await config.save();
-    
     let confId = await get_conf_id_2(common.id);
-
     let tax = db.TieredTaxings.build({
         tax: 10,
         ConfigId: confId
     })
-
     await tax.save();
-    
     return true;
 }
 
@@ -88,7 +78,6 @@ async function get_common_info(cid) {
 		return dbRes;
 	});
 }
-
 
 module.exports = {
     create_common,

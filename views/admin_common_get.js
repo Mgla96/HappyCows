@@ -3,12 +3,12 @@ const {get_cow_price,get_max_cow,get_degrade_rate,get_start_date,get_end_date,ge
 
 module.exports = async (req, res) => {
     const users = await get_users_in_common(req, req.params.commonId);
-    const cowPrice = await get_cow_price(res.locals.user.id);
-    const cowMax = await get_max_cow(res.locals.user.id);
-    const degradeRate = await get_degrade_rate(res.locals.user.id);
-    const startDate = await get_start_date(res.locals.user.id);
-    const endDate = await get_end_date(res.locals.user.id);
-    const milkPrice = await get_milk_price(res.locals.user.id);
+    const cowPrice = await get_cow_price(req.params.commonId);
+    const cowMax = await get_max_cow(req.params.commonId);
+    const degradeRate = await get_degrade_rate(req.params.commonId);
+    const startDate = await get_start_date(req.params.commonId);
+    const endDate = await get_end_date(req.params.commonId);
+    const milkPrice = await get_milk_price(req.params.commonId);
     const taxPrice = await get_tax_rate(req.params.commonId);
 
     res.render('admin_commons',
