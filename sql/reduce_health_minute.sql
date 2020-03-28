@@ -1,6 +1,6 @@
 CREATE EVENT IF NOT EXISTS `reduce_health_minute`
 ON SCHEDULE
-  EVERY 1 MINUTE
+  EVERY 5 MINUTE
   COMMENT 'Reduce health if lower than threshold'
   DO
     UPDATE Cows AS c SET
