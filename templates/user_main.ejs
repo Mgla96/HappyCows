@@ -9,14 +9,27 @@
                             <span class="text-wrapper">
                                 <span class="letters">Welcome farmer <%=data.userName%></span>
                             </span>
-                            <h6>Today is Day <%=data.day%>! This game will end on <%=data.endDate%>.</h6>
-                            <h6>Total Players: <%=data.userTotal%> </h6>
                         </h1>
 
                 </div>
             </div>
         </div>
+
+
+        
+
         <div class="row">
+                <div class="col-sm-12 mt-3 mb-3">
+                        <div class="card special-card">
+                            <h5 class="card-header">Announcements</h5>
+                            
+                            <div class="card-body">
+                                    <h3>Today is Day <%=data.day%>! This game will end on <%=data.endDate%>.</h3>
+                                    <h5>Total Players: <%=data.userTotal%> </h5>
+                            </div>
+                        </div>
+                </div>
+
             <div class="col-sm-4">
                 <div class="card special-card">
                     <h5 class="card-header">Manage Cows</h5>
@@ -114,6 +127,11 @@
                     </div>
                 </div>
             </div>
+
+         
+
+
+
 
         </div>
     </div>
