@@ -133,7 +133,7 @@ async function get_cow_total(cId, uId) {
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
-			console.log("total cows: " + sol);
+			//console.log("total cows: " + sol);
 			if(sol==null){
 				return 0;
 			}

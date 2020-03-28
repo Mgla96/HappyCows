@@ -11,7 +11,7 @@ db.Commons.sync();
 db.UserWealths.sync();
 
 async function get_conf_id_2(cid){
-    console.log("cid: "+ cid);
+    //console.log("cid: "+ cid);
     return await db.Configs.findAll({
         attributes: ['id'],
         where: { CommonId: cid }
@@ -82,7 +82,7 @@ async function get_common_info(cid) {
 
 
 async function milk_test(cid, uid) {
-    console.log("uid for milking:" + uid + "\n\n\n\n");
+   // console.log("uid for milking:" + uid + "\n\n\n\n");
     let milk = db.UserWealths.build({
         wealth: "70",
         type: "milk",
