@@ -440,6 +440,7 @@ async function get_user_total(cid) {
 }
 /* in progress
 async function get_wealth_ranking(cid) {
+	
 	result = await db.sequelize.query(
 		'SELECT SUM(uw.wealth) ' +
 		`FROM UserWealths AS uw `+

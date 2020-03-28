@@ -24,6 +24,7 @@ var app = express();
 db.Users.sync();
 db.UserCommons.sync();
 db.Commons.sync();
+db.CommonsHealth.sync();
 db.Configs.sync();
 db.Cows.sync();
 db.TieredTaxings.sync();

@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     models.Commons.belongsToMany(models.Users, {through: models.UserCommons}) //assocation key in Commons model
     models.Commons.hasMany(models.Cows) //association key in Cows model
     models.Commons.hasMany(models.UserWealths) //association key in UserWealth model
+    models.Commons.hasMany(models.CommonsHealth)
   };
   return Commons;
 };
