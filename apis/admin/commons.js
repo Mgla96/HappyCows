@@ -93,10 +93,34 @@ async function milk_test(cid, uid) {
     return true;
 }
 
+async function get_avg_cow_health(cid){
+	result = await db.sequelize.query(
+		'SELECT AVG(c.health) ' +
+		`FROM Cows AS c `+
+		'WHERE c.CommonId = ' + cid,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			var key = Object.keys(dbRes[0]);
+			var sol = dbRes[0][key];
+			if(sol==null){
+				return 100;
+			}
+			else{
+				return parseInt(sol, 10).toFixed(0);
+			}		
+		});
+	return result;
+}
+
+
+
+
 
 module.exports = {
     create_common,
     get_commons,
     get_common_info,
-    milk_test
+    milk_test,
+    get_avg_cow_health
 }
