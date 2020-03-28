@@ -18,8 +18,8 @@ function update_self(firstName, lastName) {
 }
 
 //need commons id and user id
-function get_user_wealth(cId, uId) {
-	result = db.sequelize.query(
+async function get_user_wealth(cId, uId) {
+	result = await db.sequelize.query(
 		'SELECT SUM(uw.wealth) ' +
 		`FROM UserWealths AS uw `+
 		'WHERE uw.UserId = ' + uId +
@@ -37,7 +37,7 @@ function get_user_wealth(cId, uId) {
 			return -1;
 		}
 		else{
-			console.log(result);
+			//console.log(result);
 			return result;
 		}
 }
@@ -56,7 +56,7 @@ async function get_user_cow_health(cid,uid){
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
-			console.log("avg cow health: " + parseInt(sol, 10).toFixed(2));
+			//console.log("avg cow health: " + parseInt(sol, 10).toFixed(2));
 			if(sol==null){
 				return 0;
 			}
@@ -104,7 +104,7 @@ function buy_cow(cowId, commonId, uId) {
 async function buy_cow_transaction(cost, cid, uid) {
 	var current_wealth = await get_user_wealth(cid,uid);
 	var result = parseInt(current_wealth, 10)+parseInt(cost, 10); //cost is negative
-			console.log("cw+cost: "+ result); 
+			//console.log("cw+cost: "+ result); 
 			costres = parseInt(cost, 10);
 			if(result >= 0){
 				var today = new Date();  
@@ -177,7 +177,7 @@ async function get_cow_total(cId, uId) {
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
-			console.log("total cows: " + sol);
+			//console.log("total cows: " + sol);
 			if(sol==null){
 				return 0;
 			}
@@ -235,7 +235,7 @@ async function get_cow_common_price(cid, uid){
 		else {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
-			console.log("cow Price: " + sol);
+			//console.log("cow Price: " + sol);
 			return sol
 		}
 	})
@@ -274,10 +274,11 @@ async function get_a_cow(cid,uid){
 		}).then(function(dbRes) {
 			if (dbRes.length == 0) {
 				console.log("errrrrr");
+				return null;
 			} else {
 				var key = Object.keys(dbRes[0]);
 				var sol = dbRes[0][key];
-				console.log("get a cow id: " + sol);
+				//console.log("get a cow id: " + sol);
 				return sol;
 			}
 		})
@@ -345,13 +346,13 @@ async function get_common_day(cid) {
 		}
 	})
 	var today = new Date(); 
-	console.log("today: "+today);
+	//console.log("today: "+today);
 	// To calculate the time difference of two dates 
 	var Difference_In_Time = today.getTime() - start.getTime(); 
-	console.log("differenceintime: "+Difference_In_Time);
+	//console.log("differenceintime: "+Difference_In_Time);
 	// To calculate the no. of days between two dates 
 	var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-	console.log("differenceindays: "+Difference_In_Days);
+	//console.log("differenceindays: "+Difference_In_Days);
 	return Math.ceil(Difference_In_Days);
 }
 
@@ -388,7 +389,7 @@ async function get_end_date(cid) {
 				return 0;
 			}
 			else{
-				console.log(sol);
+				//console.log(sol);
 				var month = sol.getUTCMonth() + 1;
 				return month + "/" + sol.getUTCDate() + "/" + sol.getUTCFullYear();
 			}		
@@ -428,7 +429,7 @@ async function get_user_total(cid) {
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
-			console.log("total users: " + sol);
+			//console.log("total users: " + sol);
 			if(sol==null){
 				return 0;
 			}
@@ -437,7 +438,31 @@ async function get_user_total(cid) {
 			}		
 		});
 }
-
+/* in progress
+async function get_wealth_ranking(cid) {
+	result = await db.sequelize.query(
+		'SELECT SUM(uw.wealth) ' +
+		`FROM UserWealths AS uw `+
+		'WHERE uw.UserId = ' + uid +
+		' AND uw.CommonId = ' + cid  ,
+		{
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			//console.log(dbRes);
+			var key = Object.keys(dbRes[0]);
+			//console.log(Object.keys(dbRes[0]));
+			//console.log(dbRes[0][key]);
+			return dbRes[0][key];
+		});
+		if(result == null){
+			return -1;
+		}
+		else{
+			//console.log(result);
+			return result;
+		}
+}
+*/
 
 /*
 function get_user_commons(req)

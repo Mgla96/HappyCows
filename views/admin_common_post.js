@@ -1,7 +1,7 @@
 const {create_common} = require("../apis/admin/commons");
 
 module.exports = async (req, res) => {
-    console.log(res.locals.user_id)
+    //console.log(res.locals.user_id)
     await create_common(
         req.body.name,
         res.locals.user.id,

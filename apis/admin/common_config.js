@@ -184,7 +184,7 @@ async function degradation_rate_update(cid,sol){
 
 
 async function get_conf_id(cid){
-	console.log("cid: "+ cid);
+	//console.log("cid: "+ cid);
 	return await db.Configs.findAll({
 		attributes: ['id'],
 		where: { CommonId: cid }
@@ -200,7 +200,7 @@ async function get_conf_id(cid){
 
 async function tax_rate_update(cid,sol){
 	let confId = await get_conf_id(cid);
-	console.log("tax rate update confId: "+confId);
+	//console.log("tax rate update confId: "+confId);
 	return await db.TieredTaxings.findAll({
 		where: { ConfigId: confId }
 	  }).then((dbRes)=>{
@@ -217,7 +217,7 @@ async function tax_rate_update(cid,sol){
 
 async function get_tax_rate(cid) {
 	let confId = await get_conf_id(cid);
-	console.log("get tax rate confId: "+confId);
+	//console.log("get tax rate confId: "+confId);
 	return await db.sequelize.query(
 		'SELECT d.tax ' +
 		`FROM TieredTaxings AS d `+
