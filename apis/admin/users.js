@@ -8,10 +8,12 @@ const { QueryTypes } = require('sequelize');
 
 db.Users.sync();
 
-// GET /user
-// Description: Get users, pagination enabled
-// Example: curl -X GET /admins/users?page=1
-// Return {firstName:string, lastName:string, email:string, type:string}
+/*
+* GET /user
+* Description: Get users, pagination enabled
+* Example: curl -X GET /admins/users?page=1
+* Return {firstName:string, lastName:string, email:string, type:string}
+*/
 function get_users(req) {
   return db.sequelize.query(
     'SELECT id, firstName, lastName, email, type, ' +
@@ -29,10 +31,12 @@ function get_users(req) {
 
 }
 
-// GET /user/:id
-// Description: Get a specific user with id
-// Example: curl -X GET /admins/user/1
-// Return {firstName:string, lastName:string, email:string, type:string}
+/*
+GET /user/:id
+Description: Get a specific user with id
+Example: curl -X GET /admins/user/1
+Return {firstName:string, lastName:string, email:string, type:string}
+*/
 function get_users_with_id(userId) {
   db.Users.findAll({
     attributes: ['id', 'firstName', 'lastName', 'email', 'type'],
@@ -46,10 +50,12 @@ function get_users_with_id(userId) {
   })
 }
 
-// POST /user
-// Description: Create a new user
-// Example: curl -X POST /admins/user --data "firstName=abc&lastName=abc&email=abc&type=admin"
-// Return 
+/*
+* POST /user
+* Description: Create a new user
+* Example: curl -X POST /admins/user --data "firstName=abc&lastName=abc&email=abc&type=admin"
+* Return 
+*/
 function create_user(firstName, 
   lastName, 
   email,
@@ -65,10 +71,12 @@ function create_user(firstName,
   return true;
 }
 
-// PATCH /user/:id
-// Description: Update a specific user with id
-// Example: curl -X PATCH /admins/user/1 --data "firstName=abc&lastName=abc&email=abc&type=admin"
-// Return 
+/*
+* PATCH /user/:id
+* Description: Update a specific user with id
+* Example: curl -X PATCH /admins/user/1 --data "firstName=abc&lastName=abc&email=abc&type=admin"
+* Return 
+*/
 function update_users_with_id(userId, firstName, 
   lastName, 
   email,
@@ -90,10 +98,12 @@ function update_users_with_id(userId, firstName,
   return true
 }
 
-// DELETE /user/:id
-// Description: Delete a specific user with id
-// Example: curl -X DELETE /admins/user/1
-// Return 
+/*
+* DELETE /user/:id
+* Description: Delete a specific user with id
+* Example: curl -X DELETE /admins/user/1
+* Return 
+*/
 function delete_users_with_id(userId) {
   db.Users.destroy({
     where: { id: userId }
@@ -101,10 +111,12 @@ function delete_users_with_id(userId) {
   return true;
 }
 
-// GET /user/:id
-// Description:
-// Example: 
-// Return 
+/*
+* GET /user/:id
+* Description:
+* Example: 
+* Return 
+*/
 function does_user_exist(userId) {
   db.Users.findAll({
     where: { id: userId }

@@ -3,7 +3,6 @@ const { QueryTypes } = require('sequelize');
 
 db.Cows.sync();
 
-
 /**
  * GET /cows/:common_id
  * Description: Get all the cows with common id
@@ -58,7 +57,6 @@ function create_cow(health) {
 	return true;
 }
 
-
 /**
  * PATCH /cow/:id
  * Description: update a cow
@@ -85,13 +83,13 @@ function update_cow_with_id(cowId, health) {
 * Description: Place cow with cowId into commons with commonId
 *
 */
-function update_cow_into_common(cowId, commonId, uId){
+function update_cow_into_common(cowId, commonId, uid){
 	db.Cows.findAll({
 		where: {id: cowId}
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {
 			dbRes[0].CommonId = commonId;
-			dbRes[0].UserId = uId;
+			dbRes[0].UserId = uid;
 			dbRes[0].save();
 			return true;
 		}
@@ -100,9 +98,6 @@ function update_cow_into_common(cowId, commonId, uId){
 		}
 	})
 }
-
-
-
 
 /**
  * DELETE /cow/:id
@@ -117,16 +112,15 @@ function delete_cow_with_id(cowId) {
 	return true;
 }
 
-
 /*
 Total cows of a current user in a commons
 */
-async function get_cow_total(cId, uId) {
+async function get_cow_total(cid, uid) {
 	return await db.sequelize.query(
 		'SELECT COUNT(c.id) ' +
 		`FROM Cows AS c `+
-		'WHERE c.UserId = ' + uId +
-		' AND c.CommonId = ' + cId  ,
+		'WHERE c.UserId = ' + uid +
+		' AND c.CommonId = ' + cid  ,
 		{
 
 			type: QueryTypes.SELECT
@@ -142,12 +136,6 @@ async function get_cow_total(cId, uId) {
 			}		
 		});
 }
-
-
-
-
-
-
 
 module.exports = {
 	get_cow,
