@@ -4,26 +4,11 @@ const { QueryTypes } = require('sequelize');
 db.Configs.sync();
 db.TieredTaxings.sync();
 db.Cows.sync();
-/*
-function cow_price(commonId){
-    db.Configs.findAll({
-		attributes: ['cowPrice'], 
-		where: {CommonId: commonId}
-	}).then((dbRes)=>{
-		if (dbRes.length == 0) {
-			return false, null
-		}
-		else {
-			return true, dbRes
-		}
-	})
-}
-*/
 
-async function milk_time(commonId){
+async function milk_time(cid){
     return await db.Configs.findAll({
 		attributes: ['milkTime'], 
-		where: {CommonId: commonId}
+		where: {CommonId: cid}
 	}).then((dbRes)=>{
 		if (dbRes.length == 0) {
 			return false, null
@@ -34,64 +19,6 @@ async function milk_time(commonId){
 	})
 }
 
-/*
-* Working on global_health 
-*/
-/*
-function global_health(commonId){
-	db.Cows.findAll({
-        attributes: [commonId, [models.sequelize.fn('AVG', models.sequelize.col('health')),'healthAvg']], 
-        group: [commonId],
-        order: [[models.sequelize.fn('AVG', models.sequelize.col('health')), 'DESC']]
-    }).then((dbRes)=>{
-		if (dbRes.length == 0) {
-			return false, null
-		}
-		else {
-			return true, dbRes
-		}
-	})
-}
-*/
-
-/*
-get create date with commonId
-other way to do this below
-*/
-/*
-async function get_start_date_common(commonId){ 
-	return await db.Configs.findAll({
-		attributes: ['startDate'],
-		where: {CommonId: commonId}
-	}).then((dbRes)=>{
-		if (dbRes.length == 1) {
-			return dbRes[0]
-		}
-		else {
-			return null
-		}
-	})
-}
-*/
-/*
-get end date with commonId
-other way to do this is below
-*/
-/*
-async function get_end_date_common(commonId){
-	return await db.Configs.findAll({
-		attributes: ['endDate'],
-		where: {CommonId: commonId}
-	}).then((dbRes)=>{
-		if (dbRes.length == 1) {
-			return dbRes[0]
-		}
-		else {
-			return null
-		}
-	})
-}
-*/
 /*
 get gen info with configId
 */
@@ -108,6 +35,7 @@ async function get_gen_info_common(configId){
 		}
 	})
 }
+
 /*
 get gen info with commonID
 */
@@ -181,10 +109,7 @@ async function degradation_rate_update(cid,sol){
 	  })
 }
 
-
-
 async function get_conf_id(cid){
-	//console.log("cid: "+ cid);
 	return await db.Configs.findAll({
 		attributes: ['id'],
 		where: { CommonId: cid }
@@ -200,7 +125,6 @@ async function get_conf_id(cid){
 
 async function tax_rate_update(cid,sol){
 	let confId = await get_conf_id(cid);
-	//console.log("tax rate update confId: "+confId);
 	return await db.TieredTaxings.findAll({
 		where: { ConfigId: confId }
 	  }).then((dbRes)=>{
@@ -217,7 +141,6 @@ async function tax_rate_update(cid,sol){
 
 async function get_tax_rate(cid) {
 	let confId = await get_conf_id(cid);
-	//console.log("get tax rate confId: "+confId);
 	return await db.sequelize.query(
 		'SELECT d.tax ' +
 		`FROM TieredTaxings AS d `+
@@ -240,8 +163,6 @@ async function get_tax_rate(cid) {
 			}
 		});
 }
-
-
 
 async function get_cow_price(cid) {
 	return await db.sequelize.query(
@@ -335,9 +256,6 @@ async function get_end_date(cid) {
 		});
 }
 
-
-
-
 async function get_milk_price(uid) {
 	return await db.sequelize.query(
 		'SELECT c.milkPrice ' +
@@ -356,9 +274,6 @@ async function get_milk_price(uid) {
 			}		
 		});
 }
-
-
-
 
 module.exports = {
     max_cow_update,

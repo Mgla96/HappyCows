@@ -29,24 +29,13 @@ function get_users_in_common(req, commonId){
 	});
 }
 
-function get_user_wealth(uId, cId){
-	db.UserWealths.findAll({
-		attributes: [models.sequelize.fn('sum', models.sequelize.col('wealth'))],
-		where: {id: uId, CommonId: cId}
-	}).then((dbRes)=>{
-		if (dbRes.length == 1) {
-			return true, dbRes[0]
-		}
-		else {
-			return false, null
-		}
-	})
-}
-
-function get_user_day_profit(uId, cId, date){
+/*
+would actually need to sum this
+*/
+function get_user_day_profit(uid, cid, date){
 	db.UserWealths.findAll({
 		attributes: ['wealth'],
-		where: {id: uId, CommonId: cId, createdAt:date}
+		where: {id: uid, CommonId: cid, createdAt:date}
 	}).then((dbRes)=>{
 		if (dbRes.length == 1) {
 			return true, dbRes[0]

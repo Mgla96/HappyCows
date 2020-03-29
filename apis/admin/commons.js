@@ -11,7 +11,6 @@ db.Commons.sync();
 db.UserWealths.sync();
 
 async function get_conf_id_2(cid){
-    //console.log("cid: "+ cid);
     return await db.Configs.findAll({
         attributes: ['id'],
         where: { CommonId: cid }
@@ -79,10 +78,8 @@ async function get_common_info(cid) {
 		return dbRes;
 	});
 }
-
-
+//used for testing milking and if correctly listing all milk profits for user
 async function milk_test(cid, uid) {
-   // console.log("uid for milking:" + uid + "\n\n\n\n");
     let milk = db.UserWealths.build({
         wealth: "70",
         type: "milk",
@@ -92,6 +89,7 @@ async function milk_test(cid, uid) {
     await milk.save();
     return true;
 }
+
 
 async function get_avg_cow_health(cid){
 	result = await db.sequelize.query(
@@ -112,10 +110,6 @@ async function get_avg_cow_health(cid){
 		});
 	return result;
 }
-
-
-
-
 
 module.exports = {
     create_common,
