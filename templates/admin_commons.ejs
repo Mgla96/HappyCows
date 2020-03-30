@@ -270,6 +270,10 @@
             </div>
         </div>
 
+        <!--We want to keep track of commons health over time (CommonsHealth table),
+            everyone's wealth in common over time (UserWealths table)
+            total cows in commons over time? ()
+        -->
         <div class="row mt-3">
             <div class="col">
                 <div class="card">
@@ -277,7 +281,7 @@
                     <div class="card-body">
                             <td>
                                     <form action="download" method="get">
-                                        <input type="hidden" class="form-control" name="" id="" value="">
+                                        <input type="hidden" class="form-control" name="cid" id="cid" value="<%= data.commonId %>">
                                         <button type="submit" class="btn btn-primary btn-sm">Download</button>
                                     </form>
                             </td>

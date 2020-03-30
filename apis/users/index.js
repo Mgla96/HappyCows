@@ -101,11 +101,11 @@ async function buy_cow_transaction(cost, cid, uid) {
 					UserId: uid,
 				});
 				await cows.save();
-				console.log("You have purchased cow!");
+				//console.log("You have purchased cow!");
 				return true;
 			}
 			else{
-				console.log("You do not have enough money to purchase another cow!");
+				//console.log("You do not have enough money to purchase another cow!");
 				return false;
 			}
 }
@@ -131,11 +131,11 @@ async function sell_cow_transaction(cost, health, cid, uid) {
 			UserId: uid
 		})
 		await UserWealths.save();
-		console.log("You have sold cow!");
+		//console.log("You have sold cow!");
 		return true;
 	}
 	else{
-		console.log("No cows to sell!");
+		//console.log("No cows to sell!");
 		return false;
 	}
 
@@ -250,7 +250,7 @@ async function get_a_cow(cid,uid){
 			type: QueryTypes.SELECT
 		}).then(function(dbRes) {
 			if (dbRes.length == 0) {
-				console.log("errrrrr");
+				//console.log("errrrrr");
 				return null;
 			} else {
 				var key = Object.keys(dbRes[0]);

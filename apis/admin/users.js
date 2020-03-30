@@ -131,7 +131,6 @@ function does_user_exist(userId) {
 }
 
 
-
 module.exports = { 
   get_users, 
   get_users_with_id, 

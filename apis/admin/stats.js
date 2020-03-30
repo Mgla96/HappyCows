@@ -9,6 +9,10 @@ db.UserCommons.sync();
 db.Users.sync();
 db.UserWealths.sync();
 
+/*We want to keep track of commons health over time (CommonsHealth table),
+everyone's wealth in common over time (UserWealths table)
+total cows in commons over time? */
+
 /*
 In progress
 */
