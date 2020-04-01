@@ -280,8 +280,7 @@
                     <h5 class="card-header">Data (WIP)</h5>
                     <div class="card-body">
                             <td>
-                                    <form action="download" method="get">
-                                        <input type="hidden" class="form-control" name="cid" id="cid" value="<%= data.commonId %>">
+                                    <form action="/admin/download/<%= data.commonId %>" method="get">
                                         <button type="submit" class="btn btn-primary btn-sm">Download</button>
                                     </form>
                             </td>

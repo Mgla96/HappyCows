@@ -92,7 +92,7 @@ async function milk_test(cid, uid) {
 
 
 async function get_avg_cow_health(cid){
-	result = await db.sequelize.query(
+	let result = await db.sequelize.query(
 		'SELECT AVG(c.health) ' +
 		`FROM Cows AS c `+
 		'WHERE c.CommonId = ' + cid,
@@ -111,10 +111,23 @@ async function get_avg_cow_health(cid){
 	return result;
 }
 
+async function get_common_health(cid) {
+    let result = await db.sequelize.query(
+        'SELECT health, updatedAt FROM CommonsHealths WHERE CommonId = ?',
+        {
+            replacements: [cid],
+            type: QueryTypes.SELECT
+        }).then((dbRes) => {
+        return dbRes;
+    });
+    return result;
+}
+
 module.exports = {
     create_common,
     get_commons,
     get_common_info,
     milk_test,
-    get_avg_cow_health
+    get_avg_cow_health,
+    get_common_health
 }

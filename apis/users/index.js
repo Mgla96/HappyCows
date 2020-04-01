@@ -154,7 +154,7 @@ async function get_cow_total(cId, uId) {
 		' AND c.CommonId = ?',
 		{
 			type: QueryTypes.SELECT,
-			replacements: [uid, cid]
+			replacements: [uId, cId]
 		}).then((dbRes) => {
 		var key = Object.keys(dbRes[0]);
 		var sol = dbRes[0][key];
@@ -356,8 +356,9 @@ async function get_end_date(cid) {
 	let result =  await db.sequelize.query(
 		'SELECT c.endDate ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ' + cid,
+		'WHERE c.CommonId = ?',
 		{
+			replacements: [cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
@@ -380,7 +381,7 @@ async function get_all_milkings(req,cid,uid) {
 		`FROM UserWealths AS uw `+
 		'WHERE uw.CommonId = ?'+
 		' AND uw.UserId = ?'+
-		' AND type = "milk"',
+		' AND type = "milk" LIMIT 5',
 		{
 			replacements: [
 				cid,uid, ...paging_raw(req)
