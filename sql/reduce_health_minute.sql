@@ -11,6 +11,6 @@ ON SCHEDULE
         WHERE
             (SELECT COUNT(temp.id) FROM (SELECT * FROM Cows) AS temp WHERE temp.CommonId = c.CommonId) /
             ((SELECT maxCowPerPerson FROM Configs WHERE CommonId = c.CommonId) *
-            (SELECT COUNT(*) FROM UserCommons  WHERE CommonId = c.CommonId)) < 1
-            AND c.health < 100 AND c.health > 0
+            (SELECT COUNT(*) FROM UserCommons  WHERE CommonId = c.CommonId)) > 1
+            AND c.health <= 100 AND c.health > 0
 
