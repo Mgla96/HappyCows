@@ -18,13 +18,14 @@ function update_self(firstName, lastName) {
 }
 
 async function get_user_wealth(cid, uid) {
-	result = await db.sequelize.query(
+	let result = await db.sequelize.query(
 		'SELECT SUM(uw.wealth) ' +
 		`FROM UserWealths AS uw `+
-		'WHERE uw.UserId = ' + uid +
-		' AND uw.CommonId = ' + cid  ,
+		'WHERE uw.UserId = ?' +
+		' AND uw.CommonId = ?' ,
 		{
-			type: QueryTypes.SELECT
+			type: QueryTypes.SELECT,
+			replacements: [uid, cid]
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
 			return dbRes[0][key];
@@ -41,13 +42,14 @@ async function get_user_wealth(cid, uid) {
 average health of all user's cows rounded to nearest integer
 */
 async function get_user_cow_health(cid,uid){
-	result = await db.sequelize.query(
+	let result = await db.sequelize.query(
 		'SELECT AVG(c.health) ' +
 		`FROM Cows AS c `+
-		'WHERE c.UserId = ' + uid +
-		' AND c.CommonId = ' + cid  ,
+		'WHERE c.UserId = ?'+
+		' AND c.CommonId = ?' ,
 		{
-			type: QueryTypes.SELECT
+			type: QueryTypes.SELECT,
+			replacements: [uid, cid]
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
 			var sol = dbRes[0][key];
@@ -69,7 +71,7 @@ function get_user_day_profit(uid, cid, date) {
 		attributes: ['wealth'],
 		where: { id: uid, CommonId: cid, createdAt: date }
 	}).then((dbRes) => {
-		if (dbRes.length == 1) {
+		if (dbRes.length === 1) {
 			return true, dbRes[0]
 		}
 		else {
@@ -145,60 +147,58 @@ async function sell_cow_transaction(cost, health, cid, uid) {
 Total cows of a current user in a commons
 */
 async function get_cow_total(cId, uId) {
-	return await db.sequelize.query(
+	let result = await  db.sequelize.query(
 		'SELECT COUNT(c.id) ' +
-		`FROM Cows AS c `+
-		'WHERE c.UserId = ' + uId +
-		' AND c.CommonId = ' + cId  ,
+		`FROM Cows AS c ` +
+		'WHERE c.UserId = ?' +
+		' AND c.CommonId = ?',
 		{
-			type: QueryTypes.SELECT
+			type: QueryTypes.SELECT,
+			replacements: [uid, cid]
 		}).then((dbRes) => {
-			var key = Object.keys(dbRes[0]);
-			var sol = dbRes[0][key];
-			//console.log("total cows: " + sol);
-			if(sol==null){
-				return 0;
-			}
-			else{
-				return sol;
-			}		
-		});
+		var key = Object.keys(dbRes[0]);
+		var sol = dbRes[0][key];
+		//console.log("total cows: " + sol);
+		if (sol == null) {
+			return 0;
+		} else {
+			return sol;
+		}
+	});
+	return result;
 }
 
 /*
 get id and name of every commons
 */
 async function get_all_commons(req) {
-	return await db.sequelize.query(
-		'SELECT c.id, c.name ' +
-		`FROM Commons AS c`,
+	let result = await db.sequelize.query(
+		'SELECT c.id, c.name FROM Commons AS c',
 		{
-			replacements: [
-				...paging_raw(req)
-			],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			return dbRes;
 		});
+	return result
 }
 
 async function get_user_commons(req, userId) {
-	return await db.sequelize.query(
+	let result = await db.sequelize.query(
 		'SELECT c.id, c.name ' +
 		'FROM Commons c ' +
 		'WHERE c.id IN ' +
 		'(SELECT uc.CommonId ' +
 		'FROM UserCommons uc ' +
-		'WHERE uc.UserID = ' +
-		userId + ');',
+		'WHERE uc.UserID = ?);',
 		{
 			replacements: [
-				...paging_raw(req)
+				userId
 			],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			return dbRes;
 		});
+	return result;
 }
 
 async function get_cow_common_price(cid, uid){
@@ -207,7 +207,7 @@ async function get_cow_common_price(cid, uid){
 		attributes: ['cowPrice'],
 		where: { CommonId: cid}
 	}).then(function(dbRes) {
-		if (dbRes.length == 0) {
+		if (dbRes.length === 0) {
 			return false, null
 		}
 		else {
@@ -226,7 +226,7 @@ async function user_buy_cow(cid, uid) {
 		attributes: ['cowPrice'],
 		where: { CommonId: cid}
 	}).then((dbRes) => {
-		if (dbRes.length == 0) {
+		if (dbRes.length === 0) {
 			return false, null
 		}
 		else {
@@ -240,12 +240,13 @@ async function user_buy_cow(cid, uid) {
 }
 
 async function get_a_cow(cid,uid){
-	return await db.sequelize.query(
+	let result = await db.sequelize.query(
 		'SELECT c.id ' +
 		'FROM Cows c ' +
-		'WHERE c.CommonId = ' + cid +
-		' AND c.UserId = ' + uid,
+		'WHERE c.CommonId = ? '+
+		' AND c.UserId = ?',
 		{
+			replacements: [cid, uid],
 			raw: true,
 			type: QueryTypes.SELECT
 		}).then(function(dbRes) {
@@ -258,7 +259,8 @@ async function get_a_cow(cid,uid){
 				//console.log("get a cow id: " + sol);
 				return sol;
 			}
-		})
+		});
+	return result;
 }
 
 async function user_sell_cow(cid, uid) {
@@ -267,7 +269,7 @@ async function user_sell_cow(cid, uid) {
 		attributes: ['cowPrice'],
 		where: { CommonId: cid}
 	}).then((dbRes) => {
-		if (dbRes.length == 0) {
+		if (dbRes.length === 0) {
 			return false, null
 		}
 		else {
@@ -313,13 +315,12 @@ async function get_common_day(cid) {
 		attributes: ['startDate'],
 		where: { CommonId: cid}
 	}).then((dbRes) => {
-		if (dbRes.length == 0) {
+		if (dbRes.length === 0) {
 			return null;
 		}
 		else {
 			var key = Object.keys(dbRes[0]);
-			var res = dbRes[0][key];
-			return res;
+			return dbRes[0][key];
 		}
 	})
 	var today = new Date(); 
@@ -331,11 +332,12 @@ async function get_common_day(cid) {
 }
 
 async function get_start_date(cid) {
-	return await db.sequelize.query(
+	let result = await db.sequelize.query(
 		'SELECT c.startDate ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ' + cid,
+		'WHERE c.CommonId = ?',
 		{
+			replacements: [cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
@@ -347,10 +349,11 @@ async function get_start_date(cid) {
 				return sol;
 			}		
 		});
+	return result;
 }
 
 async function get_end_date(cid) {
-	return await db.sequelize.query(
+	let result =  await db.sequelize.query(
 		'SELECT c.endDate ' +
 		`FROM Configs AS c `+
 		'WHERE c.CommonId = ' + cid,
@@ -367,10 +370,12 @@ async function get_end_date(cid) {
 				return month + "/" + sol.getUTCDate() + "/" + sol.getUTCFullYear();
 			}		
 		});
+	return result;
+
 }
 
 async function get_all_milkings(req,cid,uid) {
-	return await db.sequelize.query(
+	let result =  await db.sequelize.query(
 		'SELECT uw.wealth, uw.createdAt ' +
 		`FROM UserWealths AS uw `+
 		'WHERE uw.CommonId = ?'+
@@ -390,14 +395,17 @@ async function get_all_milkings(req,cid,uid) {
 			}
 			
 		});
+	return result;
+
 }
 
 async function get_user_total(cid) {
-	return await db.sequelize.query(
+	let result =  await db.sequelize.query(
 		'SELECT COUNT(c.UserId) ' +
 		`FROM UserCommons AS c `+
-		'WHERE c.CommonId = ' + cid,
+		'WHERE c.CommonId = ?',
 		{
+			replacements: [cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
@@ -409,11 +417,12 @@ async function get_user_total(cid) {
 				return sol;
 			}		
 		});
+	return result;
 }
 
 /*
 async function get_wealth_ranking(cid) {
-	result = await db.sequelize.query(
+	let result = await db.sequelize.query(
 		'SELECT SUM(uw.wealth) ' +
 		`FROM UserWealths AS uw `+
 		'WHERE uw.UserId = ' + uid +
