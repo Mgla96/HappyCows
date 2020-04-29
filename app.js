@@ -13,6 +13,8 @@ var errorHandler = require('errorhandler');
 var {get_users} = require("./apis/admin/users");
 var api = require("./apis/admin");
 
+var helmet = require('helmet')
+
 console.log(get_users({
   query: {
     page: 1,
@@ -52,6 +54,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 
+app.use(helmet())
 // catch 404 and forward to error handler
 app.use(errorHandler());
 module.exports = app;
