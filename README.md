@@ -5,6 +5,20 @@ A digital simulation game used as a teaching tool for Professor de Vries at UCSB
 <img src="https://media.giphy.com/media/W54Zt0bgS87x6/giphy.gif" width="50%" alt="gif">
 </p>
 
+## Production
+* Install all dependencies
+'''bash
+npm install
+'''
+* Keeping Application running
+'''bash
+forever start ./bin/www 
+'''
+* Stopping Application
+'''bash
+forever stop ./bin/www
+'''
+
 ## Getting Started
 You can run this program by using this command: (although you might need to install some dependencies first)
 ```bash
