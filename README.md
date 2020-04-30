@@ -7,17 +7,18 @@ A digital simulation game used as a teaching tool for Professor de Vries at UCSB
 
 ## Production
 * Install all dependencies
-'''bash
+```bash
 npm install
-'''
+```
 * Keeping Application running
-'''bash
-forever start ./bin/www 
-'''
+```bash
+forever start ./bin/www  
+```
 * Stopping Application
-'''bash
-forever stop ./bin/www
-'''
+* Keeping Application running
+```bash
+forever stop ./bin/www  
+```
 
 ## Getting Started
 You can run this program by using this command: (although you might need to install some dependencies first)
