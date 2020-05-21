@@ -23,6 +23,7 @@ async function get_conf_id_2(cid){
         }
       })
 }
+//changed maxcowperperson to 10
 async function create_common(name, user_id,cow_price, milk_price,start_date, end_date) {
     let common = db.Commons.build({
         admin_uid: user_id,
@@ -34,7 +35,7 @@ async function create_common(name, user_id,cow_price, milk_price,start_date, end
         cowPrice: cow_price,
         startDate: start_date,
         endDate: end_date,
-        maxCowPerPerson: 1000,
+        maxCowPerPerson: 10,
         degradeRate: 15,
         CommonId: common.id
     });
