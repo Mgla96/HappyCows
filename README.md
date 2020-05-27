@@ -5,21 +5,6 @@ A digital simulation game used as a teaching tool for Professor de Vries at UCSB
 <img src="https://media.giphy.com/media/W54Zt0bgS87x6/giphy.gif" width="50%" alt="gif">
 </p>
 
-## Production
-* Install all dependencies
-```bash
-npm install
-```
-* Keeping Application running
-```bash
-forever start ./bin/www  
-```
-* Stopping Application
-* Keeping Application running
-```bash
-forever stop ./bin/www  
-```
-
 ## Getting Started
 You can run this program by using this command: (although you might need to install some dependencies first)
 ```bash
@@ -77,6 +62,16 @@ If you want to have demo data, run following command: (no demo data here so will
 ```bash
 npx sequelize-cli db:seed:all  
 ```
+
+## Info
+For maintainable application, we have all the database structure logic inside the models folder. 
+We have automatic table creation if they don't exist in database which sequelize provides in the bin/www file - models.sequelize.sync().
+We just need to worry about setting up the tables properly which are all located in the models folder. Note when we change data in models, we might need to modify the migrations file of that model. 
+
+The SQL queries could be found under the apis folder which we have separated for those needed for the admin as well as for users. We also have a folder named "sql" which holds the cron jobs needed to run the game. These need to be manually added onto the server seperately. 
+
+The seeders folder allows us to put in sample data so we could run "npx sequelize-cli db:seed:all" command to put it in our data table. Although we did not put any data into this folder so it would not work.
+
 ## How to write APIs
 **STEP 1**   
 Create `[your_name].js` at `/routes` directory with following content
@@ -130,12 +125,6 @@ Now you can use curl to test it out or visit with browser directly!
 * Express.js
 * Node.js
 
-## Info
-For maintainable application, we will put all the database logic into the models folder. 
-We have automatic table creation if they don't exist in database which sequelize provides in the bin/www file - models.sequelize.sync().
-We just need to worry about setting up the tables properly which are all located in the models folder. Note when we change data in models, we might need to modify the migrations file of that model. 
-
-The seeders folder allows us to put in sample data so we could run "npx sequelize-cli db:seed:all" command to put it in our data tables  
 
 ## Reference Docs
 
@@ -150,7 +139,6 @@ https://sequelize.org/master/manual/migrations.html
 
 ### RESTful Info
 https://www.restapitutorial.com/lessons/restquicktips.html  
-I assume we are using restful + json?
 
 ### Queries
 https://sequelize.org/master/manual/raw-queries.html
