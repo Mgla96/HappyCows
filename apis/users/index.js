@@ -117,10 +117,12 @@ checks if user has 1 or more cows and if so sells cow and adds money to userweal
 */
 async function sell_cow_transaction(cost, health, cid, uid) {
 	var result = await get_cow_total(cid,uid);
-	var value = cost*(health/100);
+	//var value = cost*(health/100); 
 	if(result>0){
 		var today = new Date(); 
-		var cowId = await get_a_cow(cid,uid);
+		var cowId = await get_a_cow(cid,uid); 
+		var cowHealth = await get_a_cow_health(cowId); 
+		var value = cost*(cowHealth/100);
 		await db.Cows.destroy({
 			where: { id: cowId }
 		})
@@ -142,6 +144,7 @@ async function sell_cow_transaction(cost, health, cid, uid) {
 	}
 
 }
+
 
 /*
 Total cows of a current user in a commons
@@ -239,7 +242,7 @@ async function user_buy_cow(cid, uid) {
 	await buy_cow_transaction(res,cid,uid);
 }
 
-async function get_a_cow(cid,uid){
+async function get_a_cow(cid,uid){ //
 	let result = await db.sequelize.query(
 		'SELECT c.id ' +
 		'FROM Cows c ' +
@@ -262,8 +265,29 @@ async function get_a_cow(cid,uid){
 		});
 	return result;
 }
+async function get_a_cow_health(cowid){ //
+	let result = await db.sequelize.query(
+		'SELECT c.health ' +
+		'FROM Cows c ' +
+		'WHERE c.id = ? ',
+		{
+			replacements: [cowid],
+			raw: true,
+			type: QueryTypes.SELECT
+		}).then(function(dbRes) {
+			if (dbRes.length == 0) {
+				//console.log("errrrrr");
+				return null;
+			} else {
+				var key = Object.keys(dbRes[0]);
+				var sol = dbRes[0][key];
+				return sol;
+			}
+		});
+	return result;
+}
 
-async function user_sell_cow(cid, uid) {
+async function user_sell_cow(cid, uid) { //Wants this to be actual health
 	let res = await db.Configs.findAll({
 		raw: true,
 		attributes: ['cowPrice'],
@@ -278,7 +302,8 @@ async function user_sell_cow(cid, uid) {
 			return sol;
 		}
 	})
-	await sell_cow_transaction(res,70,cid,uid);
+	var cowHealth = await get_a_cow_health(cid,uid); //make this round cow health?
+	await sell_cow_transaction(res,cowHealth,cid,uid);
 }
 
 
