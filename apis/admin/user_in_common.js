@@ -10,7 +10,7 @@ db.Commons.sync();
 db.Cows.sync();
 db.TieredTaxings.sync();
 db.Configs.sync();
-
+//db.CommonsHealth.sync(); fix with query CommonsHealth vs CommonsHealths. Then when deleting common delete CommonsHealth rows for that Common
 /**
  * GET 
  * Description: Get the wealth of a user with the user id and the commons id as arguments
@@ -85,8 +85,10 @@ async function get_conf_id2(cid){
 		}
 	  })
 }
+//also add removing CommonsHealths because otherwise will stay NULL as commonID in table
 async function remove_common(cid){
 	let confId = await get_conf_id2(cid);
+
 	await db.TieredTaxings.destroy({ //double check assuming config id same as common id
 		where: { ConfigId: confId}
 	})
@@ -117,4 +119,4 @@ async function remove_common(cid){
 
 
 
-module.exports = {get_users_in_common, remove_user_from_common,remove_common}
+module.exports = {get_users_in_common, remove_user_from_common, remove_common}
