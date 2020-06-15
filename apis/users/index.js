@@ -399,14 +399,14 @@ async function get_end_date(cid) {
 	return result;
 
 }
-
+// LIMIT 5 removed from query to show all milkings
 async function get_all_milkings(req,cid,uid) {
 	let result =  await db.sequelize.query(
 		'SELECT uw.wealth, uw.createdAt ' +
-		`FROM UserWealths AS uw `+
+		'FROM UserWealths AS uw '+
 		'WHERE uw.CommonId = ?'+
 		' AND uw.UserId = ?'+
-		' AND type = "milk" LIMIT 5',
+		' AND type = "milk"',
 		{
 			replacements: [
 				cid,uid, ...paging_raw(req)
