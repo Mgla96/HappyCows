@@ -402,6 +402,33 @@ async function get_end_date(cid) {
 // LIMIT 5 removed from query to show all milkings
 async function get_all_milkings(req,cid,uid) {
 	let result =  await db.sequelize.query(
+		'SELECT SUM(sol.wealth), MONTH(sol.createdAt), DAY(sol.createdAt), YEAR(sol.createdAt) FROM '+
+		'( SELECT uw.wealth, uw.createdAt ' +
+		'FROM UserWealths AS uw '+
+		'WHERE uw.CommonId = ?'+
+		' AND uw.UserId = ?'+
+		' AND type = "milk" )'+
+		' AS sol GROUP BY YEAR(sol.createdAt), MONTH(sol.createdAt), DAY(sol.createdAt)',
+		{
+			replacements: [
+				cid,uid, ...paging_raw(req)
+			],
+			type: QueryTypes.SELECT
+		}).then((dbRes) => {
+			if (dbRes.length >= 1) {
+				return dbRes
+			}
+			else {
+				return dbRes;
+			}
+			
+		});
+	return result;
+}
+
+/*
+async function get_all_milkings(req,cid,uid) {
+	let result =  await db.sequelize.query(
 		'SELECT uw.wealth, uw.createdAt ' +
 		'FROM UserWealths AS uw '+
 		'WHERE uw.CommonId = ?'+
@@ -422,9 +449,8 @@ async function get_all_milkings(req,cid,uid) {
 			
 		});
 	return result;
-
 }
-
+*/
 async function get_user_total(cid) {
 	let result =  await db.sequelize.query(
 		'SELECT COUNT(c.UserId) ' +
