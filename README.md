@@ -5,6 +5,16 @@ A digital simulation game used as a teaching tool for Professor de Vries at UCSB
 <img src="https://media.giphy.com/media/W54Zt0bgS87x6/giphy.gif" width="50%" alt="gif">
 </p>
 
+## Users Page
+<p align="center">
+<img src="public/gif/UserDemo.gif" width="50%" alt="gif">
+</p>
+
+## Admin Page
+<p align="center">
+<img src="public/gif/AdminDemo.gif" width="50%" alt="gif">
+</p>
+
 ## Getting Started
 You can run this program by using this command: (although you might need to install some dependencies first)
 ```bash
