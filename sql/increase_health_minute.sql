@@ -13,18 +13,3 @@ ON SCHEDULE
             ((SELECT maxCowPerPerson FROM Configs WHERE CommonId = c.CommonId) *
             (SELECT COUNT(*) FROM UserCommons  WHERE CommonId = c.CommonId)) < 1
             AND c.health < 100 AND c.health > 0         
-
-/*
-max cow per person is default to 10
-
-health = current cow health + .01 - 0.01 * (num cows in common)/(maxCowsPerPerson * number Users)
-
-where
-(num cows in common)/(maxCowsPerPerson * number Users) < 1 and c.health <100 and c.health > 0
-
-Issue is sometimes health goes little over 100
-99.999 + 0.01 - 0.01*1/20 = 100.0085
-
-Added LEAST function to fix this
-
-*/
