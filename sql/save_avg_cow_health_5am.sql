@@ -7,6 +7,6 @@ ON SCHEDULE
         SELECT
             (SELECT AVG(c.health) FROM Cows AS c WHERE c.CommonId = CommonId) 
             AS health,
-            createdAt,
-            updatedAt,
+            CURRENT_TIMESTAMP as createdAt,
+            CURRENT_TIMESTAMP as updatedAt,
             CommonId FROM Cows

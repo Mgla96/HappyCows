@@ -14,3 +14,8 @@ ON SCHEDULE
             CURRENT_TIMESTAMP AS updatedAt,
             CommonId,
             UserId FROM Cows AS cw
+
+
+/*
+Note: Day_Hour not working for 4 am only. It is being called twice a day so using Every 1 Day and setting start time to 4 am
+*/
