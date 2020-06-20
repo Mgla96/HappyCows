@@ -7,12 +7,12 @@ A digital simulation game used as a teaching tool for Professor de Vries at UCSB
 
 ## Users Page
 <p align="center">
-<img src="public/gif/UserDemo.gif" width="50%" alt="gif">
+<img src="public/gif/UserDemo.gif" width="90%" alt="gif">
 </p>
 
 ## Admin Page
 <p align="center">
-<img src="public/gif/AdminDemo.gif" width="50%" alt="gif">
+<img src="public/gif/AdminDemo.gif" width="90%" alt="gif">
 </p>
 
 ## Getting Started
