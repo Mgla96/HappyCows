@@ -71,9 +71,7 @@ async function get_common_info(cid) {
 		'SELECT c.id, c.name ' +
 		'FROM Commons as c WHERE c.id = ?',
 		{
-			replacements: [
-				cid
-			],
+			replacements: [cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes)=>{
 		return dbRes;
@@ -96,8 +94,9 @@ async function get_avg_cow_health(cid){
 	let result = await db.sequelize.query(
 		'SELECT AVG(c.health) ' +
 		`FROM Cows AS c `+
-		'WHERE c.CommonId = ' + cid,
+		'WHERE c.CommonId = ?',
 		{
+            replacements:[cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
