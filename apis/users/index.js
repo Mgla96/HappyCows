@@ -426,31 +426,6 @@ async function get_all_milkings(req,cid,uid) {
 	return result;
 }
 
-/*
-async function get_all_milkings(req,cid,uid) {
-	let result =  await db.sequelize.query(
-		'SELECT uw.wealth, uw.createdAt ' +
-		'FROM UserWealths AS uw '+
-		'WHERE uw.CommonId = ?'+
-		' AND uw.UserId = ?'+
-		' AND type = "milk"',
-		{
-			replacements: [
-				cid,uid, ...paging_raw(req)
-			],
-			type: QueryTypes.SELECT
-		}).then((dbRes) => {
-			if (dbRes.length >= 1) {
-				return dbRes
-			}
-			else {
-				return dbRes;
-			}
-			
-		});
-	return result;
-}
-*/
 async function get_user_total(cid) {
 	let result =  await db.sequelize.query(
 		'SELECT COUNT(c.UserId) ' +
@@ -471,37 +446,6 @@ async function get_user_total(cid) {
 		});
 	return result;
 }
-
-/*
-async function get_wealth_ranking(cid) {
-	let result = await db.sequelize.query(
-		'SELECT SUM(uw.wealth) ' +
-		`FROM UserWealths AS uw `+
-		'WHERE uw.UserId = ' + uid +
-		' AND uw.CommonId = ' + cid  ,
-		{
-			type: QueryTypes.SELECT
-		}).then((dbRes) => {
-			//console.log(dbRes);
-			var key = Object.keys(dbRes[0]);
-			//console.log(Object.keys(dbRes[0]));
-			//console.log(dbRes[0][key]);
-			return dbRes[0][key];
-		});
-		if(result == null){
-			return -1;
-		}
-		else{
-			//console.log(result);
-			return result;
-		}
-}
-*/
-
-
-/*
-function get_user_commons(req)
-*/
 
 module.exports = {
 	get_all_commons,
