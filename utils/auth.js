@@ -6,10 +6,17 @@ const Op = require("sequelize").Op
 
 // oauth
 function get_new_client(){
+    /*
     return new google.auth.OAuth2(
         "223268329188-00a753ugkfeobh79lkugn64jsskqlf2e.apps.googleusercontent.com", // TODO: change it 
         "PbEMXojjo7rdghKqkgvG-tfV",
         "http://localhost:3000/users/auth_callback"
+    );
+    */
+   return new google.auth.OAuth2(
+    "426990439192-53i181krgmairrm1vgjl70hthdjvgsuq.apps.googleusercontent.com", // TODO: change it 
+    "gcPgRRURNRUzY2RfZRO68Bx4",
+    "https://chem123.chem.ucsb.edu:443/users/auth_callback"
     );
 }
 
@@ -112,11 +119,12 @@ async function auth_middleware(req,res,next){
 }
 
 async function admin_middleware(req,res,next){
-    if (res.locals.user.type !== "admin"){
+    console.log(res.locals.user)
+    if (!res.locals.user || res.locals.user.type !== "admin"){
         res.json({
             success: false,
             message: "Not admin"
-        })
+        });
         return
     }
     next()

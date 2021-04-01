@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
         req.body.name,
         res.locals.user.id,
         req.body.cow_price,
-        req.body.milk_time,
+        req.body.milk_price,
         new Date(req.body.start_date),
         new Date(req.body.end_date)
     );

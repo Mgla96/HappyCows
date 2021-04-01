@@ -19,7 +19,6 @@
                 <div class="col-sm-12 mt-3 mb-3">
                         <div class="card special-card">
                             <h5 class="card-header">Announcements</h5>
-                            
                             <div class="card-body">
                                     <h4>Today is Day <%=data.day%>! This game will end on <%=data.endDate%>.</h4>
                                     <h5>Total Players: <%=data.userTotal%> </h5>
@@ -27,14 +26,14 @@
                         </div>
                 </div>
 
-            <div class="col-sm-4 d-flex align-items-stretch">
+            <div class="col-sm-4 d-flex align-items-stretch mb-3">
                 <div class="card special-card">
                     <h5 class="card-header">Manage Cows</h5>
                     <div class="card-body">
                         <h5>Market Cow Price: $<%= data.cowPrice%> </h5> 
                         <div class="row">
                             <div class="col">
-                                <img class="cowBounceTest" src="img/cowhead.svg" alt="Cow's head">
+                                <img class="cowBounceTest" src="/img/cowhead.svg" alt="Cow's head">
                                 <h6>You Have <%= data.userCows%> cows</h6>
                             </div>
                             <div class="col">
@@ -47,7 +46,7 @@
                                         <ion-icon name="remove-outline"></ion-icon>
                                     </button>
                                 </form>
-                                <form action="/play/:buycow" method="post">
+                                <form action="/buycow" method="post">
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" name="cid" id="cid"
                                             value="<%=data.cid%>">
@@ -58,26 +57,26 @@
                                 </form>
                             </div>
                         </div>
-                        <p>Note: If you increase cows, they will be automatically bought, and if you decrease, they cows
-                                will be automatically sold for 70% of original price.</p>
+                        <p>Note: If you increase cows, they will be automatically bought, and if you decrease, the cows
+                                will be sold for price * % health of that cow.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-4 d-flex align-items-stretch">
+            <div class="col-sm-4 d-flex align-items-stretch mb-3">
                 <div class="card special-card">
                     <h5 class="card-header">Your Farm Stats</h5>
                     <div class="card-body">
                         <div class="row mt-3">
                             <div class="col">
                                 <div class="money">
-                                    <img class="shakeMoney" src="img/money.svg" alt="">
+                                    <img class="shakeMoney" src="/img/money.svg" alt="">
                                     <h6>Total Wealth: $<%= data.userMoney%></h6>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="health">
-                                    <img class="heart" src="img/health.svg" alt="">
+                                    <img class="heart" src="/img/health.svg" alt="">
                                     <h6>Cow Health: <%= data.userCowsHealth%>%</h6>
                                 </div>
                             </div>
@@ -86,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4 d-flex align-items-stretch">
+            <div class="col-sm-4 d-flex align-items-stretch mb-3">
                 <div class="card special-card">
                     <h5 class="card-header">Your Profits</h5>
                     <div class="card-body">
@@ -101,7 +100,9 @@
                                                 <tr>
                                                     <th scope="col"></th>
                                                     <th scope="col">Profit</th>
-                                                    <th scope="col">Date</th>
+                                                    <th scope="col">Month</th>
+                                                    <th scope="col">Day</th>
+                                                    <th scope="col">Year</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -109,7 +110,7 @@
                                                 <tr>
                                                     <td>
                                                                 <div class="money">
-                                                                    <img class="" style="width:95%" src="img/bottle.svg" alt="">
+                                                                    <img class="" style="width:95%" src="/img/bottle.svg" alt="">
                                                                 </div>
                                                     </td>
                                                     <% Object.keys(result).map((key)=>{ %>
@@ -135,13 +136,6 @@
                 </div>
             </div>
             -->
-
-
-         
-
-
-
-
         </div>
     </div>
 </body>

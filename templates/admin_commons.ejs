@@ -191,7 +191,7 @@
                                             </form>
                                         </td>
                                     </tr>
-
+                                    <!--
                                     <tr>
                                             <th scope="row">5</th>
                                             <td>MilkingTest</td>
@@ -203,6 +203,7 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        -->
 
                                 <!-- Modify Modal -->
                                 <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog"
@@ -270,6 +271,37 @@
             </div>
         </div>
 
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <h5 class="card-header">Information & Formulas</h5>
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col">
+                                </br>
+                                <h5>If There Are More Cows in Common Than Max Capacity</h5>
+                                <p>each cow's health = previous health + 0.001 - 0.01*[(num cows in common)/(maxCowsPerPerson*numberUsers)].
+                                    This happens once every 5 minutes.
+                                <h5>If There Are Fewer Cows in Common Than Max Capacity</h5>
+                                <p>
+                                    each cow's health = previous health + 0.01 - 0.01*[(num cows in common)/(maxCowsPerPerson*numberUsers)]. </br>
+                                    This also happens every 5 minuts and it's the same idea as above.
+                                </p>
+
+                                <h5>Milking</h5>
+                                <p>
+                                    The cows are milked at 4am every day. 
+                                    The formula for Milking is 
+                                    milkPrice * (1-(tax rate/100))
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--We want to keep track of commons health over time (CommonsHealth table),
             everyone's wealth in common over time (UserWealths table)
             total cows in commons over time? ()
@@ -277,11 +309,10 @@
         <div class="row mt-3">
             <div class="col">
                 <div class="card">
-                    <h5 class="card-header">Data (WIP)</h5>
+                    <h5 class="card-header">Data (WIP) - Health Of Common Over Time</h5>
                     <div class="card-body">
                             <td>
-                                    <form action="download" method="get">
-                                        <input type="hidden" class="form-control" name="cid" id="cid" value="<%= data.commonId %>">
+                                    <form action="/admin/download/<%= data.commonId %>" method="get">
                                         <button type="submit" class="btn btn-primary btn-sm">Download</button>
                                     </form>
                             </td>
@@ -290,12 +321,42 @@
                 </div>
             </div>
         </div> 
+
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <h5 class="card-header">Delete This Common - And All Game Information</h5>
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col">
+                                </br>
+                                <h2>Warning, Clicking This Button Is Irreversible!</h2>
+                                <td>
+                                    <form action="remove_common" method="post">
+                                        <input type="hidden" class="form-control" name="cid" id="cid"
+                                                        value="<%= data.commonId %>">
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            DELETE
+                                        </button>
+                                    </form>           
+                                </td>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 <div class= "background3 parallax"></div>
-
-
-
 </body>
+<div class= "background4 parallax"></div>
+</body>
+<div class= "background5 parallax"></div>
+</body>
+
+
 
 <%- include("footer") %>
