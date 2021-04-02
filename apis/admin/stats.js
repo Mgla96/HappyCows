@@ -19,10 +19,12 @@ In progress
 async function get_stats(cid, uid) {
     return await db.sequelize.query(
         'SELECT uw.id' +
-        'FROM UserWealths as uw WHERE uw.id = ' + cid,
+        'FROM UserWealths as uw WHERE uw.id = ?',
         {
+            replacements:[cid],
             type: QueryTypes.SELECT
         }).then((dbRes)=>{
             return dbRes;
     });
 }
+

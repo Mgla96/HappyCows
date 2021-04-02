@@ -4,19 +4,13 @@ const uuidv1 = require('uuid/v1');
 var db = require("../models/index")
 const Op = require("sequelize").Op
 
+require('dotenv').config()
 // oauth
 function get_new_client(){
-    /*
     return new google.auth.OAuth2(
-        "223268329188-00a753ugkfeobh79lkugn64jsskqlf2e.apps.googleusercontent.com", // TODO: change it 
-        "PbEMXojjo7rdghKqkgvG-tfV",
-        "http://localhost:3000/users/auth_callback"
-    );
-    */
-   return new google.auth.OAuth2(
-    "426990439192-53i181krgmairrm1vgjl70hthdjvgsuq.apps.googleusercontent.com", // TODO: change it 
-    "gcPgRRURNRUzY2RfZRO68Bx4",
-    "https://chem123.chem.ucsb.edu:443/users/auth_callback"
+        process.env.OATH_URL, // change to better name it's the client id
+        process.env.OATH_PWD,
+        "https://chem123.chem.ucsb.edu:443/users/auth_callback"
     );
 }
 
