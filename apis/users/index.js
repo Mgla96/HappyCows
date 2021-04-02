@@ -9,6 +9,7 @@ db.Cows.sync();
 db.UserCommons.sync();
 db.UserWealths.sync();
 
+
 function update_self(firstName, lastName) {
 	let currentRes = res.locals.user;
 	currentRes.firstName = firstName;
@@ -425,7 +426,6 @@ async function get_all_milkings(req,cid,uid) {
 		});
 	return result;
 }
-
 async function get_user_total(cid) {
 	let result =  await db.sequelize.query(
 		'SELECT COUNT(c.UserId) ' +
@@ -446,6 +446,10 @@ async function get_user_total(cid) {
 		});
 	return result;
 }
+
+/*
+implement function to get wealth ranking
+*/
 
 module.exports = {
 	get_all_commons,

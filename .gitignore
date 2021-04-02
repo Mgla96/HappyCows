@@ -1,4 +1,11 @@
+.DS_Store
+
+config/config.json
+config.json
+
+# dotenv environment variables file
 .env
+.env.test
 
 # Logs
 logs
@@ -70,10 +77,6 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
-.env.test
-
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
@@ -109,9 +112,5 @@ dist
 .vscode-test
 
 
-.DS_Store
-
-config/config.json
-config.json
 
 package-lock.json

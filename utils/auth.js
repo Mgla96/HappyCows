@@ -3,14 +3,14 @@ const fetch = require("node-fetch")
 const uuidv1 = require('uuid/v1');
 var db = require("../models/index")
 const Op = require("sequelize").Op
+
 require('dotenv').config()
 // oauth
 function get_new_client(){
-    //for testing
     return new google.auth.OAuth2(
-        process.env.OATH_URL, // TODO: change it 
+        process.env.OATH_URL, // change to better name it's the client id
         process.env.OATH_PWD,
-        "http://localhost:8001/users/auth_callback"
+        "https://chem123.chem.ucsb.edu:443/users/auth_callback"
     );
 }
 

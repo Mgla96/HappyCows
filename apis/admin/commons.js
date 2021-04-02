@@ -71,7 +71,9 @@ async function get_common_info(cid) {
 		'SELECT c.id, c.name ' +
 		'FROM Commons as c WHERE c.id = ?',
 		{
-			replacements: [cid],
+			replacements: [
+				cid
+			],
 			type: QueryTypes.SELECT
 		}).then((dbRes)=>{
 		return dbRes;

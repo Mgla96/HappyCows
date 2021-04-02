@@ -70,7 +70,7 @@ Then run:
 
 If you want to have demo data, run following command: (no demo data here so will not work currently)
 ```bash
-npx sequelize-cli db:seed:all  
+./bin/www
 ```
 
 ## Info

@@ -88,7 +88,7 @@ async function get_conf_id2(cid){
 //also add removing CommonsHealths because otherwise will stay NULL as commonID in table
 async function remove_common(cid){
 	let confId = await get_conf_id2(cid);
-	//ideally destroy commonshealths as well but right now a cron job periodically removes commonshealths
+	//ideally destroy commonshealths as well but right now a mysql scheduler periodically removes commonshealths
 	await db.TieredTaxings.destroy({ //double check assuming config id same as common id
 		where: { ConfigId: confId}
 	})
