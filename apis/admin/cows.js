@@ -119,10 +119,10 @@ async function get_cow_total(cid, uid) {
 	return await db.sequelize.query(
 		'SELECT COUNT(c.id) ' +
 		`FROM Cows AS c `+
-		'WHERE c.UserId = ?'+
-		' AND c.CommonId = ?',
+		'WHERE c.UserId = ' + uid +
+		' AND c.CommonId = ' + cid  ,
 		{
-			replacements: [uid,cid],
+
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);

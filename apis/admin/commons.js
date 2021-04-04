@@ -23,7 +23,6 @@ async function get_conf_id_2(cid){
         }
       })
 }
-//changed maxcowperperson to 10
 async function create_common(name, user_id,cow_price, milk_price,start_date, end_date) {
     let common = db.Commons.build({
         admin_uid: user_id,
@@ -96,9 +95,8 @@ async function get_avg_cow_health(cid){
 	let result = await db.sequelize.query(
 		'SELECT AVG(c.health) ' +
 		`FROM Cows AS c `+
-		'WHERE c.CommonId = ?',
+		'WHERE c.CommonId = ' + cid,
 		{
-            replacements:[cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);

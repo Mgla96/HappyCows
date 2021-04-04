@@ -144,9 +144,8 @@ async function get_tax_rate(cid) {
 	return await db.sequelize.query(
 		'SELECT d.tax ' +
 		`FROM TieredTaxings AS d `+
-		'WHERE d.ConfigId = ?',
+		'WHERE d.ConfigId = ' + confId,
 		{
-			replacements: [cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			if (dbRes.length == 0) {
@@ -169,9 +168,8 @@ async function get_cow_price(cid) {
 	return await db.sequelize.query(
 		'SELECT c.cowPrice ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ?',
+		'WHERE c.CommonId = ' + cid,
 		{
-			replacements:[cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
@@ -189,9 +187,8 @@ async function get_max_cow(cid) {
 	return await db.sequelize.query(
 		'SELECT c.maxCowPerPerson ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ?',
+		'WHERE c.CommonId = ' + cid,
 		{
-			replacements:[cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
@@ -208,9 +205,8 @@ async function get_degrade_rate(cid) {
 	return await db.sequelize.query(
 		'SELECT c.degradeRate ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ?',
+		'WHERE c.CommonId = ' + cid,
 		{
-			replacements:[cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
@@ -227,9 +223,8 @@ async function get_start_date(cid) {
 	return await db.sequelize.query(
 		'SELECT c.startDate ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ?',
+		'WHERE c.CommonId = ' + cid,
 		{
-			replacements:[cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
@@ -246,9 +241,8 @@ async function get_end_date(cid) {
 	return await db.sequelize.query(
 		'SELECT c.endDate ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ?',
+		'WHERE c.CommonId = ' + cid,
 		{
-			replacements:[cid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
@@ -266,9 +260,8 @@ async function get_milk_price(uid) {
 	return await db.sequelize.query(
 		'SELECT c.milkPrice ' +
 		`FROM Configs AS c `+
-		'WHERE c.CommonId = ?',
+		'WHERE c.CommonId = ' + uid,
 		{
-			replacements:[uid],
 			type: QueryTypes.SELECT
 		}).then((dbRes) => {
 			var key = Object.keys(dbRes[0]);
