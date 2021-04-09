@@ -8,9 +8,9 @@ require('dotenv').config()
 // oauth
 function get_new_client(){
     return new google.auth.OAuth2(
-        process.env.OATH_URL, // change to better name it's the client id
-        process.env.OATH_PWD,
-        "https://chem123.chem.ucsb.edu:443/users/auth_callback"
+        process.env.GOOGLE_OAUTH_CLIENT_ID, // change to better name it's the client id
+        process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+        process.env.GOOGLE_OAUTH_CALLBACK_URL
     );
 }
 
