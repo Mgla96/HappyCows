@@ -33,6 +33,22 @@
                             </div>
                         </div>
                     </div>
+                    <% if (data && data.user_info && data.user_info.type && data.user_info.type==='admin') { %>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card special-card">
+                                    <div class="page-caption">
+                                        <!-- <h1 class="ml9"> -->
+                                            <span class="text-wrapper">
+                                                <span class="letters"><a href="/admin">admin page</a></span>
+                                            </span>
+                                        <!-- </h1> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                    
                     <div class = "row mt-5">
                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-6">
                             <div class="card special-card">

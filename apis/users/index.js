@@ -18,6 +18,20 @@ function update_self(firstName, lastName) {
 	return true;
 }
 
+async function get_user_info(uid) {
+	let result = await db.sequelize.query(
+		'SELECT * ' +
+		`FROM Users AS u `+
+		'WHERE u.id = ?' ,
+		{
+			type: QueryTypes.SELECT,
+			replacements: [uid]
+		}).then((dbRes) => {
+			return dbRes[0];
+		});
+		return result;
+}
+
 async function get_user_wealth(cid, uid) {
 	let result = await db.sequelize.query(
 		'SELECT SUM(uw.wealth) ' +
@@ -466,6 +480,6 @@ module.exports = {
 	get_common_day,
 	get_end_date,
 	get_all_milkings,
-	get_user_total
+	get_user_total,
+	get_user_info
 }
-
