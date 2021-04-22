@@ -6,6 +6,7 @@ config.json
 # dotenv environment variables file
 .env
 .env.test
+.env.*
 
 # Logs
 logs
